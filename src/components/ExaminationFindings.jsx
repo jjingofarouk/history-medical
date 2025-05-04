@@ -19,12 +19,20 @@ const ExaminationFindings = ({ examinationFindings = {}, handleInputChange }) =>
   };
 
   const handleFindingChange = (systemName, category, findingName, option, findingType) => {
-    const currentValue = examinationFindings[systemName]?.[category]?.[findingName]?.value || '';
+    const currentValue = examinationFindings[systemName]?.[category]?.[findingName]?.value || [];
+    
     let updatedValue;
-
     if (findingType === 'options') {
-      updatedValue = currentValue === option ? '' : option;
+      // Handle multiple selections for options type
+      if (currentValue.includes(option)) {
+        // Remove option if already selected
+        updatedValue = currentValue.filter((val) => val !== option);
+      } else {
+        // Add option to selections
+        updatedValue = [...currentValue, option];
+      }
     } else {
+      // Handle range or custom types (single value)
       updatedValue = option;
     }
 
@@ -47,7 +55,7 @@ const ExaminationFindings = ({ examinationFindings = {}, handleInputChange }) =>
 
   const renderFindingControl = (systemName, category, finding) => {
     const { name, expected = [], type, min, max } = finding || {};
-    const currentValue = examinationFindings[systemName]?.[category]?.[name]?.value || '';
+    const currentValue = examinationFindings[systemName]?.[category]?.[name]?.value || (type === 'options' ? [] : '');
 
     if (!name || !type) return null;
 
@@ -59,7 +67,7 @@ const ExaminationFindings = ({ examinationFindings = {}, handleInputChange }) =>
             {expected.map((option) => (
               <button
                 key={option}
-                className={`finding-option ${currentValue === option ? 'active' : ''}`}
+                className={`finding-option ${currentValue.includes(option) ? 'active' : ''}`}
                 onClick={() => handleFindingChange(systemName, category, name, option, type)}
               >
                 {option}
