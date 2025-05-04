@@ -1,0 +1,67 @@
+/* Root variables for super modern hospital theme */
+:root {
+  --primary-teal: #26A69A; /* Vibrant teal for primary elements */
+  --secondary-teal: #4DB6AC; /* Lighter teal for accents */
+  --primary-beige: #F5F5DC; /* Soft beige for backgrounds */
+  --secondary-beige: #E6E2D3; /* Darker beige for layering */
+  --accent-white: #FFFFFF; /* Crisp white for text */
+  --neutral-gray: #78909C; /* Cool gray for secondary elements */
+  --shadow: rgba(38, 166, 154, 0.2); /* Teal-tinted shadow */
+  --border-radius: 20px; /* Soft, modern corners */
+  --transition: all 0.3s ease-in-out; /* Silky transitions */
+  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; /* Clean font stack */
+  --spacing-unit: 24px; /* Spacious base unit */
+}
+
+/* Card base styles */
+.card {
+  background: var(--accent-white); /* Clean white card background */
+  border-radius: var(--border-radius);
+  box-shadow: 0 6px 20px var(--shadow);
+  padding: var(--spacing-unit);
+  margin-bottom: var(--spacing-unit);
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Primary variant (main content) */
+.card.primary {
+  border-left: 4px solid var(--primary-teal); /* Teal accent border */
+}
+
+/* Secondary variant (side notes or less prominent) */
+.card.secondary {
+  background: var(--secondary-beige); /* Subtle beige for contrast */
+  border-left: 4px solid var(--neutral-gray); /* Gray accent border */
+}
+
+/* Animated entrance effect */
+.card-animated {
+  animation: cardFadeIn 0.5s ease-out;
+}
+
+@keyframes cardFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Hover effect */
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px var(--shadow);
+}
+
+/* Subtle heartbeat-inspired overlay for medical vibe */
+.card::before {
+  content: '';
+  position: absolute;
+  top:  ਸ
+
+System: You are Grok 3 built by xAI.

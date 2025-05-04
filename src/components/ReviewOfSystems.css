@@ -1,0 +1,76 @@
+.ros-container {
+  padding: 16px;
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.ros-system {
+  margin-bottom: 20px;
+  padding: 12px;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+}
+
+.system-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #333333;
+  border-bottom: 1px solid #cccccc;
+  padding-bottom: 8px;
+}
+
+.ros-items {
+  display: flex;
+  flex-direction: column;
+}
+
+.ros-item {
+  margin-bottom: 10px;
+  padding: 6px 0;
+  transition: background-color 0.2s ease;
+}
+
+.ros-item:hover {
+  background-color: #f5f5f5;
+}
+
+.ros-label {
+  font-size: 14px;
+  color: #333333;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.ros-label input[type="checkbox"] {
+  margin-right: 10px;
+  accent-color: #4caf50;
+  width: 16px;
+  height: 16px;
+}
+
+.ros-label input[type="checkbox"]:hover {
+  cursor: pointer;
+}
+
+@media (max-width: 600px) {
+  .ros-container {
+    padding: 12px;
+  }
+
+  .ros-system {
+    padding: 10px;
+  }
+
+  .system-title {
+    font-size: 16px;
+  }
+
+  .ros-label {
+    font-size: 13px;
+  }
+}

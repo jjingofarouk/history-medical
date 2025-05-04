@@ -1,0 +1,23 @@
+.additional-field {
+  margin-top: 16px;
+}
+
+.additional-field label {
+  display: block;
+  font-size: 16px;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.select-field {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+.select-field:focus {
+  outline: none;
+  border-color: #007bff;
+}

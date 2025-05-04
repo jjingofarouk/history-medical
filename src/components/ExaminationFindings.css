@@ -1,0 +1,137 @@
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  background-color: #dfe4e5;
+}
+
+.examination-findings-container {
+  padding: 20px;
+  max-width: 800px;
+  margin: auto;
+}
+
+.card {
+  background-color: #fff;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+  background-color: #002432;
+  color: #ffffff;
+  padding: 16px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.card-header h2 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.card-content {
+  padding: 16px;
+}
+
+.card-content p {
+  color: #002432;
+  margin-bottom: 10px;
+}
+
+.select-box {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  background-color: #ffffff;
+}
+
+.category-title {
+  color: #27c7b8;
+  margin: 16px 0;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid #e0e0e0;
+  margin: 16px 0;
+}
+
+.finding-control {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+}
+
+.finding-name {
+  flex: 1;
+  font-weight: 600;
+  color: #002432;
+}
+
+.checkbox-item {
+  margin-left: 16px;
+  color: #002432;
+}
+
+.text-field {
+  flex: 2;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.no-findings,
+.not-relevant {
+  color: #666;
+  font-size: 14px;
+}
+
+.save-button {
+  background-color: #27c7b8;
+  color: #ffffff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 20px;
+}
+
+.save-button:hover {
+  background-color: #f78837;
+}
+
+@media (max-width: 600px) {
+  .examination-findings-container {
+    padding: 10px;
+  }
+
+  .card {
+    margin-bottom: 15px;
+  }
+
+  .finding-control {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .text-field {
+    width: 100%;
+    margin-top: 8px;
+  }
+
+  .checkbox-item {
+    margin-left: 0;
+    margin-top: 8px;
+  }
+}

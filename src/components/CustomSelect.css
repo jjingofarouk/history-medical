@@ -1,0 +1,14 @@
+.custom-select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #cccccc;
+  border-radius: 8px;
+  font-size: 16px;
+  background-color: #ffffff;
+  color: #333333;
+}
+
+.custom-select:focus {
+  outline: none;
+  border-color: #4caf50;
+}
