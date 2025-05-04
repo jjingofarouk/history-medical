@@ -1,3 +1,4 @@
+`CustomSelect.css`
 :root {
   --primary-black: #050505;
   --secondary-black: #121212;
@@ -30,7 +31,7 @@
   padding: var(--spacing-xs) var(--spacing-sm);
   width: 100%;
   appearance: none;
-  background-image: url('data:image/svg+xml;utf8,<svg fill="%23F0F0F0" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
+  background-image: url('data:image/svg+xml;utf8,');
   background-repeat: no-repeat;
   background-position: right var(--spacing-xs) center;
   padding-right: var(--spacing-sm);
@@ -43,4 +44,26 @@
 }
 
 .custom-select:focus {
-  outline:
+  outline: none;
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 2px var(--shadow-accent);
+}
+
+.custom-select option {
+  background: var(--secondary-black);
+  color: var(--primary-white);
+  font-family: var(--font-family);
+  font-size: 1rem;
+}
+
+.custom-select:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  .custom-select {
+    font-size: 0.875rem;
+    padding: var(--spacing-xs);
+  }
+}
