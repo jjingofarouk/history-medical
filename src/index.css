@@ -1,15 +1,14 @@
-/* Root variables for pitch black and white modern theme */
+/* Root variables for modern pitch black and white card-based theme */
 :root {
   --primary-black: #0A0A0A; /* Deep black for backgrounds */
-  --secondary-black: #1C1C1C; /* Subtle dark gray for layering */
-  --primary-white: #FFFFFF; /* Crisp white for text and accents */
-  --secondary-white: #E0E0E0; /* Softer white for secondary elements */
+  --secondary-black: #1C1C1C; /* Subtle dark for card backgrounds */
+  --primary-white: #FFFFFF; /* Crisp white for text */
   --accent-neon: #39FF14; /* Vibrant neon green for energy */
-  --shadow: rgba(57, 255, 20, 0.3); /* Neon-tinted shadow */
-  --border-radius: 16px; /* Sleek, modern rounded corners */
-  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Smooth transitions */
-  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; /* Sharp, modern font stack */
-  --code-font-family: 'Fira Code', 'JetBrains Mono', 'Source Code Pro', monospace; /* Cutting-edge code font */
+  --accent-neon-light: #6EFF4D; /* Lighter neon for hover states */
+  --shadow: rgba(57, 255, 20, 0.3); /* Neon-tinted shadow for vibrancy */
+  --border-radius: 16px; /* Smooth, futuristic card corners */
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Smooth animations */
+  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; /* Modern font stack */
   --spacing-unit: 24px; /* Precise spacing */
 }
 
@@ -20,126 +19,184 @@
   box-sizing: border-box;
 }
 
-/* Body styles */
-body {
-  background: var(--primary-black);
-  color: var(--primary-white);
-  font-family: var(--font-family);
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
+/* App container */
+.app-container {
+  max-width: 1400px;
+  margin: 0 auto;
   padding: var(--spacing-unit);
+  background: var(--primary-black);
 }
 
-/* Code styles */
-code {
-  font-family: var(--code-font-family);
-  font-size: 14px;
-  background: var(--secondary-black);
-  padding: 4px 8px;
-  border-radius: 6px;
+/* Header */
+.app-header {
+  font-size: 40px;
+  font-weight: 800;
   color: var(--primary-white);
-  box-shadow: 0 2px 6px var(--shadow);
-}
-
-/* Headings (fixed syntax error) */
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-family);
-  font-weight: 700;
-  color: var(--primary-white);
-  margin-bottom: var(--spacing-unit);
-  letter-spacing: -0.5px;
-}
-
-/* Neon-inspired underline for headings */
-h1::after, h2::after, h3::after {
-  content: '';
-  position: absolute;
-  bottom: -6px;
-  left: 0;
-  width: 50px;
-  height: 2px;
-  background: linear-gradient(to right, var(--accent-neon), var(--accent-neon-light));
-  border-radius: 1px;
-}
-
-h1 {
-  font-size: 36px;
-  line-height: 1.2;
-}
-
-h2 {
-  font-size: 28px;
-  line-height: 1.3;
-}
-
-h3 {
-  font-size: 22px;
-  line-height: 1.4;
-}
-
-/* Links */
-a {
-  color: var(--accent-neon);
-  text-decoration: none;
-  transition: var(--transition);
+  text-align: center;
+  margin-bottom: calc(var(--spacing-unit) * 2);
+  letter-spacing: -1.2px;
+  text-transform: uppercase;
   position: relative;
 }
 
-a:hover {
+.app-header::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(to right, var(--accent-neon), var(--accent-neon-light));
+  border-radius: 2px;
+}
+
+/* Card grid for sections */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--spacing-unit);
+  padding: var(--spacing-unit);
+  perspective: 1200px; /* Enhanced 3D effect for cards */
+}
+
+/* Section card */
+.section-card {
+  position: relative;
+  background: var(--secondary-black);
+  border-radius: var(--border-radius);
+  padding: calc(var(--spacing-unit) * 1.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 240px;
+  cursor: pointer;
+  transition: var(--transition);
+  overflow: hidden;
+  box-shadow: 0 10px 28px var(--shadow);
+  transform: translateZ(0);
+  border: 2px solid transparent;
+}
+
+.section-card:hover {
+  border-color: var(--accent-neon);
+  transform: translateY(-10px) rotateX(4deg) rotateY(4deg);
+  box-shadow: 0 20px 40px var(--shadow);
+}
+
+/* Background images for cards */
+.section-card:nth-child(1) {
+  background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url('/demographics.jpeg');
+  background-size: cover;
+  background-position: center;
+}
+.section-card:nth-child(2) {
+  background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url('/complaint.jpeg');
+  background-size: cover;
+  background-position: center;
+}
+.section-card:nth-child(3) {
+  background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url('/history.jpeg');
+  background-size: cover;
+  background-position: center;
+}
+.section-card:nth-child(4) {
+  background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url('/medical.jpeg');
+  background-size: cover;
+  background-position: center;
+}
+.section-card:nth-child(5) {
+  background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url('/family.jpeg');
+  background-size: cover;
+  background-position: center;
+}
+.section-card:nth-child(6) {
+  background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url('/social.jpeg');
+  background-size: cover;
+  background-position: center;
+}
+.section-card:nth-child(7) {
+  background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url('/systems.jpeg');
+  background-size: cover;
+  background-position: center;
+}
+.section-card:nth-child(8) {
+  background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url('/exam.jpeg');
+  background-size: cover;
+  background-position: center;
+}
+
+/* Card icon and text */
+.section-card svg {
+  color: var(--accent-neon);
+  margin-bottom: 16px;
+  transition: var(--transition);
+  filter: drop-shadow(0 0 8px var(--shadow));
+}
+
+.section-card span {
+  color: var(--primary-white);
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-shadow: 0 2px 4px var(--shadow);
+}
+
+.section-card:hover svg {
+  transform: scale(1.3);
   color: var(--accent-neon-light);
 }
 
-a::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: var(--accent-neon-light);
-  transition: var(--transition);
-}
-
-a:hover::after {
-  width: 100%;
-}
-
-/* Buttons */
-button {
-  font-family: var(--font-family);
-  font-size: 16px;
-  font-weight: 500;
+/* Back button */
+.submit-button {
+  display: flex;
+  align-items: center;
   background: var(--accent-neon);
   color: var(--primary-black);
+  font-family: var(--font-family);
+  font-size: 16px;
+  font-weight: 600;
+  padding: 12px 28px;
   border: none;
   border-radius: var(--border-radius);
-  padding: 12px 24px;
   cursor: pointer;
   transition: var(--transition);
-  box-shadow: 0 4px 12px var(--shadow);
+  box-shadow: 0 6px 16px var(--shadow);
+  margin-bottom: var(--spacing-unit);
 }
 
-button:hover {
+.submit-button:hover {
   background: var(--accent-neon-light);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px var(--shadow);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 24px var(--shadow);
 }
 
-/* Inputs and selects */
+.submit-button svg {
+  margin-right: 10px;
+}
+
+/* Form section container */
+form {
+  background: var(--secondary-black);
+  border-radius: var(--border-radius);
+  padding: calc(var(--spacing-unit) * 2);
+  box-shadow: 0 10px 28px var(--shadow);
+  margin-top: var(--spacing-unit);
+  border: 2px solid var(--accent-neon);
+}
+
+/* Input fields */
 input, select, textarea {
   font-family: var(--font-family);
   font-size: 16px;
-  background: var(--secondary-black);
+  background: var(--primary-black);
   color: var(--primary-white);
   border: 2px solid var(--accent-neon);
   border-radius: 8px;
-  padding: 12px 16px;
+  padding: 14px 18px;
+  width: 100%;
   transition: var(--transition);
 }
 
@@ -151,7 +208,18 @@ input:focus, select:focus, textarea:focus {
 
 input::placeholder, textarea::placeholder {
   color: var(--primary-white);
-  opacity: 0.6;
+  opacity: 0.7;
+}
+
+/* Labels */
+label {
+  color: var(--primary-white);
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  display: block;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 /* Scrollbar */
@@ -160,7 +228,7 @@ input::placeholder, textarea::placeholder {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--secondary-black);
+  background: var(--primary-black);
   border-radius: 4px;
 }
 
@@ -173,31 +241,98 @@ input::placeholder, textarea::placeholder {
   background: var(--accent-neon-light);
 }
 
+/* Animation for card entrance (left-to-right slide) */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.section-card {
+  animation: slideIn 0.6s ease-out forwards;
+  animation-delay: calc(var(--order) * 0.12s);
+}
+
+.section-card:nth-child(1) { --order: 1; }
+.section-card:nth-child(2) { --order: 2; }
+.section-card:nth-child(3) { --order: 3; }
+.section-card:nth-child(4) { --order: 4; }
+.section-card:nth-child(5) { --order: 5; }
+.section-card:nth-child(6) { --order: 6; }
+.section-card:nth-child(7) { --order: 7; }
+.section-card:nth-child(8) { --order: 8; }
+
+/* Micro-interaction for card click */
+.section-card:active {
+  animation: pulse 0.3s ease-out;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 var(--shadow);
+  }
+  70% {
+    box-shadow: 0 0 0 12px transparent;
+  }
+  100% {
+    box-shadow: 0 0 0 0 transparent;
+  }
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
-  body {
-    font-size: 14px;
+  .app-container {
     padding: calc(var(--spacing-unit) / 2);
   }
 
-  h1 {
-    font-size: 28px;
+  .app-header {
+    font-size: 32px;
   }
 
-  h2 {
-    font-size: 24px;
+  .card-grid {
+    grid-template-columns: 1fr;
+    gap: calc(var(--spacing-unit) / 1.5);
   }
 
-  h3 {
+  .section-card {
+    height: 200px;
+  }
+
+  .section-card span {
     font-size: 18px;
+  }
+
+  .submit-button {
+    padding: 10px 24px;
+    font-size: 14px;
+  }
+
+  form {
+    padding: calc(var(--spacing-unit) * 1.5);
   }
 
   input, select, textarea {
     font-size: 14px;
-    padding: 10px 12px;
+    padding: 12px 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .app-header {
+    font-size: 28px;
   }
 
-  button {
-    padding: 10px 20px;
+  .section-card {
+    height: 180px;
+  }
+
+  .section-card svg {
+    width: 24px;
+    height: 24px;
   }
 }
