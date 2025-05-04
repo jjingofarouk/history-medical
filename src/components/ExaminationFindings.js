@@ -19,12 +19,12 @@ const ExaminationFindings = ({ examinationFindings = {}, handleInputChange }) =>
   };
 
   const handleFindingChange = (systemName, category, findingName, option, findingType) => {
-    const currentFinding = examinationFindings[systemName]?.[category]?.[findingName] || { value: findingType === 'options' ? [] : '', type: findingType };
+    const currentValue = examinationFindings[systemName]?.[category]?.[findingName]?.value || '';
     let updatedValue;
 
     if (findingType === 'options') {
-      // For options, toggle the selection: select if not present, deselect if present
-      updatedValue = currentFinding.value.includes(option) ? [] : [option];
+      // Toggle selection: set to option if not selected, clear if already selected
+      updatedValue = currentValue === option ? '' : option;
     } else {
       // For range or custom, use the input value directly
       updatedValue = option;
@@ -49,7 +49,7 @@ const ExaminationFindings = ({ examinationFindings = {}, handleInputChange }) =>
 
   const renderFindingControl = (systemName, category, finding) => {
     const { name, expected, type, min, max } = finding;
-    const currentValue = examinationFindings[systemName]?.[category]?.[name]?.value || (type === 'options' ? [] : '');
+    const currentValue = examinationFindings[systemName]?.[category]?.[name]?.value || '';
 
     return (
       <div key={name} className="finding-control">
@@ -59,7 +59,7 @@ const ExaminationFindings = ({ examinationFindings = {}, handleInputChange }) =>
             {expected.map((option) => (
               <button
                 key={option}
-                className={`finding-option ${currentValue.includes(option) ? 'active' : ''}`}
+                className={`finding-option ${currentValue === option ? 'active' : ''}`}
                 onClick={() => handleFindingChange(systemName, category, name, option, type)}
               >
                 {option}
