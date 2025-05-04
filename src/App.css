@@ -73,6 +73,28 @@ body {
   perspective: 1000px;
 }
 
+/* App.css additions for the new page content */
+.app-header {
+  font-size: 48px;
+  font-weight: 700;
+  color: var(--primary-white);
+  text-align: center;
+  margin-bottom: 16px;
+  letter-spacing: -1px;
+}
+
+.app-description {
+  color: var(--primary-white);
+  font-size: 18px;
+  font-weight: 400;
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+footer {
+  margin-top: 32px;
+}
+
 /* Section card */
 .section-card {
   position: relative;
