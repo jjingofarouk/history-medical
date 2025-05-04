@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import Navbar from './Navbar';
-import Footer from './Footer';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 import {
   User, AlertTriangle, FileText, Building2,
   Users, Globe, Stethoscope, Search, ArrowLeft
