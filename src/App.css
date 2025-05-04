@@ -91,9 +91,6 @@ body {
   box-shadow: 0 8px 24px var(--shadow);
   transform: translateZ(0);
   border: 2px solid transparent;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), var(--card-image);
-  background-size: cover;
-  background-position: center;
 }
 
 .section-card:hover {
