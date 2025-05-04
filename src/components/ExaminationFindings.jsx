@@ -137,10 +137,6 @@ const ExaminationFindings = ({ examinationFindings = {}, handleInputChange }) =>
     );
   };
 
-  // Split systems: 1-2 fixed tabs, rest in scrollable container
-  const fixedSystems = examinationSystems.slice(0, 2); // First two systems
-  const scrollableSystems = examinationSystems.slice(2); // Remaining systems
-
   return (
     <div className="examination-container">
       <div className="system-selector-card">
@@ -149,30 +145,19 @@ const ExaminationFindings = ({ examinationFindings = {}, handleInputChange }) =>
         </div>
         <div className="system-selector-content">
           <p>Select a system to document examination findings:</p>
-          <div className="system-tabs-container" data-testid="system-tabs-container">
-            <div className="system-tabs">
-              {fixedSystems.map((system) => (
-                <button
-                  key={system.name}
-                  className={`tab-button ${selectedSystem === system.name ? 'active' : ''}`}
-                  onClick={() => handleSystemChange(system.name)}
-                >
-                  {system.name}
-                </button>
-              ))}
-              <div className="scrollable-tabs" data-testid="scrollable-tabs">
-                {scrollableSystems.map((system) => (
-                  <button
-                    key={system.name}
-                    className={`tab-button scrollable-tab ${selectedSystem === system.name ? 'active' : ''}`}
-                    onClick={() => handleSystemChange(system.name)}
-                  >
-                    {system.name}
-                  </button>
-                ))}
-              </div>
-            </div>
-          </div>
+          <select
+            className="system-dropdown"
+            value={selectedSystem}
+            onChange={(e) => handleSystemChange(e.target.value)}
+            data-testid="system-dropdown"
+          >
+            <option value="">Select a system</option>
+            {examinationSystems.map((system) => (
+              <option key={system.name} value={system.name}>
+                {system.name}
+              </option>
+            ))}
+          </select>
         </div>
       </div>
       {renderSystemFindings()}
