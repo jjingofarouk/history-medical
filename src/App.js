@@ -1,4 +1,6 @@
-Redesign completely the css of this appjs. A card based display should display the different sections in a super modern manner, with background images and text for each section. The cards should stack in a very responsive manner on both phones and laptops. Preferably moving left to right or something superior. import React, { useState } from 'react';
+
+
+import React, { useState } from 'react';
 import {
   User, AlertTriangle, FileText, Building2,
   Users, Globe, Stethoscope, Search, ArrowLeft
