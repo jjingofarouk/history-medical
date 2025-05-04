@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Heart, Shield, FileText, ExternalLink, Facebook, Twitter, Instagram, LinkedIn } from 'lucide-react';
+import { Heart, Shield, FileText, ExternalLink, Facebook, Twitter, Instagram, Link } from 'lucide-react';
 import './Footer.css';
 
 const Footer = () => {
@@ -26,7 +26,7 @@ const Footer = () => {
                 <Instagram size={20} />
               </a>
               <a href="https://linkedin.com" aria-label="LinkedIn" className="social-icon">
-                <LinkedIn size={20} />
+                <Link size={20} />
               </a>
             </div>
           </div>
