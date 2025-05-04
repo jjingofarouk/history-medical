@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import Navbar from './Navbar';
+import Footer from './Footer';
 import {
   User, AlertTriangle, FileText, Building2,
   Users, Globe, Stethoscope, Search, ArrowLeft
@@ -120,7 +122,11 @@ export default function App() {
 
   return (
     <div className="app-container">
-      <h1 className="app-header">Medical Form</h1>
+      <Navbar />
+      <h1 className="app-header">Welcome to MedForm</h1>
+      <p className="app-description">
+        Our medical form app allows you to seamlessly track patient data for clinical assessments. Fill out each section for a comprehensive profile.
+      </p>
 
       {selectedSection ? (
         <>
@@ -148,11 +154,11 @@ export default function App() {
             >
               {section.icon}
               <span>{section.label}</span>
-              <div className="card-image" style={{ backgroundImage: `url(${section.image})` }}></div>
             </div>
           ))}
         </div>
       )}
+      <Footer />
     </div>
   );
 }
