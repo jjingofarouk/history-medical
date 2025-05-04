@@ -1,149 +1,272 @@
-/* Root variables */
-:root {
-  --primary-black: #0A0A0A;
-  --secondary-black: #1C1C1C;
-  --primary-white: #FFFFFF;
-  --accent-neon: #39FF14;
-  --border-radius: 16px;
-  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  --font-family: 'Inter', sans-serif;
-  --spacing-unit: 24px;
-}
 
-/* Global reset */
-* {
+
+/* Import fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+/* CSS Reset & Base Styles */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 
-/* App container */
-.app-container {
-  max-width: 1600px;
-  margin: 0 auto;
-  padding: var(--spacing-unit);
-  background: var(--primary-black);
+:root {
+  /* Color palette */
+  --primary-black: #050505;
+  --secondary-black: #121212;
+  --tertiary-black: #1E1E1E;
+  --primary-white: #FFFFFF;
+  --secondary-white: #F0F0F0;
+  --accent-primary: #00FFAA;
+  --accent-secondary: #3D7DFF;
+  
+  /* Shadows */
+  --shadow-black: rgba(0, 0, 0, 0.25);
+  --shadow-accent: rgba(0, 255, 170, 0.15);
+  
+  /* Border radius */
+  --border-radius-sm: 8px;
+  --border-radius-md: 12px;
+  --border-radius-lg: 16px;
+  
+  /* Transitions */
+  --transition-fast: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --transition-smooth: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  
+  /* Typography */
+  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  
+  /* Spacing */
+  --spacing-xs: 8px;
+  --spacing-sm: 16px;
+  --spacing-md: 24px;
+  --spacing-lg: 32px;
+  --spacing-xl: 48px;
 }
 
-/* Header */
-.app-header {
-  font-size: 42px;
-  font-weight: 800;
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  height: 100%;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--primary-black);
   color: var(--primary-white);
-  text-align: center;
-  margin-bottom: var(--spacing-unit);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+  text-rendering: optimizeLegibility;
 }
 
-/* Card grid for sections */
-.card-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: var(--spacing-unit);
-  padding: var(--spacing-unit);
-}
-
-/* Section card */
-.section-card {
-  background: var(--secondary-black);
-  border-radius: var(--border-radius);
-  padding: var(--spacing-unit);
-  text-align: center;
-  cursor: pointer;
-  transition: var(--transition);
-  box-shadow: 0 12px 32px rgba(57, 255, 20, 0.3);
-}
-
-/* Card icon and text */
-.section-card svg {
-  color: var(--accent-neon);
-  margin-bottom: 18px;
-  transition: var(--transition);
-  width: 32px;
-  height: 32px;
-}
-
-.section-card span {
-  color: var(--primary-white);
-  font-size: 22px;
-  font-weight: 700;
-}
-
-/* Submit button */
-.submit-button {
+#root {
+  min-height: 100vh;
   display: flex;
-  align-items: center;
-  background: var(--accent-neon);
-  color: var(--primary-black);
-  font-family: var(--font-family);
-  font-size: 16px;
-  padding: 14px 30px;
-  border: none;
-  border-radius: var(--border-radius);
-  cursor: pointer;
-  transition: var(--transition);
+  flex-direction: column;
 }
 
-/* Form section container */
-form {
+/* Modern scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
   background: var(--secondary-black);
-  border-radius: var(--border-radius);
-  padding: var(--spacing-unit);
-  box-shadow: 0 12px 32px rgba(57, 255, 20, 0.3);
 }
 
-/* Input fields */
-input, select, textarea {
+::-webkit-scrollbar-thumb {
+  background: var(--tertiary-black);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-primary);
+}
+
+/* Selection styling */
+::selection {
+  background-color: var(--accent-primary);
+  color: var(--primary-black);
+}
+
+/* Typography defaults */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: var(--spacing-sm);
+  letter-spacing: -0.02em;
+}
+
+h1 {
+  font-size: 2.5rem;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.75rem;
+}
+
+h4 {
+  font-size: 1.5rem;
+}
+
+h5 {
+  font-size: 1.25rem;
+}
+
+h6 {
+  font-size: 1rem;
+}
+
+p {
+  margin-bottom: var(--spacing-sm);
+  font-size: 1rem;
+}
+
+a {
+  color: var(--accent-primary);
+  text-decoration: none;
+  transition: var(--transition-fast);
+}
+
+a:hover, a:focus {
+  color: var(--accent-secondary);
+  text-decoration: underline;
+}
+
+/* Button reset */
+button {
   font-family: var(--font-family);
-  font-size: 16px;
-  background: var(--primary-black);
-  color: var(--primary-white);
-  border: 2px solid var(--accent-neon);
-  border-radius: 8px;
-  padding: 14px;
-  width: 100%;
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 0;
 }
 
-/* Labels */
-label {
-  color: var(--primary-white);
-  font-size: 15px;
-  font-weight: 600;
-  margin-bottom: 10px;
-  display: block;
-  text-transform: uppercase;
+/* Focus styling */
+:focus {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 2px;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Accessibility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Smooth appearance animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.app-container {
+  animation: fadeIn 0.4s ease-out;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+  }
+}
+
+/* Container */
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
 }
 
 /* Responsive adjustments */
-@media (max-width: 1024px) {
-  .card-grid {
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  }
-
-  .app-header {
-    font-size: 36px;
-  }
-}
-
 @media (max-width: 768px) {
-  .app-container {
-    padding: calc(var(--spacing-unit) / 2);
+  html {
+    font-size: 14px;
   }
-
-  .app-header {
-    font-size: 32px;
-  }
-
-  .card-grid {
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  
+  .container {
+    padding: 0 var(--spacing-sm);
   }
 }
 
-@media (max-width: 480px) {
-  .app-header {
-    font-size: 28px;
-  }
+/* Image styling */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
 
-  .card-grid {
-    grid-template-columns: 1fr;
+/* Code styling */
+code {
+  font-family: 'SF Mono', 'Menlo', 'Monaco', 'Courier New', monospace;
+  background-color: var(--tertiary-black);
+  color: var(--accent-primary);
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+/* Grid system */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--spacing-md);
+}
+
+/* App loading state */
+.app-loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--primary-black);
+  z-index: 9999;
+}
+
+.app-loading__spinner {
+  width: 48px;
+  height: 48px;
+  border: 4px solid rgba(0, 255, 170, 0.1);
+  border-radius: 50%;
+  border-top-color: var(--accent-primary);
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
   }
 }
