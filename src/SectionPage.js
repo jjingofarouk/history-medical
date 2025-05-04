@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import { ArrowLeft } from 'lucide-react';
+import "./SectionPage.css"
 
 import PersonalInfo from './components/PersonalInfo';
 import ChiefComplaint from './components/ChiefComplaint';
