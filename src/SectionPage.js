@@ -41,7 +41,7 @@ export default function SectionPage({ patientData, handleInputChange }) {
         Back to Sections
       </button>
       {sectionComponents[sectionKey] || <p>Section not found</p>}
-      <Footer />
+
     </div>
   );
 }
