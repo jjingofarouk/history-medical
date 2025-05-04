@@ -11,6 +11,14 @@ import FamilyHistory from './components/FamilyHistory';
 import SocialHistory from './components/SocialHistory';
 import ReviewOfSystems from './components/ReviewOfSystems';
 import ExaminationFindings from './components/ExaminationFindings';
+import demographicsImage from './demographics.jpeg';
+import complaintImage from './complaint.jpeg';
+import historyImage from './history.jpeg';
+import medicalImage from './medical.jpeg';
+import familyImage from './family.jpeg';
+import socialImage from './social.jpeg';
+import systemsImage from './systems.jpeg';
+import examImage from './exam.jpeg';
 import './App.css';
 
 const sections = [
@@ -18,49 +26,49 @@ const sections = [
     key: 'personalInfo',
     label: 'Patient Demographics',
     icon: <User size={28} />,
-    image: 'https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&w=800',
+    image: demographicsImage,
   },
   {
     key: 'chiefComplaint',
     label: 'Presenting Complaint',
     icon: <AlertTriangle size={28} />,
-    image: 'https://images.unsplash.com/photo-1576091160550-2173fdabe9f1?auto=format&fit=crop&w=800',
+    image: complaintImage,
   },
   {
     key: 'historyOfPresentIllness',
     label: 'History of Present Illness',
     icon: <FileText size={28} />,
-    image: 'https://images.unsplash.com/photo-1505751172876-fa1923c5ebd8?auto=format&fit=crop&w=800',
+    image: historyImage,
   },
   {
     key: 'pastMedicalHistory',
     label: 'Past Medical History',
     icon: <Building2 size={28} />,
-    image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=800',
+    image: medicalImage,
   },
   {
     key: 'familyHistory',
     label: 'Family History',
     icon: <Users size={28} />,
-    image: 'https://images.unsplash.com/photo-1550831107-1553da8c8464?auto=format&fit=crop&w=800',
+    image: familyImage,
   },
   {
     key: 'socialHistory',
     label: 'Social History',
     icon: <Globe size={28} />,
-    image: 'https://images.unsplash.com/photo-1445527812168-57f788836937?auto=format&fit=crop&w=800',
+    image: socialImage,
   },
   {
     key: 'reviewOfSystems',
     label: 'Review of Systems',
     icon: <Stethoscope size={28} />,
-    image: 'https://images.unsplash.com/photo-1585435557343-3b092031a831?auto=format&fit=crop&w=800',
+    image: systemsImage,
   },
   {
     key: 'examinationFindings',
     label: 'Examination Findings',
     icon: <Search size={28} />,
-    image: 'https://images.unsplash.com/photo-1579165466949-318953a3d7fa?auto=format&fit=crop&w=800',
+    image: examImage,
   },
 ];
 
@@ -134,7 +142,7 @@ export default function App() {
               className="section-card"
               onClick={() => setSelectedSection(section.key)}
               style={{
-                '--card-image': `url(${section.image})`,
+                backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(${section.image})`,
                 '--order': index + 1,
               }}
             >
