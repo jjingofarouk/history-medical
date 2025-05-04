@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from './Card';
 import { symptomsList } from './symptomsList';
-import './ChiefComplaint.css';
+import './ChiefComplait.css';
 
 const ChiefComplaint = ({ chiefComplaints = ['', '', ''], durations = ['', '', ''], durationUnits = ['days', 'days', 'days'], handleInputChange }) => {
   const [complaints, setComplaints] = useState(chiefComplaints);
