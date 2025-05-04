@@ -2,29 +2,28 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './Card.css';
 
-// Main Card component with variant and animation support
-const Card = ({ children, variant = 'primary', animated = true }) => (
-  <div className={`card ${variant} ${animated ? 'card-animated' : ''}`}>
+// Main Card component with simplified variant and animation
+const Card = ({ children, variant = 'primary' }) => (
+  <div className={`card card-${variant}`}>
     {children}
   </div>
 );
 
-// CardHeader with optional icon support
-const CardHeader = ({ children, icon }) => (
+// CardHeader with streamlined design
+const CardHeader = ({ children }) => (
   <div className="card-header">
-    {icon && <span className="card-header-icon">{icon}</span>}
     {children}
   </div>
 );
 
-// CardTitle with size customization
-const CardTitle = ({ children, size = 'medium' }) => (
-  <h2 className={`card-title card-title-${size}`}>{children}</h2>
+// CardTitle with single size
+const CardTitle = ({ children }) => (
+  <h2 className="card-title">{children}</h2>
 );
 
-// CardContent with optional padding control
-const CardContent = ({ children, compact = false }) => (
-  <div className={`card-content ${compact ? 'card-content-compact' : ''}`}>
+// CardContent with consistent padding
+const CardContent = ({ children }) => (
+  <div className="card-content">
     {children}
   </div>
 );
@@ -33,22 +32,18 @@ const CardContent = ({ children, compact = false }) => (
 Card.propTypes = {
   children: PropTypes.node.isRequired,
   variant: PropTypes.oneOf(['primary', 'secondary']),
-  animated: PropTypes.bool,
 };
 
 CardHeader.propTypes = {
   children: PropTypes.node.isRequired,
-  icon: PropTypes.node,
 };
 
 CardTitle.propTypes = {
   children: PropTypes.node.isRequired,
-  size: PropTypes.oneOf(['small', 'medium', 'large']),
 };
 
 CardContent.propTypes = {
   children: PropTypes.node.isRequired,
-  compact: PropTypes.bool,
 };
 
 export { Card, CardHeader, CardTitle, CardContent };
