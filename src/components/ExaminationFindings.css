@@ -74,34 +74,18 @@
 
 /* Tabs container */
 .system-tabs-container {
-  overflow-x: auto;
-  scrollbar-width: thin;
-  scrollbar-color: var(--color-accent-1) var(--color-black-3);
   max-width: 100%;
   -webkit-overflow-scrolling: touch;
-}
-
-.system-tabs-container::-webkit-scrollbar {
-  height: 6px;
-}
-
-.system-tabs-container::-webkit-scrollbar-track {
-  background: var(--color-black-3);
-  border-radius: var(--radius-sm);
-}
-
-.system-tabs-container::-webkit-scrollbar-thumb {
-  background: var(--color-accent-1);
-  border-radius: var(--radius-sm);
 }
 
 /* Tabs */
 .system-tabs {
   display: flex;
-  gap: var(--space-sm);
   align-items: center;
+  gap: var(--space-sm);
   padding-bottom: var(--space-xs);
   flex-wrap: nowrap;
+  position: relative;
 }
 
 /* Scrollable tabs container */
@@ -109,13 +93,31 @@
   display: flex;
   gap: var(--space-sm);
   overflow-x: auto;
-  scrollbar-width: none; /* Hide scrollbar in scrollable section */
+  scrollbar-width: none; /* Hide scrollbar for cleaner look */
   -webkit-overflow-scrolling: touch;
   flex-grow: 1;
+  padding: 0 var(--space-sm);
+  scroll-behavior: smooth;
+  /* Ensure content is not clipped */
+  min-width: 0;
+  flex-shrink: 0;
 }
 
 .scrollable-tabs::-webkit-scrollbar {
-  display: none; /* Hide scrollbar for cleaner mobile look */
+  display: none; /* Hide scrollbar for Webkit browsers */
+}
+
+/* Visual cue for scrollability */
+.scrollable-tabs::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 20px;
+  height: 100%;
+  background: linear-gradient(to left, var(--color-black-2), transparent);
+  pointer-events: none;
+  z-index: 1;
 }
 
 .tab-button {
@@ -131,6 +133,7 @@
   transition: var(--transition-quick);
   text-align: center;
   flex-shrink: 0;
+  min-width: 100px;
 }
 
 .tab-button:hover {
@@ -145,7 +148,7 @@
 }
 
 .scrollable-tab {
-  min-width: 100px; /* Smaller width for scrollable tabs */
+  min-width: 90px; /* Slightly smaller for scrollable tabs */
 }
 
 /* No selection/findings */
@@ -340,11 +343,11 @@
   .tab-button {
     font-size: 0.75rem;
     padding: var(--space-xs) var(--space-sm);
-    min-width: 80px; /* Smaller tabs on mobile */
+    min-width: 80px;
   }
 
   .scrollable-tab {
-    min-width: 80px; /* Compact scrollable tabs */
+    min-width: 80px;
   }
 
   .save-button {
@@ -358,14 +361,9 @@
     min-width: 60px;
   }
 
-  /* Ensure only one fixed tab on small screens */
-  .system-tabs {
-    display: flex;
-    flex-wrap: nowrap;
-  }
-
+  /* Show only one fixed tab */
   .system-tabs .tab-button:nth-child(n+2) {
-    display: none; /* Show only the first fixed tab */
+    display: none;
   }
 
   .scrollable-tabs {
@@ -375,10 +373,6 @@
 }
 
 @media (max-width: 480px) {
-  .system-tabs-container {
-    padding-bottom: var(--space-xs);
-  }
-
   .tab-button {
     font-size: 0.7rem;
     min-width: 70px;
@@ -386,5 +380,9 @@
 
   .scrollable-tab {
     min-width: 70px;
+  }
+
+  .scrollable-tabs {
+    padding: 0 var(--space-xs);
   }
 }
