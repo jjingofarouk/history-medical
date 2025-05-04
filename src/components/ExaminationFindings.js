@@ -19,19 +19,15 @@ const ExaminationFindings = ({ examinationFindings = {}, handleInputChange }) =>
   };
 
   const handleFindingChange = (systemName, category, findingName, option, findingType) => {
-    const currentValues = examinationFindings[systemName]?.[category]?.[findingName]?.value || [];
+    const currentFinding = examinationFindings[systemName]?.[category]?.[findingName] || { value: findingType === 'options' ? [] : '', type: findingType };
+    let updatedValue;
 
-    let updatedValues;
     if (findingType === 'options') {
-      // Toggle option: add if not present, remove if present
-      if (currentValues.includes(option)) {
-        updatedValues = currentValues.filter((val) => val !== option);
-      } else {
-        updatedValues = [option]; // Only one option per finding
-      }
+      // For options, toggle the selection: select if not present, deselect if present
+      updatedValue = currentFinding.value.includes(option) ? [] : [option];
     } else {
       // For range or custom, use the input value directly
-      updatedValues = option;
+      updatedValue = option;
     }
 
     const updatedFindings = {
@@ -41,7 +37,7 @@ const ExaminationFindings = ({ examinationFindings = {}, handleInputChange }) =>
         [category]: {
           ...examinationFindings[systemName]?.[category],
           [findingName]: {
-            value: findingType === 'options' ? updatedValues : updatedValues,
+            value: updatedValue,
             type: findingType,
           },
         },
