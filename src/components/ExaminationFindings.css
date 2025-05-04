@@ -65,10 +65,22 @@
   margin-bottom: var(--spacing-md);
 }
 
+.system-tabs-container {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+.system-tabs-container::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
 .system-tabs {
   display: flex;
-  flex-wrap: wrap;
   gap: var(--spacing-sm);
+  white-space: nowrap;
+  padding-bottom: var(--spacing-xs);
 }
 
 .tab-button {
@@ -82,9 +94,7 @@
   border-radius: var(--border-radius-sm);
   cursor: pointer;
   transition: var(--transition-fast);
-  animation: slideIn 0.3s ease calc(var(--order) * 0.05s) forwards;
-  opacity: 0;
-  transform: translateY(10px);
+  flex-shrink: 0;
 }
 
 .tab-button:hover {
@@ -278,13 +288,12 @@
   }
 
   .system-tabs {
-    flex-direction: column;
-    align-items: stretch;
+    gap: var(--spacing-xs);
   }
 
   .tab-button {
-    padding: var(--spacing-sm);
-    font-size: 1rem;
+    padding: var(--spacing-xs) var(--spacing-md);
+    font-size: 0.875rem;
   }
 
   .finding-input {
