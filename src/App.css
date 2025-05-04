@@ -1,38 +1,191 @@
-.App {
-  text-align: center;
+:root {
+  --primary-teal: #26A69A;
+  --secondary-teal: #4DB6AC;
+  --primary-beige: #F5F5DC;
+  --secondary-beige: #E6E2D3;
+  --accent-white: #FFFFFF;
+  --neutral-gray: #78909C;
+  --shadow: rgba(38, 166, 154, 0.2);
+  --border-radius: 16px;
+  --transition: all 0.3s ease-in-out;
+  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --spacing-unit: 24px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+.app-container {
+  background: linear-gradient(135deg, var(--primary-beige) 0%, var(--secondary-beige) 100%);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  padding: var(--spacing-unit);
+  font-family: var(--font-family);
+  color: var(--neutral-gray);
+  padding-bottom: 80px;
 }
 
-.App-link {
-  color: #61dafb;
+.app-header {
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--primary-teal);
+  margin-bottom: var(--spacing-unit);
+  text-align: center;
+  letter-spacing: -0.8px;
+  position: relative;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.app-header::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 10"><path d="M0 5 H40 L50 0 L60 10 L70 5 H100" stroke="%2326A69A" stroke-width="2" fill="none"/></svg>');
+  background-size: cover;
+}
+
+.section-container {
+  width: 100%;
+  max-width: 640px;
+  background: var(--accent-white);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-unit);
+  box-shadow: 0 6px 20px var(--shadow);
+  margin-bottom: var(--spacing-unit);
+  transition: var(--transition);
+}
+
+.section-container:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px var(--shadow);
+}
+
+.default-text {
+  font-size: 16px;
+  color: var(--neutral-gray);
+  text-align: center;
+  opacity: 0.7;
+}
+
+.submit-button {
+  background: var(--primary-teal);
+  color: var(--accent-white);
+  border: none;
+  border-radius: var(--border-radius);
+  padding: 14px 32px;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: var(--font-family);
+  cursor: pointer;
+  transition: var(--transition);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  box-shadow: 0 4px 12px var(--shadow);
+  margin-top: var(--spacing-unit);
+}
+
+.submit-button:hover,
+.submit-button:focus {
+  background: var(--secondary-teal);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px var(--shadow);
+  outline: none;
+}
+
+.bottom-tab-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--accent-white);
+  display: flex;
+  justify-content: space-around;
+  padding: 12px 0;
+  box-shadow: 0 -4px 12px var(--shadow);
+  border-top: 1px solid var(--secondary-beige);
+  z-index: 1000;
+}
+
+.tab-button {
+  background: none;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: var(--font-family);
+  font-size: 12px;
+  color: var(--neutral-gray);
+  cursor: pointer;
+  transition: var(--transition);
+  padding: 8px 12px;
+  position: relative;
+}
+
+.tab-button-active {
+  color: var(--primary-teal);
+}
+
+.tab-button-active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 3px;
+  background: linear-gradient(to right, var(--primary-teal), var(--secondary-teal));
+  border-radius: 2px;
+}
+
+.tab-icon {
+  margin-bottom: 4px;
+}
+
+.tab-label {
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.tab-button:hover,
+.tab-button:focus {
+  color: var(--primary-teal);
+  outline: none;
+}
+
+@media (max-width: 768px) {
+  .app-container {
+    padding: 16px;
+    padding-bottom: 100px;
   }
-  to {
-    transform: rotate(360deg);
+
+  .app-header {
+    font-size: 28px;
+  }
+
+  .section-container {
+    max-width: 100%;
+  }
+
+  .submit-button {
+    width: 100%;
+    padding: 14px;
+  }
+
+  .bottom-tab-nav {
+    padding: 8px 0;
+  }
+
+  .tab-button {
+    font-size: 10px;
+    padding: 6px 8px;
   }
 }
