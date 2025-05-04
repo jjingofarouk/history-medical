@@ -18,21 +18,19 @@ const ExaminationFindings = ({ examinationFindings = {}, handleInputChange }) =>
     }));
   };
 
-  const handleFindingChange = (systemName, category, findingName, option, findingType) => {
-    const currentValue = examinationFindings[systemName]?.[category]?.[findingName]?.value || [];
-    
+  const handleFindingChange = (systemName, category, findingName, option, findingType, isExclusive = false) => {
+    const currentValue = examinationFindings[systemName]?.[category]?.[findingName]?.value || (findingType === 'options' ? [] : '');
+
     let updatedValue;
     if (findingType === 'options') {
-      // Handle multiple selections for options type
-      if (currentValue.includes(option)) {
-        // Remove option if already selected
-        updatedValue = currentValue.filter((val) => val !== option);
+      if (isExclusive) {
+        updatedValue = currentValue.includes(option) ? [] : [option];
       } else {
-        // Add option to selections
-        updatedValue = [...currentValue, option];
+        updatedValue = currentValue.includes(option)
+          ? currentValue.filter((val) => val !== option)
+          : [...currentValue, option];
       }
     } else {
-      // Handle range or custom types (single value)
       updatedValue = option;
     }
 
@@ -54,7 +52,7 @@ const ExaminationFindings = ({ examinationFindings = {}, handleInputChange }) =>
   };
 
   const renderFindingControl = (systemName, category, finding) => {
-    const { name, expected = [], type, min, max } = finding || {};
+    const { name, expected = [], type, min, max, exclusive = false } = finding || {};
     const currentValue = examinationFindings[systemName]?.[category]?.[name]?.value || (type === 'options' ? [] : '');
 
     if (!name || !type) return null;
@@ -68,7 +66,7 @@ const ExaminationFindings = ({ examinationFindings = {}, handleInputChange }) =>
               <button
                 key={option}
                 className={`finding-option ${currentValue.includes(option) ? 'active' : ''}`}
-                onClick={() => handleFindingChange(systemName, category, name, option, type)}
+                onClick={() => handleFindingChange(systemName, category, name, option, type, exclusive)}
               >
                 {option}
               </button>
@@ -139,6 +137,10 @@ const ExaminationFindings = ({ examinationFindings = {}, handleInputChange }) =>
     );
   };
 
+  // Split systems: show 1-2 fixed tabs, rest in scrollable container
+  const fixedSystems = examinationSystems.slice(0, 2); // Show first two systems as fixed tabs
+  const scrollableSystems = examinationSystems.slice(2); // Remaining systems in scrollable area
+
   return (
     <div className="examination-container">
       <div className="system-selector-card">
@@ -149,7 +151,7 @@ const ExaminationFindings = ({ examinationFindings = {}, handleInputChange }) =>
           <p>Select a system to document examination findings:</p>
           <div className="system-tabs-container">
             <div className="system-tabs">
-              {examinationSystems.map((system) => (
+              {fixedSystems.map((system) => (
                 <button
                   key={system.name}
                   className={`tab-button ${selectedSystem === system.name ? 'active' : ''}`}
@@ -158,6 +160,19 @@ const ExaminationFindings = ({ examinationFindings = {}, handleInputChange }) =>
                   {system.name}
                 </button>
               ))}
+              {scrollableSystems.length > 0 && (
+                <div className="scrollable-tabs">
+                  {scrollableSystems.map((system) => (
+                    <button
+                      key={system.name}
+                      className={`tab-button scrollable-tab ${selectedSystem === system.name ? 'active' : ''}`}
+                      onClick={() => handleSystemChange(system.name)}
+                    >
+                      {system.name}
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
         </div>
