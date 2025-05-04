@@ -143,6 +143,8 @@ export default function App() {
               onClick={() => setSelectedSection(section.key)}
               style={{
                 backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(${section.image})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
                 '--order': index + 1,
               }}
             >
