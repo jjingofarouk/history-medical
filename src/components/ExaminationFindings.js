@@ -9,7 +9,7 @@ const ExaminationFindings = () => {
 
   const handleSystemChange = (systemName) => {
     setSelectedSystem(systemName);
-    setOpenAccordions({}); // Reset accordions when switching systems
+    setOpenAccordions({});
   };
 
   const toggleAccordion = (category) => {
@@ -40,7 +40,7 @@ const ExaminationFindings = () => {
 
     return (
       <div key={name} className="finding-control">
-        <span className="finding-name">{name}:</span>
+        <label className="finding-label">{name}</label>
         {type === 'options' && (
           <div className="options-container">
             {expected.map((option) => (
@@ -74,9 +74,9 @@ const ExaminationFindings = () => {
             placeholder={
               type === 'range'
                 ? `Enter value (${min}-${max})`
-                : `Enter ${name} (e.g., ${expected})`
+                : `Enter ${name.toLowerCase()} (e.g., ${expected})`
             }
-            className="text-field"
+            className="finding-input"
           />
         )}
       </div>
@@ -84,69 +84,35 @@ const ExaminationFindings = () => {
   };
 
   const renderSystemFindings = () => {
-    if (!selectedSystem) return null;
+    if (!selectedSystem) {
+      return (
+        <div className="no-selection">
+          <p>Please select a system to begin recording findings.</p>
+        </div>
+      );
+    }
 
     const system = examinationSystems.find((sys) => sys.name === selectedSystem);
 
     if (!system || !system.findings) {
-      return <p className="not-relevant">No relevant findings.</p>;
+      return <p className="no-findings">No relevant findings available.</p>;
     }
 
     return (
-      <div className="card">
-        <div className="card-header">
-          <h2>{`${selectedSystem} Examination`}</h2>
+      <div className="system-card">
+        <div className="system-card-header">
+          <h2>{selectedSystem} Examination</h2>
         </div>
-        <div className="card-content">
-          {Object.keys(system.findings).map((category) => (
+        <div className="system-card-content">
+          {Object.keys(system.findings).map((category) =>
             system.findings[category].length > 0 && (
-              <div key={category} className="accordion-section">
+              <div key={category} className="accordion">
                 <div
                   className={`accordion-header ${openAccordions[category] ? 'active' : ''}`}
                   onClick={() => toggleAccordion(category)}
                 >
                   <h3>{category.charAt(0).toUpperCase() + category.slice(1)}</h3>
-                  <span className="accordion-arrow">↓</span>
+                  <span className="accordion-icon">{openAccordions[category] ? '−' : '+'}</span>
                 </div>
                 <div className={`accordion-content ${openAccordions[category] ? 'active' : ''}`}>
                   {system.findings[category].map((finding) =>
-                    renderFindingControl(selectedSystem, category, finding)
-                  )}
-                </div>
-              </div>
-            )
-          ))}
-          <button className="save-button">Save Findings</button>
-        </div>
-      </div>
-    );
-  };
-
-  return (
-    <div className="examination-findings-container">
-      <div className="card">
-        <div className="card-header">
-          <h2>Physical Examination</h2>
-        </div>
-        <div className="card-content">
-          <p>Select a system to record your examination findings:</p>
-          <div className="tab-nav">
-            {examinationSystems.map((system, index) => (
-              <button
-                key={system.name}
-                className={`tab-button ${selectedSystem === system.name ? 'active' : ''}`}
-                onClick={() => handleSystemChange(system.name)}
-                style={{ '--order': index }}
-              >
-                {system.name}
-              </button>
-            ))}
-          </div>
-        </div>
-      </div>
-      {renderSystemFindings()}
-    </div>
-  );
-};
-
-export default ExaminationFindings;
