@@ -11,6 +11,7 @@ import FamilyHistory from './components/FamilyHistory';
 import SocialHistory from './components/SocialHistory';
 import ReviewOfSystems from './components/ReviewOfSystems';
 import ExaminationFindings from './components/ExaminationFindings';
+import "./App.css"
 
 const sections = [
   { key: 'personalInfo', label: 'Patient Demographics', icon: <User size={28} /> },
