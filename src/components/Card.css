@@ -1,81 +1,95 @@
-/* Root variables for super modern hospital theme */
+/* Root variables for consistency with ExaminationFindings */
 :root {
-  --primary-teal: #26A69A; /* Vibrant teal for primary elements */
-  --secondary-teal: #4DB6AC; /* Lighter teal for accents */
-  --primary-beige: #F5F5DC; /* Soft beige for backgrounds */
-  --secondary-beige: #E6E2D3; /* Darker beige for layering */
-  --accent-white: #FFFFFF; /* Crisp white for text */
-  --neutral-gray: #78909C; /* Cool gray for secondary elements */
-  --shadow: rgba(38, 166, 154, 0.2); /* Teal-tinted shadow */
-  --border-radius: 20px; /* Soft, modern corners */
-  --transition: all 0.3s ease-in-out; /* Silky transitions */
-  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; /* Clean font stack */
-  --spacing-unit: 24px; /* Spacious base unit */
+  --color-black-1: #050505;
+  --color-black-2: #121212;
+  --color-black-3: #1E1E1E;
+  --color-white-1: #FFFFFF;
+  --color-white-2: #F0F0F0;
+  --color-accent-1: #00FFAA;
+  --color-accent-2: #3D7DFF;
+  --shadow-dark: rgba(0, 0, 0, 0.25);
+  --shadow-accent: rgba(0, 255, 170, 0.15);
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --transition-quick: 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --font-base: 'Inter', system-ui, -apple-system, sans-serif;
+  --space-xs: 8px;
+  --space-sm: 16px;
+  --space-md: 24px;
+  --space-lg: 32px;
 }
 
 /* Card base styles */
 .card {
-  background: var(--accent-white); /* Clean white card background */
-  border-radius: var(--border-radius);
-  box-shadow: 0 6px 20px var(--shadow);
-  padding: var(--spacing-unit);
-  margin-bottom: var(--spacing-unit);
-  transition: var(--transition);
-  position: relative;
+  background: var(--color-black-2);
+  border: 1px solid var(--color-black-3);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 6px 20px var(--shadow-dark);
   overflow: hidden;
 }
 
-/* Primary variant (main content) */
-.card.primary {
-  border-left: 4px solid var(--primary-teal); /* Teal accent border */
+/* Card variants */
+.card-primary {
+  background: var(--color-black-2);
 }
 
-/* Secondary variant (side notes or less prominent) */
-.card.secondary {
-  background: var(--secondary-beige); /* Subtle beige for contrast */
-  border-left: 4px solid var(--neutral-gray); /* Gray accent border */
+.card-secondary {
+  background: linear-gradient(135deg, var(--color-black-3), var(--color-black-2));
 }
 
-/* Animated entrance effect */
-.card-animated {
-  animation: cardFadeIn 0.5s ease-out;
+/* Card header */
+.card-header {
+  padding: var(--space-md) var(--space-lg);
+  background: linear-gradient(135deg, var(--color-black-3), var(--color-black-2));
+  border-bottom: 1px solid var(--color-black-3);
 }
 
-@keyframes cardFadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
+/* Card title */
+.card-title {
+  margin: 0;
+  font-family: var(--font-base);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-white-1);
+  letter-spacing: -0.02em;
+}
+
+/* Card content */
+.card-content {
+  padding: var(--space-lg);
+  color: var(--color-white-2);
+  font-family: var(--font-base);
+  font-size: 1rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .card {
+    border-radius: var(--radius-md);
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+
+  .card-header {
+    padding: var(--space-sm) var(--space-md);
+  }
+
+  .card-title {
+    font-size: 1.25rem;
+  }
+
+  .card-content {
+    padding: var(--space-md);
+    font-size: 0.9rem;
   }
 }
 
-/* Hover effect */
-.card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 32px var(--shadow);
-}
-
-/* Subtle heartbeat-inspired overlay for medical vibe */
-.card::before {
-  content: '';
-  position: absolute;
-  top: 0; /* Previously fixed */
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: var(--primary-teal);
-  opacity: 0.1;
-  animation: heartbeat 2s infinite;
-}
-
-@keyframes heartbeat {
-  0%, 100% {
-    opacity: 0.1;
+@media (max-width: 480px) {
+  .card-title {
+    font-size: 1.1rem;
   }
-  50% {
-    opacity: 0.15;
+
+  .card-content {
+    padding: var(--space-sm);
+    font-size: 0.85rem;
   }
 }
