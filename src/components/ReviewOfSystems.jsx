@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import './ReviewOfSystems.css';
 
 const systems = [
   {
@@ -57,11 +56,11 @@ const systems = [
   {
     name: 'Allergic/Immunologic',
     items: ['Allergic reactions', 'Frequent colds', 'Seasonal allergies', 'Autoimmune issues'],
-  },
+  }
 ];
 
-const ReviewOfSystems = ({ patientData, handleInputChange }) => {
-  const [selectedSymptoms, setSelectedSymptoms] = useState(patientData.reviewOfSystems || {});
+const ReviewOfSystems = ({ handleSystemReview }) => {
+  const [selectedSymptoms, setSelectedSymptoms] = useState({});
 
   const handleCheckboxChange = (systemName, symptom) => {
     const updatedSymptoms = { ...selectedSymptoms };
@@ -69,34 +68,32 @@ const ReviewOfSystems = ({ patientData, handleInputChange }) => {
       updatedSymptoms[systemName] = [];
     }
     if (updatedSymptoms[systemName].includes(symptom)) {
-      updatedSymptoms[systemName] = updatedSymptoms[systemName].filter((s) => s !== symptom);
+      updatedSymptoms[systemName] = updatedSymptoms[systemName].filter(s => s !== symptom);
     } else {
       updatedSymptoms[systemName].push(symptom);
     }
     setSelectedSymptoms(updatedSymptoms);
-    handleInputChange('reviewOfSystems', systemName, updatedSymptoms[systemName]);
+    handleSystemReview(systemName, updatedSymptoms[systemName]);
   };
 
   return (
     <div className="ros-container">
       {systems.map((system, index) => (
         <div key={index} className="ros-system">
-          <h3 className="system-title">{system.name}</h3>
-          <div className="ros-items">
-            {system.items.map((symptom, symptomIndex) => (
-              <div key={symptomIndex} className="ros-item">
-                <label className="ros-label">
-                  <input
-                    type="checkbox"
-                    value={symptom}
-                    checked={selectedSymptoms[system.name]?.includes(symptom) || false}
-                    onChange={() => handleCheckboxChange(system.name, symptom)}
-                  />
-                  {symptom}
-                </label>
-              </div>
-            ))}
-          </div>
+          <h3>{system.name}</h3>
+          {system.items.map((symptom, symptomIndex) => (
+            <div key={symptomIndex} className="ros-item">
+              <label>
+                <input
+                  type="checkbox"
+                  value={symptom}
+                  checked={selectedSymptoms[system.name]?.includes(symptom) || false}
+                  onChange={() => handleCheckboxChange(system.name, symptom)}
+                />
+                {symptom}
+              </label>
+            </div>
+          ))}
         </div>
       ))}
     </div>
