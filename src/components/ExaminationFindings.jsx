@@ -23,10 +23,8 @@ const ExaminationFindings = ({ examinationFindings = {}, handleInputChange }) =>
     let updatedValue;
 
     if (findingType === 'options') {
-      // Toggle: select option if not selected, deselect if already selected
       updatedValue = currentValue === option ? '' : option;
     } else {
-      // For range or custom, use input value directly
       updatedValue = option;
     }
 
