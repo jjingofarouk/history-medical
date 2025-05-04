@@ -6,6 +6,7 @@ import {
 } from 'lucide-react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import "./HomePage.css"
 
 import demographicsImage from './demographics.jpeg';
 import complaintImage from './complaint.jpeg';
