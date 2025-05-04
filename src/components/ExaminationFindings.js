@@ -18,7 +18,22 @@ const ExaminationFindings = ({ examinationFindings = {}, handleInputChange }) =>
     }));
   };
 
-  const handleFindingChange = (systemName, category, findingName, value, findingType) => {
+  const handleFindingChange = (systemName, category, findingName, option, findingType) => {
+    const currentValues = examinationFindings[systemName]?.[category]?.[findingName]?.value || [];
+
+    let updatedValues;
+    if (findingType === 'options') {
+      // Toggle option: add if not present, remove if present
+      if (currentValues.includes(option)) {
+        updatedValues = currentValues.filter((val) => val !== option);
+      } else {
+        updatedValues = [option]; // Only one option per finding
+      }
+    } else {
+      // For range or custom, use the input value directly
+      updatedValues = option;
+    }
+
     const updatedFindings = {
       ...examinationFindings,
       [systemName]: {
@@ -26,37 +41,30 @@ const ExaminationFindings = ({ examinationFindings = {}, handleInputChange }) =>
         [category]: {
           ...examinationFindings[systemName]?.[category],
           [findingName]: {
-            value: value,
+            value: findingType === 'options' ? updatedValues : updatedValues,
             type: findingType,
           },
         },
       },
     };
+
     handleInputChange('examinationFindings', updatedFindings);
   };
 
   const renderFindingControl = (systemName, category, finding) => {
     const { name, expected, type, min, max } = finding;
-    const currentValue = examinationFindings[systemName]?.[category]?.[name]?.value || '';
+    const currentValue = examinationFindings[systemName]?.[category]?.[name]?.value || (type === 'options' ? [] : '');
 
     return (
       <div key={name} className="finding-control">
-        <label className routes="finding-label">{name}</label>
+        <label className="finding-label">{name}</label>
         {type === 'options' && (
           <div className="options-container">
             {expected.map((option) => (
               <button
                 key={option}
-                className={`finding-option ${currentValue === option ? 'active' : ''}`}
-                onClick={() =>
-                  handleFindingChange(
-                    systemName,
-                    category,
-                    name,
-                    currentValue === option ? '' : option,
-                    type
-                  )
-                }
+                className={`finding-option ${currentValue.includes(option) ? 'active' : ''}`}
+                onClick={() => handleFindingChange(systemName, category, name, option, type)}
               >
                 {option}
               </button>
@@ -67,9 +75,7 @@ const ExaminationFindings = ({ examinationFindings = {}, handleInputChange }) =>
           <input
             type={type === 'range' ? 'number' : 'text'}
             value={currentValue}
-            onChange={(e) =>
-              handleFindingChange(systemName, category, name, e.target.value, type)
-            }
+            onChange={(e) => handleFindingChange(systemName, category, name, e.target.value, type)}
             min={min}
             max={max}
             placeholder={
