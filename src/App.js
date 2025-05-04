@@ -148,6 +148,7 @@ export default function App() {
             >
               {section.icon}
               <span>{section.label}</span>
+              <div className="card-image" style={{ backgroundImage: `url(${section.image})` }}></div>
             </div>
           ))}
         </div>
