@@ -1,5 +1,3 @@
-
-
 import React, { useState } from 'react';
 import {
   User, AlertTriangle, FileText, Building2,
@@ -13,22 +11,70 @@ import FamilyHistory from './components/FamilyHistory';
 import SocialHistory from './components/SocialHistory';
 import ReviewOfSystems from './components/ReviewOfSystems';
 import ExaminationFindings from './components/ExaminationFindings';
-import "./App.css"
+import './App.css';
 
+// Define section data with image URLs
 const sections = [
-  { key: 'personalInfo', label: 'Patient Demographics', icon: <User size={28} /> },
-  { key: 'chiefComplaint', label: 'Presenting Complaint', icon: <AlertTriangle size={28} /> },
-  { key: 'historyOfPresentIllness', label: 'History of Present Illness', icon: <FileText size={28} /> },
-  { key: 'pastMedicalHistory', label: 'Past Medical History', icon: <Building2 size={28} /> },
-  { key: 'familyHistory', label: 'Family History', icon: <Users size={28} /> },
-  { key: 'socialHistory', label: 'Social History', icon: <Globe size={28} /> },
-  { key: 'reviewOfSystems', label: 'Review of Systems', icon: <Stethoscope size={28} /> },
-  { key: 'examinationFindings', label: 'Examination Findings', icon: <Search size={28} /> }
+  {
+    key: 'personalInfo',
+    label: 'Patient Demographics',
+    icon: <User size={28} />,
+    image: '/demographics.jpeg', // Local image (must be in public/)
+    fallbackImage: 'https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&w=800',
+  },
+  {
+    key: 'chiefComplaint',
+    label: 'Presenting Complaint',
+    icon: <AlertTriangle size={28} />,
+    image: '/complaint.jpeg',
+    fallbackImage: 'https://images.unsplash.com/photo-1576091160550-2173fdabe9f1?auto=format&fit=crop&w=800',
+  },
+  {
+    key: 'historyOfPresentIllness',
+    label: 'History of Present Illness',
+    icon: <FileText size={28} />,
+    image: '/history.jpeg', // Placeholder; replace with actual image
+    fallbackImage: 'https://images.unsplash.com/photo-1505751172876-fa1923c5ebd8?auto=format&fit=crop&w=800',
+  },
+  {
+    key: 'pastMedicalHistory',
+    label: 'Past Medical History',
+    icon: <Building2 size={28} />,
+    image: '/medical.jpeg',
+    fallbackImage: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=800',
+  },
+  {
+    key: 'familyHistory',
+    label: 'Family History',
+    icon: <Users size={28} />,
+    image: '/family.jpeg',
+    fallbackImage: 'https://images.unsplash.com/photo-1550831107-1553da8c8464?auto=format&fit=crop&w=800',
+  },
+  {
+    key: 'socialHistory',
+    label: 'Social History',
+    icon: <Globe size={28} />,
+    image: '/social.jpeg',
+    fallbackImage: 'https://images.unsplash.com/photo-1445527812168-57f788836937?auto=format&fit=crop&w=800',
+  },
+  {
+    key: 'reviewOfSystems',
+    label: 'Review of Systems',
+    icon: <Stethoscope size={28} />,
+    image: '/systems.jpeg',
+    fallbackImage: 'https://images.unsplash.com/photo-1585435557343-3b092031a831?auto=format&fit=crop&w=800',
+  },
+  {
+    key: 'examinationFindings',
+    label: 'Examination Findings',
+    icon: <Search size={28} />,
+    image: '/exam.jpeg',
+    fallbackImage: 'https://images.unsplash.com/photo-1579165466949-318953a3d7fa?auto=format&fit=crop&w=800',
+  },
 ];
 
 export default function App() {
   const [selectedSection, setSelectedSection] = useState(null);
-
   const [patientData, setPatientData] = useState({
     personalInfo: {},
     chiefComplaint: '',
@@ -37,16 +83,16 @@ export default function App() {
     familyHistory: '',
     socialHistory: {},
     reviewOfSystems: {},
-    examinationFindings: {}
+    examinationFindings: {},
   });
 
   const handleInputChange = (section, field, value) => {
-    setPatientData(prev => ({
+    setPatientData((prev) => ({
       ...prev,
       [section]: {
         ...prev[section],
-        [field]: value
-      }
+        [field]: value,
+      },
     }));
   };
 
@@ -91,11 +137,16 @@ export default function App() {
         </>
       ) : (
         <div className="card-grid">
-          {sections.map(section => (
+          {sections.map((section, index) => (
             <div
               key={section.key}
               className="section-card"
               onClick={() => setSelectedSection(section.key)}
+              style={{
+                '--card-image': `url(${section.image})`,
+                '--card-fallback-image': `url(${section.fallbackImage})`,
+                '--order': index + 1,
+              }}
             >
               {section.icon}
               <span>{section.label}</span>
