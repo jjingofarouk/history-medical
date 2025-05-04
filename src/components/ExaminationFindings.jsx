@@ -1,13 +1,22 @@
 import React, { useState } from 'react';
-import { examinationSystems } from './ExaminationSystems'; // Assuming this contains your systems data
+import { examinationSystems } from './ExaminationSystems';
 import './ExaminationFindings.css';
 
 const ExaminationFindings = () => {
   const [selectedSystem, setSelectedSystem] = useState('');
+  const [openAccordions, setOpenAccordions] = useState({});
   const [findings, setFindings] = useState({});
 
-  const handleSystemChange = (event) => {
-    setSelectedSystem(event.target.value);
+  const handleSystemChange = (systemName) => {
+    setSelectedSystem(systemName);
+    setOpenAccordions({}); // Reset accordions when switching systems
+  };
+
+  const toggleAccordion = (category) => {
+    setOpenAccordions((prev) => ({
+      ...prev,
+      [category]: !prev[category],
+    }));
   };
 
   const handleFindingChange = (systemName, category, findingName, value, findingType) => {
@@ -32,39 +41,41 @@ const ExaminationFindings = () => {
     return (
       <div key={name} className="finding-control">
         <span className="finding-name">{name}:</span>
-        {type === 'options' && expected.map((option) => (
-          <label key={option} className="checkbox-item">
-            <input
-              type="checkbox"
-              checked={findings[systemName]?.[category]?.[name]?.value === option || false}
-              onChange={(e) =>
-                handleFindingChange(systemName, category, name, e.target.checked ? option : '', type)
-              }
-            />
-            {option}
-          </label>
-        ))}
-        {type === 'range' && (
+        {type === 'options' && (
+          <div className="options-container">
+            {expected.map((option) => (
+              <button
+                key={option}
+                className={`finding-option ${findings[systemName]?.[category]?.[name]?.value === option ? 'active' : ''}`}
+                onClick={() =>
+                  handleFindingChange(
+                    systemName,
+                    category,
+                    name,
+                    findings[systemName]?.[category]?.[name]?.value === option ? '' : option,
+                    type
+                  )
+                }
+              >
+                {option}
+              </button>
+            ))}
+          </div>
+        )}
+        {(type === 'range' || type === 'custom') && (
           <input
-            type="number"
+            type={type === 'range' ? 'number' : 'text'}
             value={findings[systemName]?.[category]?.[name]?.value || ''}
             onChange={(e) =>
               handleFindingChange(systemName, category, name, e.target.value, type)
             }
             min={min}
             max={max}
-            placeholder={`Enter value (Expected: ${min}-${max})`}
-            className="text-field"
-          />
-        )}
-        {type === 'text' && (
-          <input
-            type="text"
-            value={findings[systemName]?.[category]?.[name]?.value || ''}
-            onChange={(e) =>
-              handleFindingChange(systemName, category, name, e.target.value, type)
+            placeholder={
+              type === 'range'
+                ? `Enter value (${min}-${max})`
+                : `Enter ${name} (e.g., ${expected})`
             }
-            placeholder={`Enter text (Expected: ${expected})`}
             className="text-field"
           />
         )}
@@ -78,7 +89,7 @@ const ExaminationFindings = () => {
     const system = examinationSystems.find((sys) => sys.name === selectedSystem);
 
     if (!system || !system.findings) {
-      return <p className="not-relevant">Not relevant.</p>;
+      return <p className="not-relevant">No relevant findings.</p>;
     }
 
     return (
@@ -88,19 +99,22 @@ const ExaminationFindings = () => {
         </div>
         <div className="card-content">
           {Object.keys(system.findings).map((category) => (
-            <div key={category}>
-              <h3 className="category-title">
-                {category.charAt(0).toUpperCase() + category.slice(1)}
-              </h3>
-              <hr className="divider" />
-              {Array.isArray(system.findings[category]) && system.findings[category].length > 0 ? (
-                system.findings[category].map((finding) =>
-                  renderFindingControl(selectedSystem, category, finding)
-                )
-              ) : (
-                <p className="no-findings">No findings for {category}</p>
-              )}
-            </div>
+            system.findings[category].length > 0 && (
+              <div key={category} className="accordion-section">
+                <div
+                  className={`accordion-header ${openAccordions[category] ? 'active' : ''}`}
+                  onClick={() => toggleAccordion(category)}
+                >
+                  <h3>{category.charAt(0).toUpperCase() + category.slice(1)}</h3>
+                  <span className="accordion-arrow">↓</span>
+                </div>
+                <div className={`accordion-content ${openAccordions[category] ? 'active' : ''}`}>
+                  {system.findings[category].map((finding) =>
+                    renderFindingControl(selectedSystem, category, finding)
+                  )}
+                </div>
+              </div>
+            )
           ))}
           <button className="save-button">Save Findings</button>
         </div>
@@ -116,21 +130,20 @@ const ExaminationFindings = () => {
         </div>
         <div className="card-content">
           <p>Select a system to record your examination findings:</p>
-          <select
-            value={selectedSystem}
-            onChange={handleSystemChange}
-            className="select-box"
-          >
-            <option value="">-- Select System --</option>
-            {examinationSystems.map((system) => (
-              <option key={system.name} value={system.name}>
+          <div className="tab-nav">
+            {examinationSystems.map((system, index) => (
+              <button
+                key={system.name}
+                className={`tab-button ${selectedSystem === system.name ? 'active' : ''}`}
+                onClick={() => handleSystemChange(system.name)}
+                style={{ '--order': index }}
+              >
                 {system.name}
-              </option>
+              </button>
             ))}
-          </select>
+          </div>
         </div>
       </div>
-
       {renderSystemFindings()}
     </div>
   );
