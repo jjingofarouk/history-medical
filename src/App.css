@@ -182,13 +182,13 @@ body {
   bottom: 0;
   background-size: cover;
   background-position: center;
-  opacity: 0.07;
+  opacity: 0.4;
   z-index: -1;
   transition: var(--transition-fast);
 }
 
 .section-card:hover .card-image {
-  opacity: 0.12;
+  opacity: 0.4;
   transform: scale(1.05);
 }
 
