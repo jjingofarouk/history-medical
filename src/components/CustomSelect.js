@@ -7,18 +7,22 @@ const CustomSelect = ({ options, selectedValue, onSelect }) => {
   };
 
   return (
-    <select
-      value={selectedValue}
-      onChange={handleChange}
-      className="custom-select"
-    >
-      <option value="">Select an option</option>
-      {options.map((option) => (
-        <option key={option.value} value={option.value}>
-          {option.label}
+    <div className="custom-select-wrapper">
+      <select
+        value={selectedValue}
+        onChange={handleChange}
+        className="custom-select"
+      >
+        <option value="" disabled>
+          Select an option
         </option>
-      ))}
-    </select>
+        {options.map((option) => (
+          <option key={option.value} value={option.value}>
+            {option.label}
+          </option>
+        ))}
+      </select>
+    </div>
   );
 };
 
