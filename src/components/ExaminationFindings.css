@@ -1,4 +1,4 @@
-/* Root variables for theming */
+/* Root variables */
 :root {
   --color-black-1: #050505;
   --color-black-2: #121212;
@@ -31,7 +31,7 @@
   gap: var(--space-lg);
 }
 
-/* Card styles for system selector and system findings */
+/* Card styles */
 .system-selector-card,
 .system-card {
   background: var(--color-black-2);
@@ -72,7 +72,7 @@
   color: var(--color-white-2);
 }
 
-/* Tabs container with custom scrollbar */
+/* Tabs container */
 .system-tabs-container {
   overflow-x: auto;
   scrollbar-width: thin;
@@ -99,8 +99,23 @@
 .system-tabs {
   display: flex;
   gap: var(--space-sm);
+  align-items: center;
   padding-bottom: var(--space-xs);
-  white-space: nowrap;
+  flex-wrap: nowrap;
+}
+
+/* Scrollable tabs container */
+.scrollable-tabs {
+  display: flex;
+  gap: var(--space-sm);
+  overflow-x: auto;
+  scrollbar-width: none; /* Hide scrollbar in scrollable section */
+  -webkit-overflow-scrolling: touch;
+  flex-grow: 1;
+}
+
+.scrollable-tabs::-webkit-scrollbar {
+  display: none; /* Hide scrollbar for cleaner mobile look */
 }
 
 .tab-button {
@@ -114,7 +129,6 @@
   border-radius: var(--radius-sm);
   cursor: pointer;
   transition: var(--transition-quick);
-  min-width: 120px;
   text-align: center;
   flex-shrink: 0;
 }
@@ -130,7 +144,11 @@
   font-weight: 600;
 }
 
-/* No selection/findings messages */
+.scrollable-tab {
+  min-width: 100px; /* Smaller width for scrollable tabs */
+}
+
+/* No selection/findings */
 .no-selection,
 .no-findings {
   padding: var(--space-lg);
@@ -219,6 +237,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-xs);
+  max-width: 100%;
 }
 
 .finding-option {
@@ -231,6 +250,9 @@
   border-radius: var(--radius-sm);
   cursor: pointer;
   transition: var(--transition-quick);
+  position: relative;
+  min-width: 80px;
+  text-align: center;
 }
 
 .finding-option:hover {
@@ -242,6 +264,7 @@
   background: linear-gradient(135deg, var(--color-accent-1), var(--color-accent-2));
   color: var(--color-black-1);
   font-weight: 600;
+  box-shadow: 0 0 0 1px var(--color-accent-1);
 }
 
 /* Input fields */
@@ -315,13 +338,53 @@
   }
 
   .tab-button {
-    min-width: 100px;
     font-size: 0.75rem;
     padding: var(--space-xs) var(--space-sm);
+    min-width: 80px; /* Smaller tabs on mobile */
+  }
+
+  .scrollable-tab {
+    min-width: 80px; /* Compact scrollable tabs */
   }
 
   .save-button {
     width: 100%;
     padding: var(--space-sm);
+  }
+
+  .finding-option {
+    font-size: 0.75rem;
+    padding: var(--space-xs);
+    min-width: 60px;
+  }
+
+  /* Ensure only one fixed tab on small screens */
+  .system-tabs {
+    display: flex;
+    flex-wrap: nowrap;
+  }
+
+  .system-tabs .tab-button:nth-child(n+2) {
+    display: none; /* Show only the first fixed tab */
+  }
+
+  .scrollable-tabs {
+    display: flex;
+    flex-grow: 1;
+  }
+}
+
+@media (max-width: 480px) {
+  .system-tabs-container {
+    padding-bottom: var(--space-xs);
+  }
+
+  .tab-button {
+    font-size: 0.7rem;
+    min-width: 70px;
+  }
+
+  .scrollable-tab {
+    min-width: 70px;
   }
 }
