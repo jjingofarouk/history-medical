@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from './HomePage';
 import SectionPage from './SectionPage';
+import "./App.css"
 
 export default function App() {
   const [patientData, setPatientData] = useState({
