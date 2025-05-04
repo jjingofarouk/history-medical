@@ -1,0 +1,33 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--primary-black);
+  padding: 16px;
+  color: var(--primary-white);
+}
+
+.navbar-logo {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.navbar-links {
+  list-style: none;
+  display: flex;
+  gap: 24px;
+}
+
+.navbar-links li a {
+  color: var(--primary-white);
+  text-decoration: none;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: color 0.3s ease;
+}
+
+.navbar-links li a:hover {
+  color: var(--accent-neon);
+}
