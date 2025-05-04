@@ -1,20 +1,26 @@
 import React, { useState } from 'react';
-import Sidebar from './components/Sidebar';
 import {
-  PersonalInfo,
-  ChiefComplaint,
-  HistoryOfPresentIllness,
-  PastMedicalHistory,
-  FamilyHistory,
-  SocialHistory,
-  ReviewOfSystems,
-  ExaminationFindings
-} from './components'; // Adjust if needed
+  User,
+  AlertTriangle,
+  FileText,
+  Building2,
+  Users,
+  Globe,
+  Stethoscope,
+  Search
+} from 'lucide-react';
 
-import './App.css'; // Keep your existing CSS
+import Sidebar from './components/Sidebar';
+import PersonalInfo from './components/PersonalInfo';
+import ChiefComplaint from './components/ChiefComplaint';
+import HistoryOfPresentIllness from './components/HistoryOfPresentIllness';
+import PastMedicalHistory from './components/PastMedicalHistory';
+import FamilyHistory from './components/FamilyHistory';
+import SocialHistory from './components/SocialHistory';
+import ReviewOfSystems from './components/ReviewOfSystems';
+import ExaminationFindings from './components/ExaminationFindings';
 
 const App = () => {
-  const [selectedSection, setSelectedSection] = useState('');
   const [patientData, setPatientData] = useState({
     personalInfo: {},
     chiefComplaint: '',
@@ -23,6 +29,8 @@ const App = () => {
     familyHistory: '',
     socialHistory: {},
   });
+
+  const [selectedSection, setSelectedSection] = useState('');
 
   const handleInputChange = (section, field, value) => {
     setPatientData((prevData) => ({
@@ -60,12 +68,20 @@ const App = () => {
   return (
     <div className="app-container" style={{ flexDirection: 'row', alignItems: 'flex-start' }}>
       <Sidebar selectedSection={selectedSection} onSelect={setSelectedSection} />
+
       <div className="main-content" style={{ flex: 1, paddingLeft: '24px' }}>
         <h1 className="app-header">Record Patient History</h1>
-        <div className="section-container">{renderSection()}</div>
-        <button className="submit-button" onClick={() => console.log(patientData)}>
-          Submit Patient History
-        </button>
+        <div className="section-container">
+          {renderSection()}
+        </div>
+        <div className="flex justify-center">
+          <button
+            onClick={() => console.log(patientData)}
+            className="submit-button"
+          >
+            Submit Patient History
+          </button>
+        </div>
       </div>
     </div>
   );
