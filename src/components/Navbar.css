@@ -1,6 +1,3 @@
-
-
-/* Navbar.css */
 :root {
   --primary-black: #050505;
   --secondary-black: #121212;
@@ -120,7 +117,6 @@
   transform: translateY(-2px);
 }
 
-/* Responsive styles */
 @media (max-width: 768px) {
   .navbar {
     height: var(--navbar-height-mobile);
@@ -134,7 +130,7 @@
 
   .navbar-menu {
     position: fixed;
-    top: 0;
+    top: var(--navbar-height-mobile);
     left: 0;
     right: 0;
     bottom: 0;
@@ -146,7 +142,7 @@
     transition: var(--transition-smooth);
     opacity: 0;
     visibility: hidden;
-    height: 100vh;
+    height: calc(100vh - var(--navbar-height-mobile));
   }
 
   .navbar-menu.active {
@@ -183,7 +179,6 @@
     margin-right: 16px;
   }
 
-  /* Animation for menu items */
   .navbar-menu.active .navbar-links li {
     animation: slideIn 0.3s forwards;
     opacity: 0;
@@ -204,7 +199,6 @@
   }
 }
 
-/* Tablet adjustments */
 @media (min-width: 769px) and (max-width: 1024px) {
   .navbar-links {
     gap: 16px;
@@ -216,21 +210,18 @@
   }
 }
 
-/* Large screen enhancements */
 @media (min-width: 1280px) {
   .navbar-container {
     padding: 0 48px;
   }
 }
 
-/* Active link state */
 .navbar-links li a.active {
   color: var(--accent-primary);
   background-color: rgba(0, 255, 170, 0.1);
   font-weight: 600;
 }
 
-/* Focus states for accessibility */
 .navbar-toggle:focus-visible,
 .navbar-links li a:focus-visible {
   outline: 2px solid var(--accent-primary);
