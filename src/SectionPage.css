@@ -19,6 +19,8 @@
   --spacing-md: 24px;
   --spacing-lg: 32px;
   --spacing-xl: 48px;
+  --navbar-height: 72px;
+  --navbar-height-mobile: 64px;
 }
 
 *,
@@ -53,6 +55,7 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  padding-top: calc(var(--navbar-height) + var(--spacing-md));
 }
 
 .submit-button {
@@ -171,6 +174,7 @@ footer {
 @media (max-width: 768px) {
   .app-container {
     padding: var(--spacing-sm);
+    padding-top: calc(var(--navbar-height-mobile) + var(--spacing-sm));
   }
 
   .section-content {
