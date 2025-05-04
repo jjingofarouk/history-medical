@@ -23,10 +23,10 @@ const ExaminationFindings = ({ examinationFindings = {}, handleInputChange }) =>
     let updatedValue;
 
     if (findingType === 'options') {
-      // Toggle selection: set to option if not selected, clear if already selected
+      // Toggle: select option if not selected, deselect if already selected
       updatedValue = currentValue === option ? '' : option;
     } else {
-      // For range or custom, use the input value directly
+      // For range or custom, use input value directly
       updatedValue = option;
     }
 
@@ -48,8 +48,10 @@ const ExaminationFindings = ({ examinationFindings = {}, handleInputChange }) =>
   };
 
   const renderFindingControl = (systemName, category, finding) => {
-    const { name, expected, type, min, max } = finding;
+    const { name, expected = [], type, min, max } = finding || {};
     const currentValue = examinationFindings[systemName]?.[category]?.[name]?.value || '';
+
+    if (!name || !type) return null;
 
     return (
       <div key={name} className="finding-control">
@@ -77,7 +79,7 @@ const ExaminationFindings = ({ examinationFindings = {}, handleInputChange }) =>
             placeholder={
               type === 'range'
                 ? `Enter value (${min}-${max})`
-                : `Enter ${name.toLowerCase()} (e.g., ${expected})`
+                : `Enter ${name.toLowerCase()} (e.g., ${expected[0] || 'value'})`
             }
             className="finding-input"
           />
@@ -95,7 +97,7 @@ const ExaminationFindings = ({ examinationFindings = {}, handleInputChange }) =>
       );
     }
 
-    const system = examinationSystems.find((sys) => sys.name === selectedSystem);
+    const system = examinationSystems.find((sys) => sys?.name === selectedSystem);
 
     if (!system || !system.findings) {
       return <p className="no-findings">No relevant findings available.</p>;
@@ -108,7 +110,7 @@ const ExaminationFindings = ({ examinationFindings = {}, handleInputChange }) =>
         </div>
         <div className="system-card-content">
           {Object.keys(system.findings).map((category) =>
-            system.findings[category].length > 0 && (
+            system.findings[category]?.length > 0 ? (
               <div key={category} className="accordion">
                 <div
                   className={`accordion-header ${openAccordions[category] ? 'active' : ''}`}
@@ -123,7 +125,7 @@ const ExaminationFindings = ({ examinationFindings = {}, handleInputChange }) =>
                   )}
                 </div>
               </div>
-            )
+            ) : null
           )}
           <button className="save-button">Save Examination Findings</button>
         </div>
@@ -139,17 +141,18 @@ const ExaminationFindings = ({ examinationFindings = {}, handleInputChange }) =>
         </div>
         <div className="system-selector-content">
           <p>Select a system to document examination findings:</p>
-          <div className="system-tabs">
-            {examinationSystems.map((system, index) => (
-              <button
-                key={system.name}
-                className={`tab-button ${selectedSystem === system.name ? 'active' : ''}`}
-                onClick={() => handleSystemChange(system.name)}
-                style={{ '--order': index }}
-              >
-                {system.name}
-              </button>
-            ))}
+          <div className="system-tabs-container">
+            <div className="system-tabs">
+              {examinationSystems.map((system) => (
+                <button
+                  key={system.name}
+                  className={`tab-button ${selectedSystem === system.name ? 'active' : ''}`}
+                  onClick={() => handleSystemChange(system.name)}
+                >
+                  {system.name}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
       </div>
