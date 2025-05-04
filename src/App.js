@@ -11,14 +11,6 @@ import FamilyHistory from './components/FamilyHistory';
 import SocialHistory from './components/SocialHistory';
 import ReviewOfSystems from './components/ReviewOfSystems';
 import ExaminationFindings from './components/ExaminationFindings';
-import demographicsImage from './demographics.jpeg';
-import complaintImage from './complaint.jpeg';
-import historyImage from './history.jpeg';
-import medicalImage from './medical.jpeg';
-import familyImage from './family.jpeg';
-import socialImage from './social.jpeg';
-import systemsImage from './systems.jpeg';
-import examImage from './exam.jpeg';
 import './App.css';
 
 const sections = [
@@ -26,49 +18,49 @@ const sections = [
     key: 'personalInfo',
     label: 'Patient Demographics',
     icon: <User size={28} />,
-    image: demographicsImage,
+    image: '/demographics.jpeg',
   },
   {
     key: 'chiefComplaint',
     label: 'Presenting Complaint',
     icon: <AlertTriangle size={28} />,
-    image: complaintImage,
+    image: '/complaint.jpeg',
   },
   {
     key: 'historyOfPresentIllness',
     label: 'History of Present Illness',
     icon: <FileText size={28} />,
-    image: historyImage,
+    image: '/history.jpeg',
   },
   {
     key: 'pastMedicalHistory',
     label: 'Past Medical History',
     icon: <Building2 size={28} />,
-    image: medicalImage,
+    image: '/medical.jpeg',
   },
   {
     key: 'familyHistory',
     label: 'Family History',
     icon: <Users size={28} />,
-    image: familyImage,
+    image: '/family.jpeg',
   },
   {
     key: 'socialHistory',
     label: 'Social History',
     icon: <Globe size={28} />,
-    image: socialImage,
+    image: '/social.jpeg',
   },
   {
     key: 'reviewOfSystems',
     label: 'Review of Systems',
     icon: <Stethoscope size={28} />,
-    image: systemsImage,
+    image: '/systems.jpeg',
   },
   {
     key: 'examinationFindings',
     label: 'Examination Findings',
     icon: <Search size={28} />,
-    image: examImage,
+    image: '/exam.jpeg',
   },
 ];
 
@@ -142,7 +134,7 @@ export default function App() {
               className="section-card"
               onClick={() => setSelectedSection(section.key)}
               style={{
-                backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(${section.image})`,
+                backgroundImage: `linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(${section.image})`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
                 '--order': index + 1,
