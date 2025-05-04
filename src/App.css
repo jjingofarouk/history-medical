@@ -96,6 +96,24 @@ body {
   line-height: 1.6;
 }
 
+.card-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.07;
+  z-index: -1;
+  transition: var(--transition-fast);
+}
+
+.section-card:hover .card-image {
+  opacity: 0.12;
+  transform: scale(1.05);
+}
+
 /* Refined card grid */
 .card-grid {
   display: grid;
