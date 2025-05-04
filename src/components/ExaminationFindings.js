@@ -2,10 +2,9 @@ import React, { useState } from 'react';
 import { examinationSystems } from './ExaminationSystems';
 import './ExaminationFindings.css';
 
-const ExaminationFindings = () => {
+const ExaminationFindings = ({ examinationFindings = {}, handleInputChange }) => {
   const [selectedSystem, setSelectedSystem] = useState('');
   const [openAccordions, setOpenAccordions] = useState({});
-  const [findings, setFindings] = useState({});
 
   const handleSystemChange = (systemName) => {
     setSelectedSystem(systemName);
@@ -20,39 +19,41 @@ const ExaminationFindings = () => {
   };
 
   const handleFindingChange = (systemName, category, findingName, value, findingType) => {
-    setFindings((prevFindings) => ({
-      ...prevFindings,
+    const updatedFindings = {
+      ...examinationFindings,
       [systemName]: {
-        ...prevFindings[systemName],
+        ...examinationFindings[systemName],
         [category]: {
-          ...prevFindings[systemName]?.[category],
+          ...examinationFindings[systemName]?.[category],
           [findingName]: {
             value: value,
             type: findingType,
           },
         },
       },
-    }));
+    };
+    handleInputChange('examinationFindings', updatedFindings);
   };
 
   const renderFindingControl = (systemName, category, finding) => {
     const { name, expected, type, min, max } = finding;
+    const currentValue = examinationFindings[systemName]?.[category]?.[name]?.value || '';
 
     return (
       <div key={name} className="finding-control">
-        <label className="finding-label">{name}</label>
+        <label className routes="finding-label">{name}</label>
         {type === 'options' && (
           <div className="options-container">
             {expected.map((option) => (
               <button
                 key={option}
-                className={`finding-option ${findings[systemName]?.[category]?.[name]?.value === option ? 'active' : ''}`}
+                className={`finding-option ${currentValue === option ? 'active' : ''}`}
                 onClick={() =>
                   handleFindingChange(
                     systemName,
                     category,
                     name,
-                    findings[systemName]?.[category]?.[name]?.value === option ? '' : option,
+                    currentValue === option ? '' : option,
                     type
                   )
                 }
@@ -65,7 +66,7 @@ const ExaminationFindings = () => {
         {(type === 'range' || type === 'custom') && (
           <input
             type={type === 'range' ? 'number' : 'text'}
-            value={findings[systemName]?.[category]?.[name]?.value || ''}
+            value={currentValue}
             onChange={(e) =>
               handleFindingChange(systemName, category, name, e.target.value, type)
             }
@@ -116,3 +117,43 @@ const ExaminationFindings = () => {
                 </div>
                 <div className={`accordion-content ${openAccordions[category] ? 'active' : ''}`}>
                   {system.findings[category].map((finding) =>
+                    renderFindingControl(selectedSystem, category, finding)
+                  )}
+                </div>
+              </div>
+            )
+          )}
+          <button className="save-button">Save Examination Findings</button>
+        </div>
+      </div>
+    );
+  };
+
+  return (
+    <div className="examination-container">
+      <div className="system-selector-card">
+        <div className="system-selector-header">
+          <h2>Physical Examination</h2>
+        </div>
+        <div className="system-selector-content">
+          <p>Select a system to document examination findings:</p>
+          <div className="system-tabs">
+            {examinationSystems.map((system, index) => (
+              <button
+                key={system.name}
+                className={`tab-button ${selectedSystem === system.name ? 'active' : ''}`}
+                onClick={() => handleSystemChange(system.name)}
+                style={{ '--order': index }}
+              >
+                {system.name}
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+      {renderSystemFindings()}
+    </div>
+  );
+};
+
+export default ExaminationFindings;
