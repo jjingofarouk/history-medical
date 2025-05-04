@@ -21,7 +21,7 @@
 
 /* App container */
 .app-container {
-  max-width: 1400px;
+  max-width: 1600px; /* Wider container for desktop grids */
   margin: 0 auto;
   padding: var(--spacing-unit);
   background: var(--primary-black);
@@ -29,12 +29,12 @@
 
 /* Header */
 .app-header {
-  font-size: 40px;
+  font-size: 42px;
   font-weight: 800;
   color: var(--primary-white);
   text-align: center;
-  margin-bottom: calc(var(--spacing-unit) * 2);
-  letter-spacing: -1.2px;
+  margin-bottom: calc(var(--spacing-unit) * 2.5);
+  letter-spacing: -1.5px;
   text-transform: uppercase;
   position: relative;
 }
@@ -42,10 +42,10 @@
 .app-header::after {
   content: '';
   position: absolute;
-  bottom: -8px;
+  bottom: -10px;
   left: 50%;
   transform: translateX(-50%);
-  width: 80px;
+  width: 100px;
   height: 4px;
   background: linear-gradient(to right, var(--accent-neon), var(--accent-neon-light));
   border-radius: 2px;
@@ -54,10 +54,10 @@
 /* Card grid for sections */
 .card-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: var(--spacing-unit);
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Dynamic columns for desktops */
+  gap: calc(var(--spacing-unit) * 1.5);
   padding: var(--spacing-unit);
-  perspective: 1200px; /* Enhanced 3D effect for cards */
+  perspective: 1200px; /* 3D effect for cards */
 }
 
 /* Section card */
@@ -71,19 +71,19 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  height: 240px;
+  height: 260px; /* Slightly taller for balance */
   cursor: pointer;
   transition: var(--transition);
   overflow: hidden;
-  box-shadow: 0 10px 28px var(--shadow);
+  box-shadow: 0 12px 32px var(--shadow);
   transform: translateZ(0);
   border: 2px solid transparent;
 }
 
 .section-card:hover {
   border-color: var(--accent-neon);
-  transform: translateY(-10px) rotateX(4deg) rotateY(4deg);
-  box-shadow: 0 20px 40px var(--shadow);
+  transform: translateY(-12px) rotateX(3deg) rotateY(3deg);
+  box-shadow: 0 24px 48px var(--shadow);
 }
 
 /* Background images for cards */
@@ -131,21 +131,23 @@
 /* Card icon and text */
 .section-card svg {
   color: var(--accent-neon);
-  margin-bottom: 16px;
+  margin-bottom: 18px;
   transition: var(--transition);
-  filter: drop-shadow(0 0 8px var(--shadow));
+  filter: drop-shadow(0 0 10px var(--shadow));
+  width: 32px;
+  height: 32px;
 }
 
 .section-card span {
   color: var(--primary-white);
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 700;
-  letter-spacing: 0.5px;
-  text-shadow: 0 2px 4px var(--shadow);
+  letter-spacing: 0.6px;
+  text-shadow: 0 2px 6px var(--shadow);
 }
 
 .section-card:hover svg {
-  transform: scale(1.3);
+  transform: scale(1.4);
   color: var(--accent-neon-light);
 }
 
@@ -158,23 +160,23 @@
   font-family: var(--font-family);
   font-size: 16px;
   font-weight: 600;
-  padding: 12px 28px;
+  padding: 14px 30px;
   border: none;
   border-radius: var(--border-radius);
   cursor: pointer;
   transition: var(--transition);
-  box-shadow: 0 6px 16px var(--shadow);
+  box-shadow: 0 6px 18px var(--shadow);
   margin-bottom: var(--spacing-unit);
 }
 
 .submit-button:hover {
   background: var(--accent-neon-light);
-  transform: translateY(-3px);
-  box-shadow: 0 12px 24px var(--shadow);
+  transform: translateY(-4px);
+  box-shadow: 0 14px 28px var(--shadow);
 }
 
 .submit-button svg {
-  margin-right: 10px;
+  margin-right: 12px;
 }
 
 /* Form section container */
@@ -182,7 +184,7 @@ form {
   background: var(--secondary-black);
   border-radius: var(--border-radius);
   padding: calc(var(--spacing-unit) * 2);
-  box-shadow: 0 10px 28px var(--shadow);
+  box-shadow: 0 12px 32px var(--shadow);
   margin-top: var(--spacing-unit);
   border: 2px solid var(--accent-neon);
 }
@@ -203,7 +205,7 @@ input, select, textarea {
 input:focus, select:focus, textarea:focus {
   outline: none;
   border-color: var(--accent-neon-light);
-  box-shadow: 0 0 12px var(--shadow);
+  box-shadow: 0 0 14px var(--shadow);
 }
 
 input::placeholder, textarea::placeholder {
@@ -241,11 +243,11 @@ label {
   background: var(--accent-neon-light);
 }
 
-/* Animation for card entrance (left-to-right slide) */
+/* Animation for card entrance (left-to-right slide with slight stagger) */
 @keyframes slideIn {
   from {
     opacity: 0;
-    transform: translateX(-60px);
+    transform: translateX(-80px);
   }
   to {
     opacity: 1;
@@ -254,8 +256,8 @@ label {
 }
 
 .section-card {
-  animation: slideIn 0.6s ease-out forwards;
-  animation-delay: calc(var(--order) * 0.12s);
+  animation: slideIn 0.7s ease-out forwards;
+  animation-delay: calc(var(--order) * 0.15s);
 }
 
 .section-card:nth-child(1) { --order: 1; }
@@ -277,7 +279,7 @@ label {
     box-shadow: 0 0 0 0 var(--shadow);
   }
   70% {
-    box-shadow: 0 0 0 12px transparent;
+    box-shadow: 0 0 0 14px transparent;
   }
   100% {
     box-shadow: 0 0 0 0 transparent;
@@ -285,6 +287,21 @@ label {
 }
 
 /* Responsive adjustments */
+@media (max-width: 1024px) {
+  .card-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Adjust for tablets */
+    gap: var(--spacing-unit);
+  }
+
+  .section-card {
+    height: 220px;
+  }
+
+  .app-header {
+    font-size: 36px;
+  }
+}
+
 @media (max-width: 768px) {
   .app-container {
     padding: calc(var(--spacing-unit) / 2);
@@ -295,7 +312,7 @@ label {
   }
 
   .card-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); /* Single column for smaller screens */
     gap: calc(var(--spacing-unit) / 1.5);
   }
 
@@ -304,11 +321,11 @@ label {
   }
 
   .section-card span {
-    font-size: 18px;
+    font-size: 20px;
   }
 
   .submit-button {
-    padding: 10px 24px;
+    padding: 12px 26px;
     font-size: 14px;
   }
 
@@ -327,12 +344,20 @@ label {
     font-size: 28px;
   }
 
+  .card-grid {
+    grid-template-columns: 1fr; /* Ensure single column for very small screens */
+  }
+
   .section-card {
     height: 180px;
   }
 
   .section-card svg {
-    width: 24px;
-    height: 24px;
+    width: 28px;
+    height: 28px;
+  }
+
+  .section-card span {
+    font-size: 18px;
   }
 }
