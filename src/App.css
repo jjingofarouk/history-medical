@@ -120,6 +120,19 @@ body {
   color: var(--accent-neon-light);
 }
 
+/* Card background image */
+.card-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.2;
+  z-index: -1;
+}
+
 /* Back button */
 .submit-button {
   display: flex;
@@ -193,76 +206,4 @@ label {
   font-weight: 500;
   margin-bottom: 8px;
   display: block;
-}
-
-/* Scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--secondary-black);
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--accent-neon);
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--accent-neon-light);
-}
-
-/* Animation for card entrance */
-@keyframes slideIn {
-  from {
-    opacity: 0;
-    transform: translateX(-50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-.section-card {
-  animation: slideIn 0.5s ease-out forwards;
-  animation-delay: calc(var(--order) * 0.1s);
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .app-container {
-    padding: calc(var(--spacing-unit) / 2);
-  }
-
-  .app-header {
-    font-size: 28px;
-  }
-
-  .card-grid {
-    grid-template-columns: 1fr;
-    gap: calc(var(--spacing-unit) / 2);
-  }
-
-  .section-card {
-    height: 180px;
-  }
-
-  .submit-button {
-    padding: 10px 20px;
-    font-size: 14px;
-  }
-
-  form {
-    padding: var(--spacing-unit);
-  }
-
-  input,
-  select,
-  textarea {
-    font-size: 14px;
-    padding: 10px 12px;
-  }
 }
