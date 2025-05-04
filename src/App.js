@@ -24,54 +24,14 @@ import examImage from './exam.jpeg';
 import './App.css';
 
 const sections = [
-  {
-    key: 'personalInfo',
-    label: 'Patient Demographics',
-    icon: <User size={28} />,
-    image: demographicsImage,
-  },
-  {
-    key: 'chiefComplaint',
-    label: 'Presenting Complaint',
-    icon: <AlertTriangle size={28} />,
-    image: complaintImage,
-  },
-  {
-    key: 'historyOfPresentIllness',
-    label: 'History of Present Illness',
-    icon: <FileText size={28} />,
-    image: historyImage,
-  },
-  {
-    key: 'pastMedicalHistory',
-    label: 'Past Medical History',
-    icon: <Building2 size={28} />,
-    image: medicalImage,
-  },
-  {
-    key: 'familyHistory',
-    label: 'Family History',
-    icon: <Users size={28} />,
-    image: familyImage,
-  },
-  {
-    key: 'socialHistory',
-    label: 'Social History',
-    icon: <Globe size={28} />,
-    image: socialImage,
-  },
-  {
-    key: 'reviewOfSystems',
-    label: 'Review of Systems',
-    icon: <Stethoscope size={28} />,
-    image: systemsImage,
-  },
-  {
-    key: 'examinationFindings',
-    label: 'Examination Findings',
-    icon: <Search size={28} />,
-    image: examImage,
-  },
+  { key: 'personalInfo', label: 'Patient Demographics', icon: <User size={28} />, image: demographicsImage },
+  { key: 'chiefComplaint', label: 'Presenting Complaint', icon: <AlertTriangle size={28} />, image: complaintImage },
+  { key: 'historyOfPresentIllness', label: 'History of Present Illness', icon: <FileText size={28} />, image: historyImage },
+  { key: 'pastMedicalHistory', label: 'Past Medical History', icon: <Building2 size={28} />, image: medicalImage },
+  { key: 'familyHistory', label: 'Family History', icon: <Users size={28} />, image: familyImage },
+  { key: 'socialHistory', label: 'Social History', icon: <Globe size={28} />, image: socialImage },
+  { key: 'reviewOfSystems', label: 'Review of Systems', icon: <Stethoscope size={28} />, image: systemsImage },
+  { key: 'examinationFindings', label: 'Examination Findings', icon: <Search size={28} />, image: examImage },
 ];
 
 export default function App() {
@@ -142,16 +102,16 @@ export default function App() {
         </>
       ) : (
         <div className="card-grid">
-          {sections.map((section, index) => (
+          {sections.map((section) => (
             <div
               key={section.key}
               className="section-card"
               onClick={() => setSelectedSection(section.key)}
-              style={{
-                '--card-image': `url(${section.image})`,
-                '--order': index + 1,
-              }}
             >
+              <div
+                className="card-image"
+                style={{ backgroundImage: `url(${section.image})` }}
+              />
               {section.icon}
               <span>{section.label}</span>
             </div>
