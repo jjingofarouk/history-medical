@@ -38,75 +38,155 @@ const ButtonSelect = ({
   );
 };
 
+// SVG Social Health Wheel Component
+const SocialHealthWheel = () => {
+  const [activeSegment, setActiveSegment] = useState(null);
+
+  const segments = [
+    {
+      id: 'housing',
+      label: 'Housing',
+      d: 'M150,150 L150,50 A100,100 0 0,1 219.13,80.87 Z',
+      tooltip: 'In Uganda, 46% of rural households live in mud houses with thatched roofs, increasing risks of respiratory infections due to poor ventilation.'
+    },
+    {
+      id: 'work',
+      label: 'Employment',
+      d: 'M150,150 L219.13,80.87 A100,100 0 0,1 250,150 Z',
+      tooltip: 'Over 70% of Ugandans are engaged in subsistence agriculture, which can limit access to healthcare due to low income.'
+    },
+    {
+      id: 'food',
+      label: 'Diet',
+      d: 'M150,150 L250,150 A100,100 0 0,1 219.13,219.13 Z',
+      tooltip: 'Food insecurity affects 25% of Ugandan households, contributing to malnutrition and stunted growth in children.'
+    },
+    {
+      id: 'violence',
+      label: 'Violence',
+      d: 'M150,150 L219.13,219.13 A100,100 0 0,1 150,250 Z',
+      tooltip: 'Gender-based violence is reported by 51% of Ugandan women, impacting mental and physical health.'
+    },
+    {
+      id: 'substance',
+      label: 'Substance Use',
+      d: 'M150,150 L150,250 A100,100 0 0,1 80.87,219.13 Z',
+      tooltip: 'Tobacco use is prevalent in 10% of Ugandan adults, linked to high rates of lung cancer and heart disease.'
+    },
+    {
+      id: 'social',
+      label: 'Social Support',
+      d: 'M150,150 L80.87,219.13 A100,100 0 0,1 50,150 Z',
+      tooltip: 'Strong community ties in Uganda provide emotional support, but stigma can isolate those with HIV/AIDS.'
+    }
+  ];
+
+  return (
+    <div className="social-health-wheel">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 300 300"
+        width="100%"
+        height="300"
+      >
+        <g>
+          {segments.map((segment) => (
+            <g key={segment.id}>
+              <path
+                d={segment.d}
+                fill={activeSegment === segment.id ? 'var(--color-accent-1)' : 'var(--color-black-3)'}
+                stroke="var(--color-white-1)"
+                strokeWidth="1"
+                onMouseEnter={() => setActiveSegment(segment.id)}
+                onMouseLeave={() => setActiveSegment(null)}
+                style={{ cursor: 'pointer', transition: 'var(--transition-quick)' }}
+              />
+              <text
+                x="150"
+                y="150"
+                textAnchor="middle"
+                fill="var(--color-white-1)"
+                fontSize="12"
+                fontFamily="var(--font-base)"
+                style={{ pointerEvents: 'none' }}
+                transform={`rotate(${segments.indexOf(segment) * 60}, 150, 150)`}
+              >
+                {segment.label}
+              </text>
+            </g>
+          ))}
+        </g>
+      </svg>
+      {activeSegment && (
+        <div className="tooltip">
+          {segments.find((s) => s.id === activeSegment)?.tooltip}
+        </div>
+      )}
+    </div>
+  );
+};
+
 const SocialHistory = ({ socialHistory, handleInputChange, handleArrayInputChange }) => {
-  // Extensive options for all categories
+  // Updated options for Ugandan context
   const housingOptions = [
-    'Apartment', 'Detached House', 'Shared Housing', 'Temporary Shelter',
-    'Homeless', 'Dormitory', 'Mobile Home', 'Public Housing', 
-    'Subsidized Housing', 'Rural Home', 'Urban High-rise', 'Military Housing',
-    'Nursing Home', 'Rehabilitation Center', 'Other'
+    'Mud House', 'Iron-sheet House', 'Urban Apartment', 'Shared Compound',
+    'Temporary Shelter', 'Homeless', 'Dormitory', 'Public Housing',
+    'Rural Hut', 'Refugee Camp', 'Other'
   ];
 
   const workOptions = [
-    'Office Job', 'Manual Labor', 'Healthcare', 'Education', 'Construction',
-    'Agriculture', 'Manufacturing', 'Retail', 'Hospitality', 'Transportation',
-    'Arts/Entertainment', 'Technology', 'Finance', 'Government', 'Unemployed',
-    'Retired', 'Freelance', 'Self-Employed', 'Student', 'Homemaker', 'Disabled'
+    'Subsistence Farming', 'Boda Boda Driver', 'Market Vendor', 'Teacher',
+    'Healthcare Worker', 'Construction', 'Retail', 'Hospitality',
+    'Unemployed', 'Student', 'Self-Employed', 'Informal Sector', 'Other'
   ];
 
   const foodOptions = [
-    'Home-cooked', 'Fast Food', 'Vegetarian', 'Vegan', 'Mixed Diet',
-    'Pescatarian', 'Keto', 'Gluten-Free', 'Low-Carb', 'Mediterranean',
-    'DASH Diet', 'Halal', 'Kosher', 'Processed Foods', 'Organic Only',
-    'Food Insecure', 'Meal Delivery', 'Other'
+    'Matoke-based Diet', 'Posho and Beans', 'Vegetarian', 'Mixed Diet',
+    'Fish-based Diet', 'Food Insecure', 'Relief Food', 'Street Food',
+    'Organic Farming', 'Other'
   ];
 
   const violenceOptions = [
-    'No History', 'Physical Violence', 'Emotional Abuse', 'Sexual Violence',
-    'Financial Abuse', 'Verbal Abuse', 'Stalking', 'Childhood Abuse',
-    'Domestic Violence', 'Elder Abuse', 'Human Trafficking', 'Hate Crime',
-    'Workplace Violence', 'Community Violence', 'Other'
+    'No History', 'Domestic Violence', 'Gender-based Violence', 'Community Conflict',
+    'Child Abuse', 'Land Dispute Violence', 'Political Violence', 'Other'
   ];
 
   const smokingOptions = [
     'Never Smoked', 'Current Smoker', 'Former Smoker', 'Social Smoker',
-    '1-5 pack-years', '6-10 pack-years', '11-20 pack-years', 
-    '21-30 pack-years', '30+ pack-years', 'Vape User', 
-    'Chewing Tobacco', 'Cigar Smoker', 'Pipe Smoker', 'Secondhand Smoke'
+    'Local Tobacco', 'Vape User', 'Secondhand Smoke', 'Other'
   ];
 
   const alcoholOptions = [
-    'Never Drinks', 'Occasional Drinker', 'Social Drinker', '1-2 drinks/week',
-    '3-7 drinks/week', '8-14 drinks/week', '15+ drinks/week', 
-    'Binge Drinker', 'Former Heavy Drinker', 'In Recovery',
-    'Weekend Drinker', 'Daily Drinker', 'Problem Drinker', 'Other'
+    'Never Drinks', 'Occasional Drinker', 'Waragi Consumer', 'Local Brew',
+    'Social Drinker', 'Binge Drinker', 'In Recovery', 'Other'
   ];
 
   const sexualHistoryOptions = [
     'Sexually Active', 'Not Sexually Active', 'Multiple Partners',
-    'Single Partner', 'Same-sex Partners', 'Opposite-sex Partners',
-    'Both-sex Partners', 'STI History', 'No STI History', 
-    'Regular Testing', 'Never Tested', 'High-risk Behavior',
-    'Uses Protection', 'Does Not Use Protection', 'Other'
+    'Single Partner', 'HIV/AIDS History', 'STI History', 'No STI History',
+    'Uses Condoms', 'Does Not Use Condoms', 'Regular Testing', 'Other'
   ];
 
   const exerciseOptions = [
-    'Sedentary', 'Light Activity', 'Moderate Exercise', 'Vigorous Exercise',
-    '1-2 days/week', '3-4 days/week', '5+ days/week', 'Athlete',
-    'Yoga/Pilates', 'Weight Training', 'Cardio Focus', 'Outdoor Activities',
-    'Physical Job', 'Limited Mobility', 'Other'
+    'Sedentary', 'Walking', 'Farming Activities', 'Sports', 'Bicycle Use',
+    'Limited Mobility', 'Other'
   ];
 
   const socialSupportOptions = [
-    'Strong Support', 'Moderate Support', 'Limited Support', 'Isolated',
-    'Family Support', 'Friend Support', 'Community Support', 
-    'Religious Support', 'Support Groups', 'Professional Support',
-    'No Support System', 'Caregiver Dependent', 'Other'
+    'Strong Community', 'Family Support', 'Religious Group', 'Limited Support',
+    'HIV Support Group', 'No Support', 'NGO Support', 'Other'
   ];
 
   return (
     <div className="social-history">
       <h2 className="section-title">Social History</h2>
+      <div className="section">
+        <h3 className="section-subtitle">Social Health Wheel (Uganda Context)</h3>
+        <SocialHealthWheel />
+        <p className="wheel-description">
+          Interact with the wheel to learn how social factors impact health in Uganda.
+        </p>
+      </div>
 
       {/* Substance Use */}
       <div className="section">
@@ -205,7 +285,7 @@ const SocialHistory = ({ socialHistory, handleInputChange, handleArrayInputChang
           <label className="input-label">Other Relevant Information</label>
           <textarea
             className="text-input"
-            placeholder="e.g., Who lives at home? Mobility needs? Other concerns?"
+            placeholder="e.g., Access to clean water? Community health worker visits? Other concerns?"
             value={socialHistory.additionalFactors || ''}
             onChange={(e) => handleInputChange('socialHistory', 'additionalFactors', e.target.value)}
           />
