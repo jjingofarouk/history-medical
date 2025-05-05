@@ -1,4 +1,4 @@
-/* Root variables for consistency with ExaminationFindings */
+/* Root variables for consistent theming */
 :root {
   --color-black-1: #050505;
   --color-black-2: #121212;
@@ -27,6 +27,8 @@
   border-radius: var(--radius-lg);
   box-shadow: 0 6px 20px var(--shadow-dark);
   overflow: hidden;
+  width: 100%;
+  margin: 0;
 }
 
 /* Card variants */
@@ -66,7 +68,10 @@
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .card {
-    border-radius: var(--radius-md);
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+    width: 100%;
   }
 
   .card-header {
