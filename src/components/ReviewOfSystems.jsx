@@ -5,156 +5,173 @@ const systems = [
   {
     name: 'General/Constitutional',
     items: [
-      'Fever', 'Chills', 'Night sweats', 'Fatigue', 'Weakness',
-      'Weight loss (unintentional)', 'Weight gain', 'Loss of appetite',
-      'Malaise', 'Difficulty sleeping', 'Frequent illness'
+      'Fever', 'Chills', 'Night sweats', 'Fatigue', 'Generalized weakness',
+      'Unintentional weight loss', 'Unintentional weight gain', 'Anorexia',
+      'Malaise', 'Insomnia', 'Recurrent infections', 'Cachexia',
+      'Hyperhidrosis', 'Lethargy', 'Poor exercise tolerance',
+      'Generalized edema (anasarca)', 'Feeling of impending doom'
     ]
   },
   {
     name: 'Eyes',
     items: [
-      'Blurred vision', 'Double vision', 'Eye pain', 'Redness',
-      'Dry eyes', 'Excessive tearing', 'Light sensitivity',
-      'Floaters', 'Flashing lights', 'Vision loss',
-      'Discharge', 'Swelling', 'Itching'
+      'Blurred vision', 'Diplopia', 'Ocular pain', 'Conjunctival erythema',
+      'Xerophthalmia', 'Epiphora', 'Photophobia', 'Floaters',
+      'Photopsia', 'Visual acuity loss', 'Ocular discharge',
+      'Periorbital edema', 'Ocular pruritus', 'Scotoma',
+      'Peripheral vision loss', 'Color vision disturbance',
+      'Proptosis', 'Enophthalmos', 'Nystagmus', 'Ocular foreign body sensation'
     ]
   },
   {
     name: 'ENT (Ears, Nose, Throat)',
     items: [
-      'Hearing loss', 'Tinnitus', 'Ear pain', 'Ear discharge',
-      'Nasal congestion', 'Sinus pain', 'Nosebleeds',
-      'Sore throat', 'Hoarseness', 'Difficulty swallowing',
-      'Mouth ulcers', 'Tooth pain', 'Bleeding gums',
-      'Altered taste', 'Bad breath'
+      'Sensorineural hearing loss', 'Conductive hearing loss', 'Tinnitus',
+      'Otalgia', 'Otorrhea', 'Nasal congestion', 'Rhinorrhea',
+      'Epistaxis', 'Sinus pressure', 'Pharyngitis', 'Dysphonia',
+      'Dysphagia', 'Oral ulcers', 'Dental pain', 'Gingival bleeding',
+      'Ageusia', 'Halitosis', 'Trismus', 'Tonsillar exudate',
+      'Laryngeal stridor', 'Nasal crusting', 'Parotid swelling',
+      'Aural fullness', 'Vertigo (otologic origin)'
     ]
   },
   {
     name: 'Cardiovascular',
     items: [
-      'Chest pain', 'Palpitations', 'Irregular heartbeat',
-      'Shortness of breath', 'Exercise intolerance',
-      'Leg swelling', 'Leg pain with walking',
-      'Varicose veins', 'Fainting spells', 'Dizziness',
-      'High blood pressure', 'Low blood pressure'
+      'Angina pectoris', 'Palpitations', 'Arrhythmia', 'Dyspnea on exertion',
+      'Orthopnea', 'Paroxysmal nocturnal dyspnea', 'Peripheral edema',
+      'Claudication', 'Varicose veins', 'Syncope', 'Presyncope',
+      'Hypertension', 'Hypotension', 'Cyanosis', 'Jugular venous distension',
+      'Cold extremities', 'Raynaud phenomenon', 'Dependent rubor',
+      'Postural hypotension', 'Cardiogenic shock symptoms'
     ]
   },
   {
     name: 'Respiratory',
     items: [
-      'Cough', 'Sputum production', 'Blood in sputum',
-      'Wheezing', 'Shortness of breath', 'Chest tightness',
-      'Snoring', 'Sleep apnea', 'Frequent pneumonia',
-      'Pleuritic pain', 'Clubbing of fingers'
+      'Cough (productive/non-productive)', 'Sputum production', 'Hemoptysis',
+      'Wheezing', 'Dyspnea', 'Chest tightness', 'Snoring',
+      'Obstructive sleep apnea', 'Recurrent pneumonia', 'Pleuritic chest pain',
+      'Digital clubbing', 'Tachypnea', 'Bradypnea', 'Orthopnea',
+      'Pulmonary edema symptoms', 'Bronchospasm', 'Stridor',
+      'Hypoxemia symptoms', 'Hypercapnia symptoms', 'Respiratory distress'
     ]
   },
   {
     name: 'Gastrointestinal',
     items: [
-      'Abdominal pain', 'Nausea', 'Vomiting', 'Diarrhea',
-      'Constipation', 'Blood in stool', 'Black/tarry stools',
-      'Heartburn', 'Indigestion', 'Bloating',
-      'Excessive gas', 'Difficulty swallowing',
-      'Jaundice', 'Hemorrhoids', 'Rectal pain'
+      'Abdominal pain', 'Nausea', 'Vomiting', 'Diarrhea', 'Constipation',
+      'Hematochezia', 'Melena', 'Gastroesophageal reflux', 'Dyspepsia',
+      'Abdominal bloating', 'Flatulence', 'Dysphagia', 'Jaundice',
+      'Hemorrhoids', 'Anal pain', 'Steatorrhea', 'Hematemesis',
+      'Ascites', 'Epigastric tenderness', 'Right upper quadrant pain',
+      'Left lower quadrant pain', 'Pruritus ani', 'Fecal incontinence',
+      'Early satiety', 'Postprandial fullness'
     ]
   },
   {
     name: 'Genitourinary',
     items: [
-      'Painful urination', 'Frequent urination',
-      'Urgency', 'Incontinence', 'Blood in urine',
-      'Cloudy urine', 'Strong urine odor',
-      'Decreased urine output', 'Flank pain',
-      'Genital sores', 'Genital discharge',
-      'Erectile dysfunction', 'Testicular pain',
-      'Pelvic pain', 'Menstrual irregularities'
+      'Dysuria', 'Polyuria', 'Urinary urgency', 'Urinary incontinence',
+      'Hematuria', 'Turbid urine', 'Malodorous urine', 'Oliguria',
+      'Flank pain', 'Genital ulcers', 'Urethral discharge', 'Erectile dysfunction',
+      'Testicular pain', 'Pelvic pain', 'Menorrhagia', 'Dysmenorrhea',
+      'Anuria', 'Nocturia', 'Suprapubic pain', 'Vaginal discharge',
+      'Dyspareunia', 'Scrotal swelling', 'Priapism', 'Amenorrhea',
+      'Post-void dribbling', 'Urinary retention'
     ]
   },
   {
     name: 'Musculoskeletal',
     items: [
-      'Joint pain', 'Joint swelling', 'Joint stiffness',
-      'Muscle pain', 'Muscle weakness', 'Back pain',
-      'Neck pain', 'Limited range of motion',
-      'Bone pain', 'Fractures', 'Muscle cramps',
-      'Gait problems', 'Difficulty walking'
+      'Arthralgia', 'Joint effusion', 'Morning stiffness', 'Myalgia',
+      'Muscle weakness', 'Back pain', 'Cervical pain', 'Limited joint mobility',
+      'Bone pain', 'Pathologic fractures', 'Muscle cramps', 'Gait instability',
+      'Difficulty ambulating', 'Joint erythema', 'Joint warmth',
+      'Muscle atrophy', 'Fasciculations', 'Tendon pain',
+      'Bursitis symptoms', 'Spinal deformity', 'Limb deformity',
+      'Myoclonus', 'Joint crepitus'
     ]
   },
   {
     name: 'Skin/Nails/Hair',
     items: [
-      'Rash', 'Itching', 'Dry skin', 'Skin lesions',
-      'Skin discoloration', 'Easy bruising',
-      'Slow wound healing', 'Hair loss',
-      'Nail changes', 'Excessive sweating',
-      'Cold intolerance', 'Heat intolerance',
-      'Skin growths', 'Moles changing'
+      'Exanthem', 'Pruritus', 'Xerosis', 'Cutaneous lesions',
+      'Hyperpigmentation', 'Ecchymosis', 'Delayed wound healing',
+      'Alopecia', 'Onychodystrophy', 'Hyperhidrosis', 'Cold intolerance',
+      'Heat intolerance', 'Cutaneous neoplasms', 'Changing nevi',
+      'Erythema', 'Urticaria', 'Telangiectasia', 'Purpura',
+      'Skin induration', 'Nail pitting', 'Hirsutism', 'Skin fragility',
+      'Photosensitivity', 'Pallor', 'Jaundice (cutaneous)'
     ]
   },
   {
     name: 'Neurological',
     items: [
-      'Headache', 'Dizziness', 'Vertigo', 'Numbness',
-      'Tingling', 'Weakness', 'Tremors', 'Seizures',
-      'Memory problems', 'Concentration difficulties',
-      'Speech problems', 'Coordination problems',
-      'Balance problems', 'Loss of consciousness',
-      'Sensory changes'
+      'Cephalgia', 'Vertigo', 'Paresthesia', 'Hypoesthesia',
+      'Muscle weakness', 'Tremor', 'Seizures', 'Amnesia',
+      'Cognitive impairment', 'Aphasia', 'Ataxia', 'Dysmetria',
+      'Syncope', 'Sensory loss', 'Cranial nerve dysfunction',
+      'Hemiparesis', 'Spasticity', 'Clonus', 'Dyskinesia',
+      'Myoclonus', 'Focal neurological deficits', 'Visual hallucinations',
+      'Dysarthria', 'Bradykinesia', 'Resting tremor'
     ]
   },
   {
     name: 'Psychiatric',
     items: [
-      'Depression', 'Anxiety', 'Mood swings',
-      'Irritability', 'Suicidal thoughts',
-      'Hallucinations', 'Delusions',
-      'Sleep disturbances', 'Appetite changes',
-      'Panic attacks', 'Phobias',
-      'Memory problems', 'Concentration issues',
-      'Psychotic symptoms'
+      'Major depressive episode', 'Generalized anxiety', 'Mood lability',
+      'Irritability', 'Suicidal ideation', 'Auditory hallucinations',
+      'Visual hallucinations', 'Delusions', 'Insomnia', 'Hypersomnia',
+      'Anorexia nervosa symptoms', 'Panic attacks', 'Phobic disorders',
+      'Cognitive dysfunction', 'Psychomotor agitation', 'Psychomotor retardation',
+      'Obsessive thoughts', 'Compulsive behaviors', 'Post-traumatic stress symptoms',
+      'Mania', 'Hypomania', 'Dissociative symptoms'
     ]
   },
   {
     name: 'Endocrine',
     items: [
-      'Heat/cold intolerance', 'Excessive thirst',
-      'Excessive hunger', 'Excessive urination',
-      'Neck swelling', 'Hand tremor',
-      'Hair thinning', 'Skin changes',
-      'Unexplained weight changes',
-      'Fatigue', 'Irregular periods',
-      'Decreased libido'
+      'Heat intolerance', 'Cold intolerance', 'Polydipsia', 'Polyphagia',
+      'Polyuria', 'Goiter', 'Fine tremor', 'Diffuse hair thinning',
+      'Hyperpigmentation', 'Unexplained weight loss', 'Unexplained weight gain',
+      'Lethargy', 'Menstrual irregularities', 'Decreased libido',
+      'Galactorrhea', 'Gynecomastia', 'Hirsutism', 'Exophthalmos',
+      'Adrenal crisis symptoms', 'Hypoglycemia symptoms',
+      'Hyperglycemia symptoms', 'Osteoporosis'
     ]
   },
   {
     name: 'Hematologic/Lymphatic',
     items: [
-      'Easy bruising', 'Prolonged bleeding',
-      'Frequent infections', 'Swollen lymph nodes',
-      'Pale skin', 'Fatigue', 'Shortness of breath',
-      'Blood clots', 'Enlarged spleen',
-      'Night sweats', 'Unexplained fever'
+      'Ecchymosis', 'Prolonged bleeding', 'Recurrent infections',
+      'Lymphadenopathy', 'Pallor', 'Fatigue', 'Dyspnea',
+      'Thrombotic events', 'Splenomegaly', 'Night sweats',
+      'Persistent fever', 'Petechiae', 'Purpura', 'Hematoma formation',
+      'Hemarthrosis', 'Mucosal bleeding', 'Hepatosplenomegaly',
+      'Bone marrow suppression symptoms', 'Anemia symptoms',
+      'Leukocytosis symptoms', 'Thrombocytopenia symptoms'
     ]
   },
   {
     name: 'Allergic/Immunologic',
     items: [
-      'Seasonal allergies', 'Food allergies',
-      'Drug allergies', 'Insect allergies',
-      'Hives', 'Swelling', 'Anaphylaxis',
-      'Frequent infections', 'Autoimmune symptoms',
-      'Immunodeficiency'
+      'Allergic rhinitis', 'Food hypersensitivity', 'Drug hypersensitivity',
+      'Insect sting hypersensitivity', 'Urticaria', 'Angioedema',
+      'Anaphylactic symptoms', 'Recurrent infections', 'Autoimmune symptoms',
+      'Immunodeficiency symptoms', 'Eczema', 'Contact dermatitis',
+      'Asthma (allergic component)', 'Eosinophilia symptoms',
+      'Latex allergy', 'Seasonal conjunctivitis'
     ]
   },
   {
     name: 'Sleep',
     items: [
-      'Insomnia', 'Excessive sleepiness',
-      'Snoring', 'Gasping at night',
-      'Restless legs', 'Nightmares',
-      'Sleepwalking', 'Teeth grinding',
-      'Difficulty falling asleep',
-      'Difficulty staying asleep'
+      'Insomnia', 'Hypersomnolence', 'Snoring', 'Nocturnal gasping',
+      'Restless legs syndrome', 'Nightmares', 'Somnambulism',
+      'Bruxism', 'Difficulty initiating sleep', 'Frequent awakenings',
+      'Non-restorative sleep', 'Sleep paralysis', 'Hypnagogic hallucinations',
+      'Circadian rhythm disturbance', 'Periodic limb movements'
     ]
   }
 ];
