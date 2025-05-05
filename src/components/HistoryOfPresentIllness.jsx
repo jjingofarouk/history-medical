@@ -5,6 +5,49 @@ import Input from './Input';
 import { socratesFields } from './socratesFields';
 import './HistoryOfPresentIllness.css';
 
+const ButtonSelect = ({ options, value, onChange, placeholder }) => {
+  const [otherText, setOtherText] = useState('');
+
+  const handleButtonClick = (option) => {
+    if (option === 'Other') {
+      onChange('Other');
+    } else {
+      onChange(option);
+      setOtherText('');
+    }
+  };
+
+  return (
+    <div className="button-select" role="group" aria-label="Button select options">
+      <div className="options-container">
+        {options.map((option, index) => (
+          <button
+            key={index}
+            className={`option-button ${value === option ? 'active' : ''}`}
+            onClick={() => handleButtonClick(option)}
+            aria-pressed={value === option}
+            data-severity={option}
+          >
+            {option}
+          </button>
+        ))}
+      </div>
+      {value === 'Other' && (
+        <Input
+          className="other-input"
+          placeholder={placeholder}
+          value={otherText}
+          onChange={(e) => {
+            setOtherText(e.target.value);
+            onChange(`Other: ${e.target.value}`);
+          }}
+          aria-label="Other option description"
+        />
+      )}
+    </div>
+  );
+};
+
 const MultiSelect = ({ options, value, onChange, placeholder }) => {
   const [selectedOptions, setSelectedOptions] = useState(value || []);
   const [otherText, setOtherText] = useState('');
@@ -55,10 +98,11 @@ const MultiSelect = ({ options, value, onChange, placeholder }) => {
   );
 };
 
-const HistoryOfPresentIllness = ({ historyOfPresentIllness, handleInputChange }) => {
+const HistoryOfPresentIllness = ({ historyOfPresentIllness = {}, handleInputChange }) => {
   const [descriptionLength, setDescriptionLength] = useState(0);
   const [errors, setErrors] = useState({});
   const [showSummary, setShowSummary] = useState(false);
+  const [isSummaryLoading, setIsSummaryLoading] = useState(false);
   const maxDescriptionLength = 1000;
 
   const tooltips = {
@@ -122,6 +166,14 @@ const HistoryOfPresentIllness = ({ historyOfPresentIllness, handleInputChange })
   useEffect(() => {
     validateFields();
   }, [historyOfPresentIllness]);
+
+  useEffect(() => {
+    if (showSummary) {
+      setIsSummaryLoading(true);
+      const timer = setTimeout(() => setIsSummaryLoading(false), 300);
+      return () => clearTimeout(timer);
+    }
+  }, [showSummary]);
 
   return (
     <Card className="hpi-card" role="region" aria-labelledby="hpi-title">
@@ -213,7 +265,7 @@ const HistoryOfPresentIllness = ({ historyOfPresentIllness, handleInputChange })
               <MultiSelect
                 options={options}
                 value={historyOfPresentIllness[key] || []}
-                onChange={(value) => handleInputChange('historyOfPresentIllness', key, value)}
+                onChange={(value) => handleInputChange('historyOfPresentIllness', 'key', value)}
                 placeholder={placeholder}
                 aria-describedby={`${key}-tooltip`}
               />
@@ -242,16 +294,23 @@ const HistoryOfPresentIllness = ({ historyOfPresentIllness, handleInputChange })
             className="summary-toggle"
             onClick={() => setShowSummary(!showSummary)}
             aria-expanded={showSummary}
+            disabled={isSummaryLoading}
           >
-            {showSummary ? 'Hide Summary' : 'Show Summary'}
+            {isSummaryLoading ? 'Loading...' : showSummary ? 'Hide Summary' : 'Show Summary'}
           </button>
           {showSummary && (
             <div className="summary-content">
-              <pre>{generateSummary()}</pre>
-              <div className="summary-actions">
-                <button onClick={handleCopySummary}>Copy to Clipboard</button>
-                <button onClick={handleExportSummary}>Export as Text</button>
-              </div>
+              {isSummaryLoading ? (
+                <div className="summary-loading">Generating summary...</div>
+              ) : (
+                <>
+                  <pre>{generateSummary()}</pre>
+                  <div className="summary-actions">
+                    <button onClick={handleCopySummary}>Copy to Clipboard</button>
+                    <button onClick={handleExportSummary}>Export as Text</button>
+                  </div>
+                </>
+              )}
             </div>
           )}
         </div>
