@@ -1,4 +1,4 @@
-/* Root variables */
+/* Root variables for consistent theming */
 :root {
   --color-black-1: #050505;
   --color-black-2: #121212;
@@ -8,7 +8,7 @@
   --color-accent-1: #00FFAA;
   --color-accent-2: #3D7DFF;
   --shadow-dark: rgba(0, 0, 0, 0.25);
-  --shadow-accent: rgba(0, 255, 170, 0.15);
+  --shadow-accent: rgba(0, 255, 170, 0.2);
   --radius-sm: 8px;
   --radius-md: 12px;
   --radius-lg: 16px;
@@ -24,20 +24,22 @@
 /* Main container */
 .examination-container {
   width: 100%;
-  margin: 0 auto;
+  margin: 0;
   padding: var(--space-md);
   display: flex;
   flex-direction: column;
   gap: var(--space-lg);
+  background: var(--color-black-1);
 }
 
 /* Card styles */
 .system-selector-card,
 .system-card {
+  width: 100%;
   background: var(--color-black-2);
   border: 1px solid var(--color-black-3);
   border-radius: var(--radius-lg);
-  box-shadow: 0 6px 20px var(--shadow-dark);
+  box-shadow: 0 4px 16px var(--shadow-dark);
   overflow: hidden;
 }
 
@@ -53,7 +55,7 @@
 .system-card-header h2 {
   margin: 0;
   font-family: var(--font-base);
-  font-size: 1.5rem;
+  font-size: 1.75rem;
   font-weight: 700;
   color: var(--color-white-1);
   letter-spacing: -0.02em;
@@ -68,38 +70,44 @@
 .system-selector-content p {
   margin: 0 0 var(--space-md);
   font-family: var(--font-base);
-  font-size: 1rem;
+  font-size: 1.1rem;
   color: var(--color-white-2);
 }
 
 /* Dropdown */
 .system-dropdown {
   width: 100%;
-  max-width: 300px;
-  padding: var(--space-xs) var(--space-sm);
+  padding: var(--space-sm);
   background: var(--color-black-3);
   color: var(--color-white-2);
   font-family: var(--font-base);
-  font-size: 0.875rem;
+  font-size: 1rem;
   border: 1px solid var(--color-black-3);
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-md);
   cursor: pointer;
   transition: var(--transition-quick);
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23F0F0F0' width='24px' height='24px'%3E%3Cpath d='M7 10l5 5 5-5H7z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right var(--space-sm) center;
+  background-size: 20px;
 }
 
 .system-dropdown:hover {
   border-color: var(--color-accent-1);
+  background-color: var(--color-black-2);
 }
 
 .system-dropdown:focus {
   outline: none;
   border-color: var(--color-accent-1);
-  box-shadow: 0 0 0 2px var(--shadow-accent);
+  box-shadow: 0 0 0 3px var(--shadow-accent);
 }
 
 .system-dropdown option {
   background: var(--color-black-2);
   color: var(--color-white-2);
+  font-size: 1rem;
 }
 
 /* No selection/findings */
@@ -108,13 +116,16 @@
   padding: var(--space-lg);
   text-align: center;
   font-family: var(--font-base);
-  font-size: 1rem;
+  font-size: 1.1rem;
   color: var(--color-white-2);
+  opacity: 0.8;
 }
 
 /* Accordion */
 .accordion {
   margin-bottom: var(--space-sm);
+  border-radius: var(--radius-md);
+  overflow: hidden;
 }
 
 .accordion-header {
@@ -123,30 +134,28 @@
   align-items: center;
   padding: var(--space-sm) var(--space-md);
   background: var(--color-black-3);
-  border-radius: var(--radius-sm);
   cursor: pointer;
   transition: var(--transition-quick);
 }
 
 .accordion-header:hover {
-  background: rgba(0, 255, 170, 0.1);
+  background: linear-gradient(135deg, rgba(0, 255, 170, 0.1), var(--color-black-3));
 }
 
 .accordion-header.active {
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
+  background: var(--color-black-2);
 }
 
 .accordion-header h3 {
   margin: 0;
   font-family: var(--font-base);
-  font-size: 1.125rem;
+  font-size: 1.25rem;
   font-weight: 600;
   color: var(--color-white-1);
 }
 
 .accordion-icon {
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   color: var(--color-accent-1);
   transition: var(--transition-quick);
 }
@@ -161,13 +170,11 @@
   background: var(--color-black-2);
   border: 1px solid var(--color-black-3);
   border-top: none;
-  border-bottom-left-radius: var(--radius-sm);
-  border-bottom-right-radius: var(--radius-sm);
   transition: max-height var(--transition-smooth);
 }
 
 .accordion-content.active {
-  max-height: 1000px;
+  max-height: 1200px;
   padding: var(--space-md);
 }
 
@@ -181,57 +188,57 @@
 
 .finding-label {
   font-family: var(--font-base);
-  font-size: 0.875rem;
+  font-size: 0.9rem;
   font-weight: 600;
   color: var(--color-white-1);
-  letter-spacing: 0.02em;
+  letter-spacing: 0.01em;
 }
 
 .options-container {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-xs);
+  gap: var(--space-sm);
   max-width: 100%;
 }
 
 .finding-option {
-  padding: var(--space-xs) var(--space-sm);
+  padding: var(--space-sm) var(--space-md);
   background: var(--color-black-3);
   color: var(--color-white-2);
   font-family: var(--font-base);
-  font-size: 0.875rem;
+  font-size: 0.9rem;
   border: none;
   border-radius: var(--radius-sm);
   cursor: pointer;
   transition: var(--transition-quick);
-  position: relative;
-  min-width: 80px;
+  min-width: 100px;
   text-align: center;
 }
 
 .finding-option:hover {
   background: var(--color-accent-1);
   color: var(--color-black-1);
+  transform: translateY(-2px);
 }
 
 .finding-option.active {
   background: linear-gradient(135deg, var(--color-accent-1), var(--color-accent-2));
   color: var(--color-black-1);
   font-weight: 600;
-  box-shadow: 0 0 0 1px var(--color-accent-1);
+  box-shadow: 0 2px 8px var(--shadow-accent);
 }
 
 /* Input fields */
 .finding-input {
-  padding: var(--space-xs) var(--space-sm);
+  padding: var(--space-sm) var(--space-md);
   background: var(--color-black-3);
   color: var(--color-white-1);
   font-family: var(--font-base);
-  font-size: 0.875rem;
+  font-size: 0.9rem;
   border: 1px solid var(--color-black-3);
   border-radius: var(--radius-sm);
   width: 100%;
-  max-width: 300px;
+  max-width: 400px;
   transition: var(--transition-quick);
 }
 
@@ -242,35 +249,36 @@
 .finding-input:focus {
   outline: none;
   border-color: var(--color-accent-1);
-  box-shadow: 0 0 0 2px var(--shadow-accent);
+  box-shadow: 0 0 0 3px var(--shadow-accent);
 }
 
 .finding-input::placeholder {
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(255, 255, 255, 0.5);
 }
 
 /* Save button */
 .save-button {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
-  padding: var(--space-sm) var(--space-lg);
+  padding: var(--space-md) var(--space-lg);
   background: linear-gradient(135deg, var(--color-accent-1), var(--color-accent-2));
   color: var(--color-black-1);
   font-family: var(--font-base);
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-weight: 600;
   border: none;
   border-radius: var(--radius-md);
   cursor: pointer;
   transition: var(--transition-quick);
   box-shadow: 0 4px 12px var(--shadow-accent);
-  margin-top: var(--space-md);
+  margin-top: var(--space-lg);
+  width: 100%;
 }
 
 .save-button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 16px var(--shadow-accent);
+  box-shadow: 0 8px 20px var(--shadow-accent);
   background: linear-gradient(135deg, var(--color-accent-2), var(--color-accent-1));
 }
 
@@ -281,9 +289,19 @@
     gap: var(--space-md);
   }
 
+  .system-selector-card,
+  .system-card {
+    border-radius: var(--radius-md);
+  }
+
   .system-selector-header,
   .system-card-header {
     padding: var(--space-sm) var(--space-md);
+  }
+
+  .system-selector-header h2,
+  .system-card-header h2 {
+    font-size: 1.5rem;
   }
 
   .system-selector-content,
@@ -292,30 +310,48 @@
   }
 
   .system-dropdown {
+    font-size: 0.9rem;
+    padding: var(--space-xs) var(--space-sm);
+  }
+
+  .finding-option {
+    font-size: 0.85rem;
+    min-width: 80px;
+    padding: var(--space-xs) var(--space-sm);
+  }
+
+  .finding-input {
+    font-size: 0.85rem;
+    max-width: 300px;
+  }
+
+  .save-button {
+    font-size: 1rem;
+    padding: var(--space-sm);
+  }
+}
+
+@media (max-width: 480px) {
+  .system-selector-header h2,
+  .system-card-header h2 {
+    font-size: 1.25rem;
+  }
+
+  .system-dropdown {
+    font-size: 0.8rem;
+  }
+
+  .finding-option {
+    font-size: 0.8rem;
+    min-width: 70px;
+  }
+
+  .finding-input {
     font-size: 0.8rem;
     max-width: 250px;
   }
 
   .save-button {
-    width: 100%;
-    padding: var(--space-sm);
-  }
-
-  .finding-option {
-    font-size: 0.75rem;
-    padding: var(--space-xs);
-    min-width: 60px;
-  }
-}
-
-@media (max-width: 480px) {
-  .system-dropdown {
-    font-size: 0.75rem;
-    max-width: 200px;
-  }
-
-  .finding-option {
-    font-size: 0.7rem;
-    min-width: 50px;
+    font-size: 0.9rem;
   }
 }
