@@ -9,33 +9,35 @@
   --color-error: #ff4d4f;
   --shadow-dark: rgba(0, 0, 0, 0.25);
   --shadow-accent: rgba(0, 255, 170, 0.2);
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 16px;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
   --transition-quick: 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   --transition-smooth: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   --font-base: 'Inter', system-ui, -apple-system, sans-serif;
+  --space-xxs: 4px;
   --space-xs: 8px;
-  --space-sm: 16px;
-  --space-md: 24px;
-  --space-lg: 32px;
+  --space-sm: 12px;
+  --space-md: 16px;
+  --space-lg: 24px;
 }
 
 /* Main container */
 .family-history-card {
   width: 100%;
-  max-width: 1200px;
+  max-width: 1000px;
   margin: var(--space-md) auto;
   background: var(--color-black-2);
   border: 1px solid var(--color-black-3);
   border-radius: var(--radius-lg);
-  box-shadow: 0 4px 16px var(--shadow-dark);
+  box-shadow: 0 4px 12px var(--shadow-dark);
   overflow: hidden;
+  box-sizing: border-box;
 }
 
 /* Card header */
 .card-header {
-  padding: var(--space-md) var(--space-lg);
+  padding: var(--space-sm) var(--space-md);
   background: linear-gradient(135deg, var(--color-black-3), var(--color-black-2));
   border-bottom: 1px solid var(--color-black-3);
 }
@@ -44,7 +46,7 @@
 .card-title {
   margin: 0;
   font-family: var(--font-base);
-  font-size: 2rem;
+  font-size: 1.75rem;
   font-weight: 700;
   color: var(--color-white-1);
   letter-spacing: -0.02em;
@@ -52,23 +54,40 @@
 
 /* Card content */
 .card-content {
-  padding: var(--space-lg);
+  padding: var(--space-md);
   display: flex;
   flex-direction: column;
-  gap: var(--space-md);
+  gap: var(--space-sm);
+}
+
+/* Section titles */
+.section-title {
+  font-family: var(--font-base);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-white-1);
+  margin: 0;
+}
+
+.section-subtitle {
+  font-family: var(--font-base);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-white-2);
+  margin-bottom: var(--space-xs);
 }
 
 /* Input group */
 .input-group {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--space-md);
+  gap: var(--space-sm);
 }
 
 /* Input label */
 .input-label {
   font-family: var(--font-base);
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 600;
   color: var(--color-white-1);
   letter-spacing: 0.01em;
@@ -77,29 +96,67 @@
 /* Input description */
 .input-description {
   font-family: var(--font-base);
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   color: var(--color-white-2);
-  margin: var(--space-xs) 0;
+  margin: var(--space-xxs) 0;
+}
+
+/* Family Health Wheel */
+.family-health-wheel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+.wheel-description {
+  font-family: var(--font-base);
+  font-size: 0.85rem;
+  color: var(--color-white-2);
+  text-align: center;
+  margin-top: var(--space-xs);
+}
+
+/* Tooltip */
+.tooltip {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--color-black-2);
+  color: var(--color-white-1);
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-accent-1);
+  font-family: var(--font-base);
+  font-size: 0.8rem;
+  max-width: 200px;
+  text-align: center;
+  box-shadow: 0 4px 8px var(--shadow-dark);
+  z-index: 10;
 }
 
 /* Button select */
 .button-select {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-xs);
-  margin-bottom: var(--space-sm);
+  gap: var(--space-xxs);
+  margin-bottom: var(--space-xs);
 }
 
 .button-option {
-  padding: var(--space-xs) var(--space-sm);
+  padding: var(--space-xxs) var(--space-xs);
   background: var(--color-black-3);
   border: 1px solid var(--color-black-1);
   border-radius: var(--radius-sm);
   color: var(--color-white-2);
   font-family: var(--font-base);
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   cursor: pointer;
   transition: var(--transition-quick);
+  line-height: 1.2;
 }
 
 .button-option:hover {
@@ -117,8 +174,8 @@
 .selected-items {
   display: flex;
   flex-direction: column;
-  gap: var(--space-xs);
-  margin-top: var(--space-sm);
+  gap: var(--space-xxs);
+  margin-top: var(--space-xs);
 }
 
 .selected-item {
@@ -126,11 +183,11 @@
   align-items: center;
   justify-content: space-between;
   background: var(--color-black-3);
-  padding: var(--space-sm) var(--space-md);
+  padding: var(--space-xs) var(--space-sm);
   border-radius: var(--radius-sm);
   color: var(--color-white-2);
   font-family: var(--font-base);
-  font-size: 0.9rem;
+  font-size: 0.85rem;
 }
 
 /* Remove button */
@@ -138,48 +195,54 @@
   background: transparent;
   color: var(--color-accent-1);
   border: none;
-  font-size: 1.2rem;
+  font-size: 1rem;
   cursor: pointer;
   transition: var(--transition-quick);
 }
 
 .remove-button:hover {
   color: var(--color-error);
-  transform: scale(1.2);
+  transform: scale(1.1);
 }
 
 /* Additional factor inputs */
 .additional-factor-inputs {
   display: grid;
   grid-template-columns: 1fr auto;
-  gap: var(--space-sm);
+  gap: var(--space-xs);
   align-items: center;
 }
 
 .button-select-input {
-  padding: var(--space-sm);
+  padding: var(--space-xs) var(--space-sm);
   background: var(--color-black-3);
   border: 1px solid var(--color-black-1);
   border-radius: var(--radius-sm);
   color: var(--color-white-2);
   font-family: var(--font-base);
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   transition: var(--transition-quick);
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .button-select-input:focus {
   outline: none;
   border-color: var(--color-accent-1);
-  box-shadow: 0 0 8px var(--shadow-accent);
+  box-shadow: 0 0 6px var(--shadow-accent);
+}
+
+.button-select-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
 }
 
 /* Add button */
 .add-button {
-  padding: var(--space-sm) var(--space-md);
+  padding: var(--space-xxs) var(--space-xs);
   background: var(--color-accent-1);
   color: var(--color-black-1);
   font-family: var(--font-base);
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   font-weight: 600;
   border: none;
   border-radius: var(--radius-sm);
@@ -189,8 +252,8 @@
 
 .add-button:hover {
   background: var(--color-accent-2);
-  transform: translateY(-2px);
-  box-shadow: 0 2px 8px var(--shadow-accent);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 6px var(--shadow-accent);
 }
 
 .add-button:disabled {
@@ -202,11 +265,11 @@
 
 /* Save button */
 .save-button {
-  padding: var(--space-sm) var(--space-lg);
+  padding: var(--space-xxs) var(--space-sm);
   background: linear-gradient(135deg, var(--color-accent-1), var(--color-accent-2));
   color: var(--color-black-1);
   font-family: var(--font-base);
-  font-size: 1rem;
+  font-size: 0.8rem;
   font-weight: 600;
   border: none;
   border-radius: var(--radius-sm);
@@ -216,17 +279,47 @@
 }
 
 .save-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px var(--shadow-accent);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px var(--shadow-accent);
 }
 
 /* Character counter */
 .character-counter {
   font-family: var(--font-base);
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   color: var(--color-white-2);
   text-align: right;
-  margin-top: var(--space-xs);
+  margin-top: var(--space-xxs);
+}
+
+/* Text input (for consistency with SocialHistory) */
+.text-input {
+  padding: var(--space-xs) var(--space-sm);
+  background: var(--color-black-3);
+  color: var(--color-white-1);
+  font-family: var(--font-base);
+  font-size: 0.85rem;
+  border: 1px solid var(--color-black-3);
+  border-radius: var(--radius-sm);
+  transition: var(--transition-quick);
+  width: 100%;
+  min-height: 80px;
+  resize: vertical;
+  box-sizing: border-box;
+}
+
+.text-input:hover {
+  border-color: var(--color-accent-1);
+}
+
+.text-input:focus {
+  outline: none;
+  border-color: var(--color-accent-1);
+  box-shadow: 0 0 6px var(--shadow-accent);
+}
+
+.text-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
 }
 
 /* Responsive adjustments */
@@ -239,7 +332,7 @@
   }
 
   .card-header {
-    padding: var(--space-sm) var(--space-md);
+    padding: var(--space-xs) var(--space-sm);
   }
 
   .card-title {
@@ -247,27 +340,51 @@
   }
 
   .card-content {
-    padding: var(--space-md);
-    gap: var(--space-sm);
+    padding: var(--space-sm);
+    gap: var(--space-xs);
+  }
+
+  .section-title {
+    font-size: 1.3rem;
+  }
+
+  .section-subtitle {
+    font-size: 1rem;
+  }
+
+  .family-health-wheel {
+    max-width: 250px;
+  }
+
+  .tooltip {
+    max-width: 150px;
+    font-size: 0.75rem;
   }
 
   .additional-factor-inputs {
     grid-template-columns: 1fr;
-    gap: var(--space-xs);
+    gap: var(--space-xxs);
   }
 
-  .button-select-input {
-    width: 100%;
+  .button-select-input,
+  .text-input {
+    font-size: 0.8rem;
+    padding: var(--space-xxs) var(--space-xs);
   }
 
   .add-button {
-    font-size: 0.85rem;
-    padding: var(--space-xs) var(--space-sm);
+    font-size: 0.75rem;
+    padding: var(--space-xxs) var(--space-xs);
+  }
+
+  .save-button {
+    font-size: 0.75rem;
+    padding: var(--space-xxs) var(--space-sm);
   }
 
   .selected-item {
-    font-size: 0.85rem;
-    padding: var(--space-xs) var(--space-sm);
+    font-size: 0.8rem;
+    padding: var(--space-xxs) var(--space-xs);
   }
 }
 
@@ -277,29 +394,44 @@
   }
 
   .input-label {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
   }
 
   .input-description {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
   }
 
   .button-option {
-    font-size: 0.8rem;
-    padding: var(--space-xs) var(--space-sm);
+    font-size: 0.75rem;
+    padding: var(--space-xxs) var(--space-xxs);
+  }
+
+  .family-health-wheel {
+    max-width: 200px;
+  }
+
+  .tooltip {
+    max-width: 120px;
+    font-size: 0.7rem;
+    padding: var(--space-xxs) var(--space-xs);
   }
 
   .selected-item {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
+  }
+
+  .button-select-input,
+  .text-input {
+    font-size: 0.75rem;
   }
 
   .add-button,
   .save-button {
-    font-size: 0.8rem;
-    padding: var(--space-xs) var(--space-sm);
+    font-size: 0.7rem;
+    padding: var(--space-xxs) var(--space-xs);
   }
 
   .character-counter {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
   }
 }
