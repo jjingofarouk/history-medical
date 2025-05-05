@@ -6,11 +6,43 @@ import { medicationOptions } from './MedicationOptions';
 import { vaccinationOptions } from './VaccinationOptions';
 import './PastMedicalHistory.css';
 import { Card, CardHeader, CardTitle, CardContent } from './Card';
-import ButtonSelect from './ButtonSelect';
 import TextArea from './TextArea';
 import Input from './Input';
 
-const PastMedicalHistory = ({ pastMedicalHistory, handleInputChange, handleArrayInputChange }) => {
+// Custom ButtonSelect component defined within the file
+const ButtonSelect = ({ options, onChange, placeholder }) => {
+  const handleOptionClick = (option) => {
+    onChange(option);
+  };
+
+  return (
+    <div className="button-select">
+      {options.map((option) => (
+        <button
+          key={option}
+          type="button"
+          className="button-option"
+          onClick={() => handleOptionClick(option)}
+        >
+          {option}
+        </button>
+      ))}
+      <input
+        type="text"
+        className="button-select-input"
+        placeholder={placeholder}
+        onKeyPress={(e) => {
+          if (e.key === 'Enter' && e.target.value.trim()) {
+            handleOptionClick(e.target.value.trim());
+            e.target.value = '';
+          }
+        }}
+      />
+    </div>
+  );
+};
+
+const PastMedicalHistory = ({ pastMedicalHistory = {}, handleInputChange, handleArrayInputChange }) => {
   const [conditions, setConditions] = useState(pastMedicalHistory.conditions || []);
   const [medications, setMedications] = useState(pastMedicalHistory.medications || []);
   const [allergies, setAllergies] = useState(pastMedicalHistory.allergies || []);
@@ -73,6 +105,7 @@ const PastMedicalHistory = ({ pastMedicalHistory, handleInputChange, handleArray
                 <div key={index} className="selected-item">
                   {condition}
                   <button
+                    type="button"
                     className="remove-button"
                     onClick={() => handleRemoveItem(conditions, setConditions, 'conditions', index)}
                   >
@@ -104,6 +137,7 @@ const PastMedicalHistory = ({ pastMedicalHistory, handleInputChange, handleArray
                 <div key={index} className="selected-item">
                   {illness}
                   <button
+                    type="button"
                     className="remove-button"
                     onClick={() => handleRemoveItem(specificIllnesses, setSpecificIllnesses, 'specificIllnesses', index)}
                   >
@@ -135,6 +169,7 @@ const PastMedicalHistory = ({ pastMedicalHistory, handleInputChange, handleArray
                 <div key={index} className="selected-item">
                   {med}
                   <button
+                    type="button"
                     className="remove-button"
                     onClick={() => handleRemoveItem(medications, setMedications, 'medications', index)}
                   >
@@ -152,7 +187,6 @@ const PastMedicalHistory = ({ pastMedicalHistory, handleInputChange, handleArray
             <label className="input-label">Allergies</label>
             <ButtonSelect
               options={['Medications', 'Food', 'Environmental', 'Other']}
-              value=""
               onChange={(value) => {
                 if (!allergies.includes(value)) {
                   const newAllergies = [...allergies, value];
@@ -167,6 +201,7 @@ const PastMedicalHistory = ({ pastMedicalHistory, handleInputChange, handleArray
                 <div key={index} className="selected-item">
                   {allergy}
                   <button
+                    type="button"
                     className="remove-button"
                     onClick={() => handleRemoveItem(allergies, setAllergies, 'allergies', index)}
                   >
@@ -196,8 +231,9 @@ const PastMedicalHistory = ({ pastMedicalHistory, handleInputChange, handleArray
             <div className="selected-items">
               {vaccinations.map((vaccination, index) => (
                 <div key={index} className="selected-item">
-                  {vaccination.label || vaccination}
+                  {typeof vaccination === 'object' && vaccination.label ? vaccination.label : vaccination}
                   <button
+                    type="button"
                     className="remove-button"
                     onClick={() => handleRemoveItem(vaccinations, setVaccinations, 'vaccinations', index)}
                   >
@@ -233,15 +269,20 @@ const PastMedicalHistory = ({ pastMedicalHistory, handleInputChange, handleArray
                 value={newHospitalization.duration}
                 onChange={(e) => setNewHospitalization({ ...newHospitalization, duration: e.target.value })}
               />
-              <button className="add-button" onClick={handleAddHospitalization}>
+              <button
+                type="button"
+                className="add-button"
+                onClick={handleAddHospitalization}
+              >
                 Add
               </button>
             </div>
             <div className="selected-items">
               {hospitalizations.map((hosp, index) => (
                 <div key={index} className="selected-item">
-                  {`${hosp.date}: ${hosp.reason} (${hosp.duration})`}
+                  {`${hosp.date}: ${hosp.reason} (${hosp.duration || 'N/A'})`}
                   <button
+                    type="button"
                     className="remove-button"
                     onClick={() => handleRemoveItem(hospitalizations, setHospitalizations, 'hospitalizations', index)}
                   >
@@ -276,6 +317,7 @@ const PastMedicalHistory = ({ pastMedicalHistory, handleInputChange, handleArray
 
         {/* Save Button */}
         <button
+          type="button"
           className="save-button"
           onClick={() => alert('Past Medical History Saved')}
         >
