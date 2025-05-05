@@ -2,6 +2,54 @@ import React, { useState } from 'react';
 import { examinationSystems } from './ExaminationSystems';
 import './ExaminationFindings.css';
 
+const ButtonSelect = ({ options, value = [], onChange, placeholder, exclusive = false }) => {
+  const [otherText, setOtherText] = useState('');
+
+  const handleButtonClick = (option) => {
+    let updatedValue;
+    if (option === 'Other') {
+      updatedValue = ['Other'];
+      setOtherText('');
+    } else {
+      if (exclusive) {
+        updatedValue = value.includes(option) ? [] : [option];
+      } else {
+        updatedValue = value.includes(option)
+          ? value.filter((val) => val !== option)
+          : [...value, option];
+      }
+    }
+    onChange(updatedValue);
+  };
+
+  return (
+    <div className="button-select">
+      <div className="options-container">
+        {options.map((option, index) => (
+          <button
+            key={index}
+            className={`finding-option ${value.includes(option) ? 'active' : ''}`}
+            onClick={() => handleButtonClick(option)}
+          >
+            {option}
+          </button>
+        ))}
+      </div>
+      {value.includes('Other') && (
+        <input
+          className="finding-input"
+          placeholder={placeholder}
+          value={otherText}
+          onChange={(e) => {
+            setOtherText(e.target.value);
+            onChange([...value.filter((v) => v !== 'Other'), `Other: ${e.target.value}`]);
+          }}
+        />
+      )}
+    </div>
+  );
+};
+
 const ExaminationFindings = ({ examinationFindings = {}, handleInputChange }) => {
   const [selectedSystem, setSelectedSystem] = useState('');
   const [openAccordions, setOpenAccordions] = useState({});
@@ -18,22 +66,7 @@ const ExaminationFindings = ({ examinationFindings = {}, handleInputChange }) =>
     }));
   };
 
-  const handleFindingChange = (systemName, category, findingName, option, findingType, isExclusive = false) => {
-    const currentValue = examinationFindings[systemName]?.[category]?.[findingName]?.value || (findingType === 'options' ? [] : '');
-
-    let updatedValue;
-    if (findingType === 'options') {
-      if (isExclusive) {
-        updatedValue = currentValue.includes(option) ? [] : [option];
-      } else {
-        updatedValue = currentValue.includes(option)
-          ? currentValue.filter((val) => val !== option)
-          : [...currentValue, option];
-      }
-    } else {
-      updatedValue = option;
-    }
-
+  const handleFindingChange = (systemName, category, findingName, value, findingType) => {
     const updatedFindings = {
       ...examinationFindings,
       [systemName]: {
@@ -41,7 +74,7 @@ const ExaminationFindings = ({ examinationFindings = {}, handleInputChange }) =>
         [category]: {
           ...examinationFindings[systemName]?.[category],
           [findingName]: {
-            value: updatedValue,
+            value,
             type: findingType,
           },
         },
@@ -61,17 +94,13 @@ const ExaminationFindings = ({ examinationFindings = {}, handleInputChange }) =>
       <div key={name} className="finding-control">
         <label className="finding-label">{name}</label>
         {type === 'options' && (
-          <div className="options-container">
-            {expected.map((option) => (
-              <button
-                key={option}
-                className={`finding-option ${currentValue.includes(option) ? 'active' : ''}`}
-                onClick={() => handleFindingChange(systemName, category, name, option, type, exclusive)}
-              >
-                {option}
-              </button>
-            ))}
-          </div>
+          <ButtonSelect
+            options={expected}
+            value={Array.isArray(currentValue) ? currentValue : [currentValue]}
+            onChange={(value) => handleFindingChange(systemName, category, name, value, type)}
+            placeholder={`Enter ${name.toLowerCase()} (e.g., ${expected[0] || 'value'})`}
+            exclusive={exclusive}
+          />
         )}
         {(type === 'range' || type === 'custom') && (
           <input
