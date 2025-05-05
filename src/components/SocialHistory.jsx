@@ -1,180 +1,214 @@
 import React, { useState } from 'react';
-import CustomSelect from './CustomSelect';
 import './SocialHistory.css';
 
-// Options for select fields
-const housingOptions = [
-  { label: 'Apartment', value: 'apartment' },
-  { label: 'Detached House', value: 'detached_house' },
-  { label: 'Shared Housing', value: 'shared_housing' },
-  { label: 'Temporary Shelter', value: 'temporary_shelter' },
-  { label: 'Homeless', value: 'homeless' },
-  { label: 'Dormitory', value: 'dormitory' },
-  { label: 'Mobile Home', value: 'mobile_home' },
-  { label: 'Other', value: 'other_housing' },
-];
-
-const workOptions = [
-  { label: 'Office Job', value: 'office_job' },
-  { label: 'Manual Labor', value: 'manual_labor' },
-  { label: 'Healthcare', value: 'healthcare' },
-  { label: 'Education', value: 'education' },
-  { label: 'Unemployed', value: 'unemployed' },
-  { label: 'Retired', value: 'retired' },
-  { label: 'Freelance', value: 'freelance' },
-  { label: 'Self-Employed', value: 'self_employed' },
-  { label: 'Student', value: 'student' },
-];
-
-const foodOptions = [
-  { label: 'Home-cooked', value: 'home_cooked' },
-  { label: 'Fast Food', value: 'fast_food' },
-  { label: 'Vegetarian', value: 'vegetarian' },
-  { label: 'Vegan', value: 'vegan' },
-  { label: 'Mixed Diet', value: 'mixed_diet' },
-  { label: 'Pescatarian', value: 'pescatarian' },
-  { label: 'Keto', value: 'keto' },
-  { label: 'Gluten-Free', value: 'gluten_free' },
-  { label: 'Other', value: 'other' },
-];
-
-const violenceHistoryOptions = [
-  { label: 'No History', value: 'no_history' },
-  { label: 'Physical Violence', value: 'physical_violence' },
-  { label: 'Emotional Abuse', value: 'emotional_abuse' },
-  { label: 'Sexual Violence', value: 'sexual_violence' },
-  { label: 'Financial Abuse', value: 'financial_abuse' },
-  { label: 'Verbal Abuse', value: 'verbal_abuse' },
-  { label: 'Stalking', value: 'stalking' },
-  { label: 'Other', value: 'other_abuse' },
-];
-
-const SocialHistory = ({ socialHistory, handleInputChange }) => {
-  const [selectedHousing, setSelectedHousing] = useState(socialHistory.housing || '');
-  const [selectedWork, setSelectedWork] = useState(socialHistory.work || '');
-  const [selectedFood, setSelectedFood] = useState(socialHistory.food || '');
-  const [selectedViolenceHistory, setSelectedViolenceHistory] = useState(socialHistory.violenceHistory || '');
+const ButtonSelect = ({ 
+  options, 
+  selectedValues = [], 
+  onSelect, 
+  multiple = true,
+  label 
+}) => {
+  const handleButtonClick = (option) => {
+    if (multiple) {
+      const newValues = selectedValues.includes(option)
+        ? selectedValues.filter(item => item !== option)
+        : [...selectedValues, option];
+      onSelect(newValues);
+    } else {
+      onSelect(option);
+    }
+  };
 
   return (
-    <div className="social-history-container">
-      <div className="social-history-card">
-        <div className="card-header">
-          <h2 className="card-title">Social History</h2>
+    <div className="button-select-container">
+      {label && <label className="input-label">{label}</label>}
+      <div className="button-select-options">
+        {options.map((option, index) => (
+          <button
+            key={index}
+            type="button"
+            className={`select-button ${selectedValues.includes(option) ? 'selected' : ''}`}
+            onClick={() => handleButtonClick(option)}
+          >
+            {option}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+const SocialHistory = ({ socialHistory, handleInputChange, handleArrayInputChange }) => {
+  // Extensive options for all categories
+  const housingOptions = [
+    'Apartment', 'Detached House', 'Shared Housing', 'Temporary Shelter',
+    'Homeless', 'Dormitory', 'Mobile Home', 'Public Housing', 
+    'Subsidized Housing', 'Rural Home', 'Urban High-rise', 'Military Housing',
+    'Nursing Home', 'Rehabilitation Center', 'Other'
+  ];
+
+  const workOptions = [
+    'Office Job', 'Manual Labor', 'Healthcare', 'Education', 'Construction',
+    'Agriculture', 'Manufacturing', 'Retail', 'Hospitality', 'Transportation',
+    'Arts/Entertainment', 'Technology', 'Finance', 'Government', 'Unemployed',
+    'Retired', 'Freelance', 'Self-Employed', 'Student', 'Homemaker', 'Disabled'
+  ];
+
+  const foodOptions = [
+    'Home-cooked', 'Fast Food', 'Vegetarian', 'Vegan', 'Mixed Diet',
+    'Pescatarian', 'Keto', 'Gluten-Free', 'Low-Carb', 'Mediterranean',
+    'DASH Diet', 'Halal', 'Kosher', 'Processed Foods', 'Organic Only',
+    'Food Insecure', 'Meal Delivery', 'Other'
+  ];
+
+  const violenceOptions = [
+    'No History', 'Physical Violence', 'Emotional Abuse', 'Sexual Violence',
+    'Financial Abuse', 'Verbal Abuse', 'Stalking', 'Childhood Abuse',
+    'Domestic Violence', 'Elder Abuse', 'Human Trafficking', 'Hate Crime',
+    'Workplace Violence', 'Community Violence', 'Other'
+  ];
+
+  const smokingOptions = [
+    'Never Smoked', 'Current Smoker', 'Former Smoker', 'Social Smoker',
+    '1-5 pack-years', '6-10 pack-years', '11-20 pack-years', 
+    '21-30 pack-years', '30+ pack-years', 'Vape User', 
+    'Chewing Tobacco', 'Cigar Smoker', 'Pipe Smoker', 'Secondhand Smoke'
+  ];
+
+  const alcoholOptions = [
+    'Never Drinks', 'Occasional Drinker', 'Social Drinker', '1-2 drinks/week',
+    '3-7 drinks/week', '8-14 drinks/week', '15+ drinks/week', 
+    'Binge Drinker', 'Former Heavy Drinker', 'In Recovery',
+    'Weekend Drinker', 'Daily Drinker', 'Problem Drinker', 'Other'
+  ];
+
+  const sexualHistoryOptions = [
+    'Sexually Active', 'Not Sexually Active', 'Multiple Partners',
+    'Single Partner', 'Same-sex Partners', 'Opposite-sex Partners',
+    'Both-sex Partners', 'STI History', 'No STI History', 
+    'Regular Testing', 'Never Tested', 'High-risk Behavior',
+    'Uses Protection', 'Does Not Use Protection', 'Other'
+  ];
+
+  const exerciseOptions = [
+    'Sedentary', 'Light Activity', 'Moderate Exercise', 'Vigorous Exercise',
+    '1-2 days/week', '3-4 days/week', '5+ days/week', 'Athlete',
+    'Yoga/Pilates', 'Weight Training', 'Cardio Focus', 'Outdoor Activities',
+    'Physical Job', 'Limited Mobility', 'Other'
+  ];
+
+  const socialSupportOptions = [
+    'Strong Support', 'Moderate Support', 'Limited Support', 'Isolated',
+    'Family Support', 'Friend Support', 'Community Support', 
+    'Religious Support', 'Support Groups', 'Professional Support',
+    'No Support System', 'Caregiver Dependent', 'Other'
+  ];
+
+  return (
+    <div className="social-history">
+      <h2 className="section-title">Social History</h2>
+
+      {/* Substance Use */}
+      <div className="section">
+        <h3 className="section-subtitle">Substance Use</h3>
+        <div className="input-grid">
+          <ButtonSelect
+            options={smokingOptions}
+            selectedValues={socialHistory.smoking || []}
+            onSelect={(values) => handleArrayInputChange('socialHistory', 'smoking', values)}
+            label="Tobacco Use"
+          />
+          <ButtonSelect
+            options={alcoholOptions}
+            selectedValues={socialHistory.alcohol || []}
+            onSelect={(values) => handleArrayInputChange('socialHistory', 'alcohol', values)}
+            label="Alcohol Use"
+          />
         </div>
-        <div className="card-content">
-          <div className="input-group">
-            <div className="input-container">
-              <label className="input-label">Smoking History</label>
-              <input
-                type="text"
-                className="input-text"
-                placeholder="e.g., Pack-years"
-                value={socialHistory.smoking || ''}
-                onChange={(e) => handleInputChange('socialHistory', 'smoking', e.target.value)}
-              />
-            </div>
-            <div className="input-container">
-              <label className="input-label">Alcohol Consumption</label>
-              <input
-                type="text"
-                className="input-text"
-                placeholder="e.g., Amount, Duration, When stopped?"
-                value={socialHistory.alcohol || ''}
-                onChange={(e) => handleInputChange('socialHistory', 'alcohol', e.target.value)}
-              />
-            </div>
-          </div>
+      </div>
 
-          <div className="input-group">
-            <div className="input-container">
-              <label className="input-label">Dietary Habits</label>
-              <CustomSelect
-                selectedValue={selectedFood}
-                onSelect={(value) => {
-                  setSelectedFood(value);
-                  handleInputChange('socialHistory', 'food', value);
-                }}
-                options={foodOptions}
-                placeholder="Select dietary habits"
-                className="input-select"
-              />
-            </div>
-            <div className="input-container">
-              <label className="input-label">Exercise Habits</label>
-              <textarea
-                className="input-textarea"
-                placeholder="e.g., Type, Frequency, Limitations?"
-                value={socialHistory.exercise || ''}
-                onChange={(e) => handleInputChange('socialHistory', 'exercise', e.target.value)}
-              />
-            </div>
-          </div>
+      {/* Diet & Exercise */}
+      <div className="section">
+        <h3 className="section-subtitle">Diet & Exercise</h3>
+        <div className="input-grid">
+          <ButtonSelect
+            options={foodOptions}
+            selectedValues={socialHistory.food || []}
+            onSelect={(values) => handleArrayInputChange('socialHistory', 'food', values)}
+            label="Dietary Habits"
+          />
+          <ButtonSelect
+            options={exerciseOptions}
+            selectedValues={socialHistory.exercise || []}
+            onSelect={(values) => handleArrayInputChange('socialHistory', 'exercise', values)}
+            label="Exercise Habits"
+          />
+        </div>
+      </div>
 
-          <div className="input-group">
-            <div className="input-container full-width">
-              <label className="input-label">Sexual History</label>
-              <textarea
-                className="input-textarea"
-                placeholder="e.g., Any concerns? Number of partners?"
-                value={socialHistory.sexualHistory || ''}
-                onChange={(e) => handleInputChange('socialHistory', 'sexualHistory', e.target.value)}
-              />
-            </div>
-          </div>
+      {/* Sexual Health */}
+      <div className="section">
+        <h3 className="section-subtitle">Sexual Health</h3>
+        <ButtonSelect
+          options={sexualHistoryOptions}
+          selectedValues={socialHistory.sexualHistory || []}
+          onSelect={(values) => handleArrayInputChange('socialHistory', 'sexualHistory', values)}
+          label="Sexual History"
+        />
+      </div>
 
-          <div className="input-group">
-            <div className="input-container">
-              <label className="input-label">Housing Situation</label>
-              <CustomSelect
-                selectedValue={selectedHousing}
-                onSelect={(value) => {
-                  setSelectedHousing(value);
-                  handleInputChange('socialHistory', 'housing', value);
-                }}
-                options={housingOptions}
-                placeholder="Select housing situation"
-                className="input-select"
-              />
-            </div>
-            <div className="input-container">
-              <label className="input-label">Type of Work</label>
-              <CustomSelect
-                selectedValue={selectedWork}
-                onSelect={(value) => {
-                  setSelectedWork(value);
-                  handleInputChange('socialHistory', 'work', value);
-                }}
-                options={workOptions}
-                placeholder="Select type of work"
-                className="input-select"
-              />
-            </div>
-          </div>
+      {/* Living Situation */}
+      <div className="section">
+        <h3 className="section-subtitle">Living Situation</h3>
+        <div className="input-grid">
+          <ButtonSelect
+            options={housingOptions}
+            selectedValues={socialHistory.housing || []}
+            onSelect={(values) => handleArrayInputChange('socialHistory', 'housing', values)}
+            label="Housing Situation"
+          />
+          <ButtonSelect
+            options={workOptions}
+            selectedValues={socialHistory.work || []}
+            onSelect={(values) => handleArrayInputChange('socialHistory', 'work', values)}
+            label="Employment Status"
+          />
+        </div>
+      </div>
 
-          <div className="input-group">
-            <div className="input-container">
-              <label className="input-label">History of Gender-Based Violence</label>
-              <CustomSelect
-                selectedValue={selectedViolenceHistory}
-                onSelect={(value) => {
-                  setSelectedViolenceHistory(value);
-                  handleInputChange('socialHistory', 'violenceHistory', value);
-                }}
-                options={violenceHistoryOptions}
-                placeholder="Select history of violence"
-                className="input-select"
-              />
-            </div>
-            <div className="input-container">
-              <label className="input-label">Additional Factors</label>
-              <textarea
-                className="input-textarea"
-                placeholder="e.g., Who lives at home? Mobility needs?"
-                value={socialHistory.additionalFactors || ''}
-                onChange={(e) => handleInputChange('socialHistory', 'additionalFactors', e.target.value)}
-              />
-            </div>
-          </div>
+      {/* Violence & Safety */}
+      <div className="section">
+        <h3 className="section-subtitle">Violence & Safety</h3>
+        <ButtonSelect
+          options={violenceOptions}
+          selectedValues={socialHistory.violenceHistory || []}
+          onSelect={(values) => handleArrayInputChange('socialHistory', 'violenceHistory', values)}
+          label="Violence History"
+        />
+      </div>
+
+      {/* Social Support */}
+      <div className="section">
+        <h3 className="section-subtitle">Social Support</h3>
+        <ButtonSelect
+          options={socialSupportOptions}
+          selectedValues={socialHistory.socialSupport || []}
+          onSelect={(values) => handleArrayInputChange('socialHistory', 'socialSupport', values)}
+          label="Support Systems"
+        />
+      </div>
+
+      {/* Additional Notes */}
+      <div className="section">
+        <h3 className="section-subtitle">Additional Notes</h3>
+        <div className="input-group">
+          <label className="input-label">Other Relevant Information</label>
+          <textarea
+            className="text-input"
+            placeholder="e.g., Who lives at home? Mobility needs? Other concerns?"
+            value={socialHistory.additionalFactors || ''}
+            onChange={(e) => handleInputChange('socialHistory', 'additionalFactors', e.target.value)}
+          />
         </div>
       </div>
     </div>
