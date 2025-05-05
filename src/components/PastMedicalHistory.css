@@ -1,12 +1,11 @@
 :root {
   --color-black-1: #050505;
   --color-black-2: #121212;
-  --color-black-3: #1e1e1e;
-  --color-white-1: #ffffff;
-  --color-white-2: #f0f0f0;
-  --color-accent-1: #00ffaa;
-  --color-accent-2: #3d7dff;
-  --color-error: #ff4d4f;
+  --color-black-3: #1E1E1E;
+  --color-white-1: #FFFFFF;
+  --color-white-2: #F0F0F0;
+  --color-accent-1: #00FFAA;
+  --color-accent-2: #3D7DFF;
   --shadow-dark: rgba(0, 0, 0, 0.25);
   --shadow-accent: rgba(0, 255, 170, 0.2);
   --radius-sm: 8px;
@@ -16,216 +15,125 @@
   --transition-smooth: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   --font-base: 'Inter', system-ui, -apple-system, sans-serif;
   --space-xs: 8px;
-  --space-sm: 16px;
-  --space-md: 24px;
-  --space-lg: 32間に
+  --space-sm: 12px;
+  --space-md: 20px;
+  --space-lg: 28px;
 }
 
-/* Main container */
-.past-medical-history-card {
+.past-medical-history-container {
   width: 100%;
-  max-width: 1200px;
-  margin: var(--space-md) auto;
   background: var(--color-black-2);
   border: 1px solid var(--color-black-3);
   border-radius: var(--radius-lg);
   box-shadow: 0 4px 16px var(--shadow-dark);
-  overflow: hidden;
+  padding: var(--space-lg);
 }
 
-/* Card header */
-.card-header {
-  padding: var(--space-md) var(--space-lg);
-  background: linear-gradient(135deg, var(--color-black-3), var(--color-black-2));
-  border-bottom: 1px solid var(--color-black-3);
-}
-
-/* Card title */
-.card-title {
-  margin: 0;
+.header {
   font-family: var(--font-base);
-  font-size: 2rem;
+  font-size: 1.75rem;
   font-weight: 700;
   color: var(--color-white-1);
-  letter-spacing: -0.02em;
+  margin: 0 0 var(--space-md);
 }
 
-/* Card content */
-.card-content {
-  padding: var(--space-lg);
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-md);
-}
-
-/* Input group */
-.input-group {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-md);
-}
-
-/* Input label */
-.input-label {
+.section-header {
   font-family: var(--font-base);
-  font-size: 1rem;
+  font-size: 1.25rem;
   font-weight: 600;
   color: var(--color-white-1);
-  letter-spacing: 0.01em;
+  margin: var(--space-md) 0 var(--space-xs);
 }
 
-/* Button select */
-.button-select {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-xs);
-  margin-bottom: var(--space-sm);
-}
-
-.button-option {
-  padding: var(--space-xs) var(--space-sm);
-  background: var(--color-black-3);
-  border: 1px solid var(--color-black-1);
-  border-radius: var(--radius-sm);
-  color: var(--color-white-2);
+.label {
   font-family: var(--font-base);
   font-size: 0.9rem;
-  cursor: pointer;
-  transition: var(--transition-quick);
+  font-weight: 600;
+  color: var(--color-white-1);
+  margin-bottom: var(--space-xs);
 }
 
-.button-option:hover {
-  background: var(--color-accent-2);
-  color: var(--color-black-1);
-}
-
-.button-option.selected {
-  background: var(--color-accent-1);
-  color: var(--color-black-1);
-  border-color: var(--color-accent-1);
-}
-
-/* Text input */
 .text-input {
-  width: 100%;
-  min-height: 100px;
   padding: var(--space-sm);
   background: var(--color-black-3);
-  border: 1px solid var(--color-black-1);
-  border-radius: var(--radius-sm);
-  color: var(--color-white-2);
+  color: var(--color-white-1);
   font-family: var(--font-base);
   font-size: 0.9rem;
-  resize: vertical;
+  border: 1px solid var(--color-black-3);
+  border-radius: var(--radius-sm);
   transition: var(--transition-quick);
+  width: 100%;
+  min-height: 100px;
+  resize: vertical;
+  box-sizing: border-box;
+}
+
+.text-input:hover {
+  border-color: var(--color-accent-1);
 }
 
 .text-input:focus {
   outline: none;
   border-color: var(--color-accent-1);
-  box-shadow: 0 0 8px var(--shadow-accent);
+  box-shadow: 0 0 0 3px var(--shadow-accent);
 }
 
-/* Selected items */
-.selected-items {
+.text-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.button-select {
   display: flex;
   flex-direction: column;
   gap: var(--space-xs);
-  margin-top: var(--space-sm);
 }
 
-.selected-item {
+.options-container {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+}
+
+.option-button {
+  padding: var(--space-xs) var(--space-sm);
   background: var(--color-black-3);
-  padding: var(--space-sm) var(--space-md);
-  border-radius: var(--radius-sm);
   color: var(--color-white-2);
   font-family: var(--font-base);
-  font-size: 0.9rem;
-}
-
-/* Remove button */
-.remove-button {
-  background: transparent;
-  color: var(--color-accent-1);
+  font-size: 0.85rem;
   border: none;
-  font-size: 1.2rem;
+  border-radius: var(--radius-sm);
   cursor: pointer;
   transition: var(--transition-quick);
+  min-width: 80px;
+  text-align: center;
 }
 
-.remove-button:hover {
-  color: var(--color-error);
-  transform: scale(1.2);
-}
-
-/* Hospitalization inputs */
-.hospitalization-inputs {
-  display: grid;
-  grid-template-columns: 1fr 2fr auto;
-  gap: var(--space-sm);
-  align-items: center;
-}
-
-.button-select-input {
-  padding: var(--space-sm);
-  background: var(--color-black-3);
-  border: 1px solid var(--color-black-1);
-  border-radius: var(--radius-sm);
-  color: var(--color-white-2);
-  font-family: var(--font-base);
-  font-size: 0.9rem;
-  transition: var(--transition-quick);
-}
-
-.button-select-input:focus {
-  outline: none;
-  border-color: var(--color-accent-1);
-  box-shadow: 0 0 8px var(--shadow-accent);
-}
-
-/* Add button */
-.add-button {
-  padding: var(--space-sm) var(--space-md);
+.option-button:hover {
   background: var(--color-accent-1);
   color: var(--color-black-1);
-  font-family: var(--font-base);
-  font-size: 0.9rem;
-  font-weight: 600;
-  border: none;
-  border-radius: var(--radius-sm);
-  cursor: pointer;
-  transition: var(--transition-quick);
+  transform: translateY(-1px);
 }
 
-.add-button:hover {
-  background: var(--color-accent-2);
-  transform: translateY(-2px);
+.option-button.active {
+  background: linear-gradient(135deg, var(--color-accent-1), var(--color-accent-2));
+  color: var(--color-black-1);
+  font-weight: 600;
   box-shadow: 0 2px 8px var(--shadow-accent);
 }
 
-.add-button:disabled {
-  background: var(--color-black-3);
-  cursor: not-allowed;
-  transform: none;
-  box-shadow: none;
-}
-
-/* Save button */
 .save-button {
-  padding: var(--space-sm) var(--space-lg);
+  padding: var(--space-sm) var(--space-md);
   background: linear-gradient(135deg, var(--color-accent-1), var(--color-accent-2));
   color: var(--color-black-1);
   font-family: var(--font-base);
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 600;
   border: none;
   border-radius: var(--radius-sm);
   cursor: pointer;
   transition: var(--transition-quick);
-  align-self: center;
+  margin-top: var(--space-md);
+  width: fit-content;
 }
 
 .save-button:hover {
@@ -233,82 +141,62 @@
   box-shadow: 0 4px 12px var(--shadow-accent);
 }
 
-/* Character counter */
-.character-counter {
-  font-family: var(--font-base);
-  font-size: 0.8rem;
-  color: var(--color-white-2);
-  text-align: right;
-  margin-top: var(--space-xs);
-}
-
-/* Responsive adjustments */
 @media (max-width: 768px) {
-  .past-medical-history-card {
-    margin: var(--space-sm) 0;
+  .past-medical-history-container {
     border-radius: 0;
     border-left: none;
     border-right: none;
+    padding: var(--space-md);
   }
 
-  .card-header {
-    padding: var(--space-sm) var(--space-md);
-  }
-
-  .card-title {
+  .header {
     font-size: 1.5rem;
   }
 
-  .card-content {
-    padding: var(--space-md);
-    gap: var(--space-sm);
+  .section-header {
+    font-size: 1.1rem;
   }
 
-  .hospitalization-inputs {
-    grid-template-columns: 1fr;
-    gap: var(--space-xs);
-  }
-
-  .button-select-input {
-    width: 100%;
-  }
-
-  .add-button {
+  .text-input {
     font-size: 0.85rem;
-    padding: var(--space-xs) var(--space-sm);
+    padding: var(--space-xs);
   }
 
-  .selected-item {
+  .option-button {
+    font-size: 0.8rem;
+    min-width: 70px;
+    padding: var(--space-xs);
+  }
+
+  .save-button {
     font-size: 0.85rem;
     padding: var(--space-xs) var(--space-sm);
   }
 }
 
 @media (max-width: 480px) {
-  .card-title {
+  .header {
     font-size: 1.25rem;
   }
 
-  .input-label {
+  .section-header {
+    font-size: 1rem;
+  }
+
+  .label {
     font-size: 0.85rem;
   }
 
-  .button-option {
-    font-size: 0.8rem;
-    padding: var(--space-xs) var(--space-sm);
-  }
-
-  .selected-item {
+  .text-input {
     font-size: 0.8rem;
   }
 
-  .add-button,
+  .option-button {
+    font-size: 0.75rem;
+    min-width: 60px;
+  }
+
   .save-button {
     font-size: 0.8rem;
-    padding: var(--space-xs) var(--space-sm);
-  }
-
-  .character-counter {
-    font-size: 0.75rem;
   }
 }
