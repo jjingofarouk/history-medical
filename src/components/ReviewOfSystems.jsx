@@ -3,170 +3,244 @@ import './ReviewOfSystems.css';
 
 const systems = [
   {
-    name: 'Constitutional Symptoms',
-    items: ['Fever', 'Chills', 'Weight loss', 'Fatigue', 'Night sweats'],
+    name: 'General/Constitutional',
+    items: [
+      'Fever', 'Chills', 'Night sweats', 'Fatigue', 'Weakness',
+      'Weight loss (unintentional)', 'Weight gain', 'Loss of appetite',
+      'Malaise', 'Difficulty sleeping', 'Frequent illness'
+    ]
   },
   {
     name: 'Eyes',
-    items: ['Blurred vision', 'Double vision', 'Eye pain', 'Redness', 'Vision changes'],
+    items: [
+      'Blurred vision', 'Double vision', 'Eye pain', 'Redness',
+      'Dry eyes', 'Excessive tearing', 'Light sensitivity',
+      'Floaters', 'Flashing lights', 'Vision loss',
+      'Discharge', 'Swelling', 'Itching'
+    ]
   },
   {
     name: 'ENT (Ears, Nose, Throat)',
-    items: ['Hearing loss', 'Tinnitus', 'Earache', 'Nasal congestion', 'Sore throat'],
+    items: [
+      'Hearing loss', 'Tinnitus', 'Ear pain', 'Ear discharge',
+      'Nasal congestion', 'Sinus pain', 'Nosebleeds',
+      'Sore throat', 'Hoarseness', 'Difficulty swallowing',
+      'Mouth ulcers', 'Tooth pain', 'Bleeding gums',
+      'Altered taste', 'Bad breath'
+    ]
   },
   {
     name: 'Cardiovascular',
-    items: ['Chest pain', 'Palpitations', 'Shortness of breath', 'Swelling of legs'],
+    items: [
+      'Chest pain', 'Palpitations', 'Irregular heartbeat',
+      'Shortness of breath', 'Exercise intolerance',
+      'Leg swelling', 'Leg pain with walking',
+      'Varicose veins', 'Fainting spells', 'Dizziness',
+      'High blood pressure', 'Low blood pressure'
+    ]
   },
   {
     name: 'Respiratory',
-    items: ['Cough', 'Shortness of breath', 'Wheezing', 'Sputum production'],
+    items: [
+      'Cough', 'Sputum production', 'Blood in sputum',
+      'Wheezing', 'Shortness of breath', 'Chest tightness',
+      'Snoring', 'Sleep apnea', 'Frequent pneumonia',
+      'Pleuritic pain', 'Clubbing of fingers'
+    ]
   },
   {
     name: 'Gastrointestinal',
-    items: ['Abdominal pain', 'Nausea', 'Vomiting', 'Diarrhea', 'Constipation'],
+    items: [
+      'Abdominal pain', 'Nausea', 'Vomiting', 'Diarrhea',
+      'Constipation', 'Blood in stool', 'Black/tarry stools',
+      'Heartburn', 'Indigestion', 'Bloating',
+      'Excessive gas', 'Difficulty swallowing',
+      'Jaundice', 'Hemorrhoids', 'Rectal pain'
+    ]
   },
   {
     name: 'Genitourinary',
-    items: ['Dysuria', 'Hematuria', 'Incontinence', 'Urgency', 'Frequency'],
+    items: [
+      'Painful urination', 'Frequent urination',
+      'Urgency', 'Incontinence', 'Blood in urine',
+      'Cloudy urine', 'Strong urine odor',
+      'Decreased urine output', 'Flank pain',
+      'Genital sores', 'Genital discharge',
+      'Erectile dysfunction', 'Testicular pain',
+      'Pelvic pain', 'Menstrual irregularities'
+    ]
   },
   {
     name: 'Musculoskeletal',
-    items: ['Joint pain', 'Stiffness', 'Back pain', 'Muscle weakness', 'Swelling'],
+    items: [
+      'Joint pain', 'Joint swelling', 'Joint stiffness',
+      'Muscle pain', 'Muscle weakness', 'Back pain',
+      'Neck pain', 'Limited range of motion',
+      'Bone pain', 'Fractures', 'Muscle cramps',
+      'Gait problems', 'Difficulty walking'
+    ]
   },
   {
-    name: 'Skin',
-    items: ['Rash', 'Itching', 'Dry skin', 'Lesions', 'Bruising'],
+    name: 'Skin/Nails/Hair',
+    items: [
+      'Rash', 'Itching', 'Dry skin', 'Skin lesions',
+      'Skin discoloration', 'Easy bruising',
+      'Slow wound healing', 'Hair loss',
+      'Nail changes', 'Excessive sweating',
+      'Cold intolerance', 'Heat intolerance',
+      'Skin growths', 'Moles changing'
+    ]
   },
   {
-    name: 'Neurologic',
-    items: ['Headache', 'Dizziness', 'Numbness', 'Seizures', 'Tingling'],
+    name: 'Neurological',
+    items: [
+      'Headache', 'Dizziness', 'Vertigo', 'Numbness',
+      'Tingling', 'Weakness', 'Tremors', 'Seizures',
+      'Memory problems', 'Concentration difficulties',
+      'Speech problems', 'Coordination problems',
+      'Balance problems', 'Loss of consciousness',
+      'Sensory changes'
+    ]
   },
   {
     name: 'Psychiatric',
-    items: ['Anxiety', 'Depression', 'Mood swings', 'Hallucinations', 'Memory loss'],
+    items: [
+      'Depression', 'Anxiety', 'Mood swings',
+      'Irritability', 'Suicidal thoughts',
+      'Hallucinations', 'Delusions',
+      'Sleep disturbances', 'Appetite changes',
+      'Panic attacks', 'Phobias',
+      'Memory problems', 'Concentration issues',
+      'Psychotic symptoms'
+    ]
   },
   {
     name: 'Endocrine',
-    items: ['Heat intolerance', 'Cold intolerance', 'Excessive thirst', 'Excessive urination'],
+    items: [
+      'Heat/cold intolerance', 'Excessive thirst',
+      'Excessive hunger', 'Excessive urination',
+      'Neck swelling', 'Hand tremor',
+      'Hair thinning', 'Skin changes',
+      'Unexplained weight changes',
+      'Fatigue', 'Irregular periods',
+      'Decreased libido'
+    ]
   },
   {
     name: 'Hematologic/Lymphatic',
-    items: ['Easy bruising', 'Frequent infections', 'Swollen lymph nodes', 'Bleeding tendency'],
+    items: [
+      'Easy bruising', 'Prolonged bleeding',
+      'Frequent infections', 'Swollen lymph nodes',
+      'Pale skin', 'Fatigue', 'Shortness of breath',
+      'Blood clots', 'Enlarged spleen',
+      'Night sweats', 'Unexplained fever'
+    ]
   },
   {
     name: 'Allergic/Immunologic',
-    items: ['Allergic reactions', 'Frequent colds', 'Seasonal allergies', 'Autoimmune issues'],
+    items: [
+      'Seasonal allergies', 'Food allergies',
+      'Drug allergies', 'Insect allergies',
+      'Hives', 'Swelling', 'Anaphylaxis',
+      'Frequent infections', 'Autoimmune symptoms',
+      'Immunodeficiency'
+    ]
   },
+  {
+    name: 'Sleep',
+    items: [
+      'Insomnia', 'Excessive sleepiness',
+      'Snoring', 'Gasping at night',
+      'Restless legs', 'Nightmares',
+      'Sleepwalking', 'Teeth grinding',
+      'Difficulty falling asleep',
+      'Difficulty staying asleep'
+    ]
+  }
 ];
 
 const ReviewOfSystems = ({ handleSystemReview }) => {
-  const [selectedSystem, setSelectedSystem] = useState('');
   const [selectedSymptoms, setSelectedSymptoms] = useState({});
-  const [openAccordions, setOpenAccordions] = useState({});
+  const [expandedSystems, setExpandedSystems] = useState([]);
 
-  const handleSystemChange = (systemName) => {
-    setSelectedSystem(systemName);
-    setOpenAccordions({});
+  const toggleSystem = (systemName) => {
+    setExpandedSystems(prev =>
+      prev.includes(systemName)
+        ? prev.filter(name => name !== systemName)
+        : [...prev, systemName]
+    );
   };
 
-  const toggleAccordion = (systemName) => {
-    setOpenAccordions((prev) => ({
-      ...prev,
-      [systemName]: !prev[systemName],
-    }));
-  };
-
-  const handleCheckboxChange = (systemName, symptom) => {
+  const handleSymptomSelect = (systemName, symptom) => {
     const updatedSymptoms = { ...selectedSymptoms };
+    
     if (!updatedSymptoms[systemName]) {
       updatedSymptoms[systemName] = [];
     }
+
     if (updatedSymptoms[systemName].includes(symptom)) {
-      updatedSymptoms[systemName] = updatedSymptoms[systemName].filter((s) => s !== symptom);
+      updatedSymptoms[systemName] = updatedSymptoms[systemName].filter(s => s !== symptom);
     } else {
       updatedSymptoms[systemName].push(symptom);
     }
+
     setSelectedSymptoms(updatedSymptoms);
     handleSystemReview(systemName, updatedSymptoms[systemName]);
   };
 
-  const renderSymptoms = () => {
-    if (!selectedSystem) {
-      return (
-        <div className="no-selection">
-          <p>Please select a system to begin reviewing symptoms.</p>
-        </div>
-      );
-    }
-
-    const system = systems.find((sys) => sys.name === selectedSystem);
-    if (!system || !system.items) {
-      return <p className="no-symptoms">No symptoms available.</p>;
-    }
-
-    return (
-      <div className="system-card">
-        <div className="system-card-header">
-          <h2>{selectedSystem}</h2>
-        </div>
-        <div className="system-card-content">
-          <div className="accordion">
-            <div
-              className={`accordion-header ${openAccordions[selectedSystem] ? 'active' : ''}`}
-              onClick={() => toggleAccordion(selectedSystem)}
-            >
-              <h3>Symptoms</h3>
-              <span className="accordion-icon">{openAccordions[selectedSystem] ? '−' : '+'}</span>
-            </div>
-            <div className={`accordion-content ${openAccordions[selectedSystem] ? 'active' : ''}`}>
-              <div className="symptom-list">
-                {system.items.map((symptom, index) => (
-                  <div key={index} className="symptom-item">
-                    <label className="symptom-label">
-                      <input
-                        type="checkbox"
-                        value={symptom}
-                        checked={selectedSymptoms[selectedSystem]?.includes(symptom) || false}
-                        onChange={() => handleCheckboxChange(selectedSystem, symptom)}
-                        className="symptom-checkbox"
-                      />
-                      <span className="symptom-text">{symptom}</span>
-                    </label>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  };
+  const isSystemExpanded = (systemName) => expandedSystems.includes(systemName);
 
   return (
     <div className="ros-container">
-      <div className="system-selector-card">
-        <div className="system-selector-header">
-          <h2>Review of Systems</h2>
-        </div>
-        <div className="system-selector-content">
-          <p>Select a system to document symptoms:</p>
-          <select
-            className="system-dropdown"
-            value={selectedSystem}
-            onChange={(e) => handleSystemChange(e.target.value)}
-            data-testid="system-dropdown"
-          >
-            <option value="">Select a system</option>
-            {systems.map((system) => (
-              <option key={system.name} value={system.name}>
-                {system.name}
-              </option>
-            ))}
-          </select>
-        </div>
+      <h1 className="ros-title">Review of Systems</h1>
+      <p className="ros-subtitle">Select all symptoms that apply</p>
+      
+      <div className="systems-grid">
+        {systems.map((system) => (
+          <div key={system.name} className="system-card">
+            <div 
+              className="system-header"
+              onClick={() => toggleSystem(system.name)}
+            >
+              <h3>{system.name}</h3>
+              <span className="expand-icon">
+                {isSystemExpanded(system.name) ? '−' : '+'}
+              </span>
+            </div>
+            
+            {isSystemExpanded(system.name) && (
+              <div className="symptoms-grid">
+                {system.items.map((symptom, index) => (
+                  <button
+                    key={index}
+                    className={`symptom-button ${
+                      selectedSymptoms[system.name]?.includes(symptom) ? 'selected' : ''
+                    }`}
+                    onClick={() => handleSymptomSelect(system.name, symptom)}
+                  >
+                    {symptom}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+        ))}
       </div>
-      {renderSymptoms()}
+      
+      <div className="selected-summary">
+        <h3>Selected Symptoms</h3>
+        {Object.keys(selectedSymptoms).filter(sys => selectedSymptoms[sys].length > 0).length > 0 ? (
+          Object.entries(selectedSymptoms).map(([system, symptoms]) => (
+            symptoms.length > 0 && (
+              <div key={system} className="system-summary">
+                <strong>{system}:</strong> {symptoms.join(', ')}
+              </div>
+            )
+          ))
+        ) : (
+          <p>No symptoms selected yet</p>
+        )}
+      </div>
     </div>
   );
 };
