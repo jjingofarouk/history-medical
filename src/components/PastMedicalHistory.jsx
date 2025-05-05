@@ -1,28 +1,101 @@
-
-
 import React, { useState } from 'react';
-import CustomSelect from './CustomSelect';
 import { chronicConditionsOptions } from './ChronicConditions';
 import { specificIllnessesOptions } from './SpecificIllnesses';
 import { medicationOptions } from './MedicationOptions';
 import { vaccinationOptions } from './VaccinationOptions';
 import './PastMedicalHistory.css';
 
+const ButtonSelect = ({ options, value, onChange, placeholder }) => {
+  const [otherText, setOtherText] = useState('');
+
+  const handleButtonClick = (option) => {
+    if (option === 'Other') {
+      onChange([...value, 'Other']);
+    } else {
+      if (value.includes(option)) {
+        onChange(value.filter((v) => v !== option));
+      } else {
+        onChange([...value, option]);
+      }
+    }
+  };
+
+  return (
+    <div className="button-select">
+      <div className="options-container">
+        {options.map((option, index) => (
+          <button
+            key={index}
+            className={`option-button ${value.includes(option) ? 'active' : ''}`}
+            onClick={() => handleButtonClick(option)}
+          >
+            {typeof option === 'object' ? option.label : option}
+          </button>
+        ))}
+        <button
+          className={`option-button ${value.includes('Other') ? 'active' : ''}`}
+          onClick={() => handleButtonClick('Other')}
+        >
+          Other
+        </button>
+      </div>
+      {value.includes('Other') && (
+        <input
+          className="other-input"
+          placeholder={placeholder}
+          value={otherText}
+          onChange={(e) => {
+            setOtherText(e.target.value);
+            onChange([...value.filter((v) => v !== 'Other'), `Other: ${e.target.value}`]);
+          }}
+        />
+      )}
+    </div>
+  );
+};
+
 const PastMedicalHistory = ({ pastMedicalHistory, handleInputChange, handleArrayInputChange }) => {
-  const [selectedCondition, setSelectedCondition] = useState('');
+  const [selectedCondition, setSelectedCondition] = useState(pastMedicalHistory.conditions || []);
   const [medications, setMedications] = useState(pastMedicalHistory.medications || []);
   const [allergies, setAllergies] = useState(pastMedicalHistory.allergies || []);
   const [specificIllnesses, setSpecificIllnesses] = useState(pastMedicalHistory.specificIllnesses || []);
   const [surgeries, setSurgeries] = useState(pastMedicalHistory.surgeries || []);
   const [vaccinations, setVaccinations] = useState(pastMedicalHistory.vaccinations || []);
-  const [otherNotes, setOtherNotes] = useState(pastMedicalHistory.otherNotes || '');
+  const [hospitalizations, setHospitalizations] = useState(pastMedicalHistory.hospitalizations || []);
+  const [otherNotes, setOtherNotes] = useState(pastMedicalHistory.otherNotes || []);
 
-  const handleConditionSelect = (condition) => {
-    setSelectedCondition(condition);
-    if (condition && !pastMedicalHistory.conditions?.includes(condition)) {
-      handleArrayInputChange('pastMedicalHistory', 'conditions', [...(pastMedicalHistory.conditions || []), condition]);
-    }
-  };
+  const hospitalizationOptions = [
+    'Pneumonia (Recent)',
+    'Heart Attack (MI)',
+    'Stroke',
+    'Appendicitis',
+    'Fracture Repair',
+    'Infection Treatment',
+    'Kidney Stones',
+    'Gallbladder Removal',
+  ];
+
+  const allergyOptions = [
+    'Penicillin',
+    'Peanuts',
+    'Shellfish',
+    'Pollen',
+    'Dust Mites',
+    'Latex',
+    'Aspirin',
+    'Sulfa Drugs',
+  ];
+
+  const surgeryOptions = [
+    'Appendectomy',
+    'Cholecystectomy',
+    'Hip Replacement',
+    'Knee Replacement',
+    'Tonsillectomy',
+    'Heart Bypass',
+    'Hernia Repair',
+    'Cataract Surgery',
+  ];
 
   return (
     <div className="past-medical-history-container">
@@ -30,102 +103,98 @@ const PastMedicalHistory = ({ pastMedicalHistory, handleInputChange, handleArray
 
       {/* Chronic Conditions */}
       <h3 className="section-header">Chronic Conditions</h3>
-      <CustomSelect
-        selectedValue={selectedCondition}
-        onSelect={handleConditionSelect}
-        options={chronicConditionsOptions || []}
-        placeholder="Select chronic conditions"
-        multiple
+      <ButtonSelect
+        options={chronicConditionsOptions}
+        value={selectedCondition}
+        onChange={(value) => {
+          setSelectedCondition(value);
+          handleArrayInputChange('pastMedicalHistory', 'conditions', value);
+        }}
+        placeholder="Specify other conditions"
       />
 
       {/* Previous Hospitalizations */}
       <h3 className="section-header">Hospitalizations</h3>
-      <label className="label">Include dates and reasons for past hospitalizations:</label>
-      <textarea
-        className="text-input"
-        placeholder="e.g., 2018 - Pneumonia treatment"
-        value={pastMedicalHistory.hospitalizations || ''}
-        onChange={(e) => handleInputChange('pastMedicalHistory', 'hospitalizations', e.target.value)}
+      <ButtonSelect
+        options={hospitalizationOptions}
+        value={hospitalizations}
+        onChange={(value) => {
+          setHospitalizations(value);
+          handleArrayInputChange('pastMedicalHistory', 'hospitalizations', value);
+        }}
+        placeholder="Specify other hospitalizations"
       />
 
       {/* Surgeries */}
       <h3 className="section-header">Surgeries</h3>
-      <label className="label">List previous surgeries with dates:</label>
-      <textarea
-        className="text-input"
-        placeholder="e.g., 2020 - Appendectomy"
-        value={surgeries.join(', ')}
-        onChange={(e) => {
-          const newSurgeries = e.target.value.split(',').map((surgery) => surgery.trim());
-          setSurgeries(newSurgeries);
-          handleArrayInputChange('pastMedicalHistory', 'surgeries', newSurgeries);
+      <ButtonSelect
+        options={surgeryOptions}
+        value={surgeries}
+        onChange={(value) => {
+          setSurgeries(value);
+          handleArrayInputChange('pastMedicalHistory', 'surgeries', value);
         }}
+        placeholder="Specify other surgeries"
       />
 
       {/* Allergies */}
       <h3 className="section-header">Allergies</h3>
-      <label className="label">List allergies (medications, food, environment):</label>
-      <textarea
-        className="text-input"
-        placeholder="e.g., Penicillin - Rash, Peanuts - Anaphylaxis"
-        value={allergies.join(', ')}
-        onChange={(e) => {
-          const newAllergies = e.target.value.split(',').map((allergy) => allergy.trim());
-          setAllergies(newAllergies);
-          handleArrayInputChange('pastMedicalHistory', 'allergies', newAllergies);
+      <ButtonSelect
+        options={allergyOptions}
+        value={allergies}
+        onChange={(value) => {
+          setAllergies(value);
+          handleArrayInputChange('pastMedicalHistory', 'allergies', value);
         }}
+        placeholder="Specify other allergies"
       />
 
       {/* Medications */}
       <h3 className="section-header">Medications</h3>
-      <CustomSelect
-        selectedValue={medications}
-        onSelect={(value) => {
+      <ButtonSelect
+        options={medicationOptions}
+        value={medications}
+        onChange={(value) => {
           setMedications(value);
           handleArrayInputChange('pastMedicalHistory', 'medications', value);
         }}
-        options={medicationOptions || []}
-        placeholder="Select medications"
-        multiple
+        placeholder="Specify other medications"
       />
 
       {/* Specific Illnesses */}
       <h3 className="section-header">Specific Illnesses</h3>
-      <CustomSelect
-        selectedValue={specificIllnesses}
-        onSelect={(value) => {
+      <ButtonSelect
+        options={specificIllnessesOptions}
+        value={specificIllnesses}
+        onChange={(value) => {
           setSpecificIllnesses(value);
           handleArrayInputChange('pastMedicalHistory', 'specificIllnesses', value);
         }}
-        options={specificIllnessesOptions || []}
-        placeholder="Select illnesses"
-        multiple
+        placeholder="Specify other illnesses"
       />
 
       {/* Vaccinations */}
       <h3 className="section-header">Vaccinations</h3>
-      <CustomSelect
-        selectedValue={vaccinations}
-        onSelect={(value) => {
+      <ButtonSelect
+        options={vaccinationOptions}
+        value={vaccinations}
+        onChange={(value) => {
           setVaccinations(value);
           handleArrayInputChange('pastMedicalHistory', 'vaccinations', value);
         }}
-        options={vaccinationOptions || []}
-        placeholder="Select vaccinations"
-        multiple
+        placeholder="Specify other vaccinations"
       />
 
       {/* Other Notes */}
       <h3 className="section-header">Additional Notes</h3>
-      <label className="label">Other relevant medical history:</label>
-      <textarea
-        className="text-input"
-        placeholder="Enter any additional information"
+      <ButtonSelect
+        options={[]}
         value={otherNotes}
-        onChange={(e) => {
-          setOtherNotes(e.target.value);
-          handleInputChange('pastMedicalHistory', 'otherNotes', e.target.value);
+        onChange={(value) => {
+          setOtherNotes(value);
+          handleArrayInputChange('pastMedicalHistory', 'otherNotes', value);
         }}
+        placeholder="Specify additional information"
       />
 
       {/* Save Button */}
@@ -140,5 +209,3 @@ const PastMedicalHistory = ({ pastMedicalHistory, handleInputChange, handleArray
 };
 
 export default PastMedicalHistory;
-
-
