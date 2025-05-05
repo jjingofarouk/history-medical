@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useMemo, useRef } from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from './Card';
 import { symptomsList } from './symptomsList';
-import './ChiefComplaint.css';
+import './ChiefComplait.css';
 
 // Constants for maintainability
 const DURATION_UNITS = ['hours', 'days', 'weeks', 'months', 'years'];
