@@ -1,59 +1,242 @@
-.past-medical-history-container {
-  padding: 16px;
-  max-width: 600px;
-  margin: 0 auto;
+/* PastMedicalHistory.css */
+:root {
+  --color-black-1: #050505;
+  --color-black-2: #121212;
+  --color-black-3: #1E1E1E;
+  --color-white-1: #FFFFFF;
+  --color-white-2: #F0F0F0;
+  --color-accent-1: #00FFAA;
+  --color-accent-2: #3D7DFF;
+  --shadow-dark: rgba(0, 0, 0, 0.25);
+  --shadow-accent: rgba(0, 255, 170, 0.2);
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --transition-quick: 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --transition-smooth: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  --font-base: 'Inter', system-ui, -apple-system, sans-serif;
+  --space-xs: 8px;
+  --space-sm: 16px;
+  --space-md: 24px;
+  --space-lg: 32px;
 }
 
-.header {
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 16px;
-  text-align: center;
-}
-
-.section-header {
-  font-size: 20px;
-  font-weight: bold;
-  margin-top: 16px;
-  margin-bottom: 8px;
-}
-
-.label {
-  font-size: 16px;
-  margin-bottom: 8px;
-  display: block;
-}
-
-.text-input {
+/* Main container */
+.past-medical-history-card {
   width: 100%;
-  padding: 10px;
-  border: 1px solid #cccccc;
-  border-radius: 8px;
-  font-size: 16px;
-  color: #333333;
-  margin-bottom: 16px;
-  min-height: 100px;
-  resize: vertical;
+  max-width: 800px;
+  margin: var(--space-md) auto;
+  background: var(--color-black-2);
+  border: 1px solid var(--color-black-3);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 4px 16px var(--shadow-dark);
+  overflow: hidden;
 }
 
-.text-input::placeholder {
-  color: #888888;
+/* Card header */
+.card-header {
+  padding: var(--space-md) var(--space-lg);
+  background: linear-gradient(135deg, var(--color-black-3), var(--color-black-2));
+  border-bottom: 1px solid var(--color-black-3);
 }
 
-.save-button {
-  background-color: #4caf50;
-  color: #ffffff;
-  padding: 12px;
+/* Card title */
+.card-title {
+  margin: 0;
+  font-family: var(--font-base);
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--color-white-1);
+  letter-spacing: -0.02em;
+}
+
+/* Card content */
+.card-content {
+  padding: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+/* Input group */
+.input-group {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-md);
+}
+
+/* Input container */
+.input-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.input-container.full-width {
+  grid-column: span 1;
+}
+
+/* Input label */
+.input-label {
+  font-family: var(--font-base);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-white-1);
+  letter-spacing: 0.01em;
+}
+
+/* Selected items */
+.selected-items {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  margin-top: var(--space-sm);
+}
+
+.selected-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--color-black-3);
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-sm);
+  color: var(--color-white-2);
+  font-family: var(--font-base);
+  font-size: 0.9rem;
+}
+
+/* Remove button */
+.remove-button {
+  background: transparent;
+  color: var(--color-accent-1);
   border: none;
-  border-radius: 8px;
-  font-size: 16px;
-  font-weight: bold;
+  font-size: 1rem;
   cursor: pointer;
-  width: 100%;
-  text-align: center;
-  margin-top: 16px;
+  transition: var(--transition-quick);
+}
+
+.remove-button:hover {
+  color: var(--color-accent-2);
+  transform: scale(1.2);
+}
+
+/* Hospitalization inputs */
+.hospitalization-inputs {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr auto;
+  gap: var(--space-sm);
+  align-items: center;
+}
+
+/* Add button */
+.add-button {
+  padding: var(--space-sm) var(--space-md);
+  background: var(--color-accent-1);
+  color: var(--color-black-1);
+  font-family: var(--font-base);
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: var(--transition-quick);
+}
+
+.add-button:hover {
+  background: var(--color-accent-2);
+  transform: translateY(-2px);
+  box-shadow: 0 2px 8px var(--shadow-accent);
+}
+
+/* Save button */
+.save-button {
+  padding: var(--space-sm) var(--space-lg);
+  background: linear-gradient(135deg, var(--color-accent-1), var(--color-accent-2));
+  color: var(--color-black-1);
+  font-family: var(--font-base);
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: var(--transition-quick);
+  align-self: center;
 }
 
 .save-button:hover {
-  background-color: #45a049;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px var(--shadow-accent);
 }
+
+/* Character counter */
+.character-counter {
+  font-family: var(--font-base);
+  font-size: 0.8rem;
+  color: var(--color-white-2);
+  text-align: right;
+  margin-top: var(--space-xs);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .past-medical-history-card {
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+    width: 100%;
+    margin: 0;
+  }
+
+  .card-header {
+    padding: var(--space-sm) var(--space-md);
+  }
+
+  .card-title {
+    font-size: 1.5rem;
+  }
+
+  .card-content {
+    padding: var(--space-md);
+    gap: var(--space-sm);
+  }
+
+  .hospitalization-inputs {
+    grid-template-columns: 1fr;
+    gap: var(--space-xs);
+  }
+
+  .add-button {
+    font-size: 0.85rem;
+    padding: var(--space-xs) var(--space-sm);
+  }
+
+  .selected-item {
+    font-size: 0.85rem;
+    padding: var(--space-xs) var(--space-sm);
+  }
+}
+
+@media (max-width: 480px) {
+  .card-title {
+    font-size: 1.25rem;
+  }
+
+  .input-label {
+    font-size: 0.85rem;
+  }
+
+  .selected-item {
+    font-size: 0.8rem;
+  }
+
+  .add-button,
+  .save-button {
+    font-size: 0.8rem;
+    padding: var(--space-xs) var(--space-sm);
+  }
+
+  .character-counter {
+    font-size: 0.75rem;
+  }
+}
+```​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
