@@ -53,35 +53,6 @@
   margin-bottom: var(--space-xs);
 }
 
-.text-input {
-  padding: var(--space-sm);
-  background: var(--color-black-3);
-  color: var(--color-white-1);
-  font-family: var(--font-base);
-  font-size: 0.9rem;
-  border: 1px solid var(--color-black-3);
-  border-radius: var(--radius-sm);
-  transition: var(--transition-quick);
-  width: 100%;
-  min-height: 100px;
-  resize: vertical;
-  box-sizing: border-box;
-}
-
-.text-input:hover {
-  border-color: var(--color-accent-1);
-}
-
-.text-input:focus {
-  outline: none;
-  border-color: var(--color-accent-1);
-  box-shadow: 0 0 0 3px var(--shadow-accent);
-}
-
-.text-input::placeholder {
-  color: rgba(255, 255, 255, 0.5);
-}
-
 .button-select {
   display: flex;
   flex-direction: column;
@@ -121,6 +92,34 @@
   box-shadow: 0 2px 8px var(--shadow-accent);
 }
 
+.other-input {
+  padding: var(--space-sm);
+  background: var(--color-black-3);
+  color: var(--color-white-1);
+  font-family: var(--font-base);
+  font-size: 0.9rem;
+  border: 1px solid var(--color-black-3);
+  border-radius: var(--radius-sm);
+  transition: var(--transition-quick);
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: var(--space-xs);
+}
+
+.other-input:hover {
+  border-color: var(--color-accent-1);
+}
+
+.other-input:focus {
+  outline: none;
+  border-color: var(--color-accent-1);
+  box-shadow: 0 0 0 3px var(--shadow-accent);
+}
+
+.other-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
 .save-button {
   padding: var(--space-sm) var(--space-md);
   background: linear-gradient(135deg, var(--color-accent-1), var(--color-accent-2));
@@ -157,14 +156,14 @@
     font-size: 1.1rem;
   }
 
-  .text-input {
-    font-size: 0.85rem;
-    padding: var(--space-xs);
-  }
-
   .option-button {
     font-size: 0.8rem;
     min-width: 70px;
+    padding: var(--space-xs);
+  }
+
+  .other-input {
+    font-size: 0.85rem;
     padding: var(--space-xs);
   }
 
@@ -187,13 +186,13 @@
     font-size: 0.85rem;
   }
 
-  .text-input {
-    font-size: 0.8rem;
-  }
-
   .option-button {
     font-size: 0.75rem;
     min-width: 60px;
+  }
+
+  .other-input {
+    font-size: 0.8rem;
   }
 
   .save-button {
