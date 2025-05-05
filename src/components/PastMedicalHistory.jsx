@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import CustomSelect from './CustomSelect';
 import { chronicConditionsOptions } from './ChronicConditions';
 import { specificIllnessesOptions } from './SpecificIllnesses';
