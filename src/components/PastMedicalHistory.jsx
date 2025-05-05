@@ -9,13 +9,18 @@ const ButtonSelect = ({ options, value, onChange, placeholder }) => {
   const [otherText, setOtherText] = useState('');
 
   const handleButtonClick = (option) => {
-    if (option === 'Other') {
-      onChange([...value, 'Other']);
+    const optionValue = typeof option === 'object' ? option.value : option;
+    const optionLabel = typeof option === 'object' ? option.label : option;
+
+    if (optionValue === 'Other') {
+      if (!value.includes('Other')) {
+        onChange([...value, 'Other']);
+      }
     } else {
-      if (value.includes(option)) {
-        onChange(value.filter((v) => v !== option));
+      if (value.includes(optionValue)) {
+        onChange(value.filter((v) => v !== optionValue));
       } else {
-        onChange([...value, option]);
+        onChange([...value, optionValue]);
       }
     }
   };
@@ -23,15 +28,19 @@ const ButtonSelect = ({ options, value, onChange, placeholder }) => {
   return (
     <div className="button-select">
       <div className="options-container">
-        {options.map((option, index) => (
-          <button
-            key={index}
-            className={`option-button ${value.includes(option) ? 'active' : ''}`}
-            onClick={() => handleButtonClick(option)}
-          >
-            {typeof option === 'object' ? option.label : option}
-          </button>
-        ))}
+        {options.map((option, index) => {
+          const optionValue = typeof option === 'object' ? option.value : option;
+          const optionLabel = typeof option === 'object' ? option.label : option;
+          return (
+            <button
+              key={index}
+              className={`option-button ${value.includes(optionValue) ? 'active' : ''}`}
+              onClick={() => handleButtonClick(option)}
+            >
+              {optionLabel}
+            </button>
+          );
+        })}
         <button
           className={`option-button ${value.includes('Other') ? 'active' : ''}`}
           onClick={() => handleButtonClick('Other')}
@@ -46,7 +55,12 @@ const ButtonSelect = ({ options, value, onChange, placeholder }) => {
           value={otherText}
           onChange={(e) => {
             setOtherText(e.target.value);
-            onChange([...value.filter((v) => v !== 'Other'), `Other: ${e.target.value}`]);
+            const updatedValue = value.filter((v) => !v.startsWith('Other'));
+            if (e.target.value) {
+              onChange([...updatedValue, `Other: ${e.target.value}`]);
+            } else {
+              onChange(updatedValue);
+            }
           }}
         />
       )}
@@ -55,7 +69,7 @@ const ButtonSelect = ({ options, value, onChange, placeholder }) => {
 };
 
 const PastMedicalHistory = ({ pastMedicalHistory, handleInputChange, handleArrayInputChange }) => {
-  const [selectedCondition, setSelectedCondition] = useState(pastMedicalHistory.conditions || []);
+  const [conditions, setConditions] = useState(pastMedicalHistory.conditions || []);
   const [medications, setMedications] = useState(pastMedicalHistory.medications || []);
   const [allergies, setAllergies] = useState(pastMedicalHistory.allergies || []);
   const [specificIllnesses, setSpecificIllnesses] = useState(pastMedicalHistory.specificIllnesses || []);
@@ -105,9 +119,9 @@ const PastMedicalHistory = ({ pastMedicalHistory, handleInputChange, handleArray
       <h3 className="section-header">Chronic Conditions</h3>
       <ButtonSelect
         options={chronicConditionsOptions}
-        value={selectedCondition}
+        value={conditions}
         onChange={(value) => {
-          setSelectedCondition(value);
+          setConditions(value);
           handleArrayInputChange('pastMedicalHistory', 'conditions', value);
         }}
         placeholder="Specify other conditions"
