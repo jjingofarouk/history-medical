@@ -1,3 +1,4 @@
+/* PastMedicalHistory.css */
 :root {
   --color-black-1: #050505;
   --color-black-2: #121212;
@@ -6,8 +7,11 @@
   --color-white-2: #F0F0F0;
   --color-accent-1: #00FFAA;
   --color-accent-2: #3D7DFF;
+  --color-error: #D32F2F;
+  --color-warning: #FFA726;
   --shadow-dark: rgba(0, 0, 0, 0.25);
   --shadow-accent: rgba(0, 255, 170, 0.2);
+  --shadow-error: rgba(211, 47, 47, 0.2);
   --radius-sm: 8px;
   --radius-md: 12px;
   --radius-lg: 16px;
@@ -20,7 +24,7 @@
   --space-lg: 28px;
 }
 
-.past-medical-history-container {
+.past-medical-history {
   width: 100%;
   max-width: 800px;
   margin: 0 auto;
@@ -29,45 +33,70 @@
   border-radius: var(--radius-lg);
   box-shadow: 0 4px 16px var(--shadow-dark);
   padding: var(--space-lg);
+  font-family: var(--font-base);
 }
 
-.header {
-  font-family: var(--font-base);
+.section-title {
   font-size: 1.75rem;
   font-weight: 700;
   color: var(--color-white-1);
   margin: 0 0 var(--space-md);
+  text-align: center;
 }
 
-.section-header {
-  font-family: var(--font-base);
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: var(--color-white-1);
-  margin: var(--space-md) 0 var(--space-xs);
+.input-group {
+  margin-bottom: var(--space-lg);
 }
 
-.label {
-  font-family: var(--font-base);
+.input-label {
+  display: block;
   font-size: 0.9rem;
   font-weight: 600;
   color: var(--color-white-1);
   margin-bottom: var(--space-xs);
 }
 
-.button-select {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-xs);
+.text-input {
+  width: 100%;
+  padding: var(--space-sm);
+  background: var(--color-black-3);
+  color: var(--color-white-1);
+  border: 1px solid var(--color-black-3);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-base);
+  font-size: 0.9rem;
+  min-height: 80px;
+  resize: vertical;
+  transition: var(--transition-quick);
 }
 
-.options-container {
+.text-input:hover {
+  border-color: var(--color-accent-1);
+}
+
+.text-input:focus {
+  outline: none;
+  border-color: var(--color-accent-1);
+  box-shadow: 0 0 0 3px var(--shadow-accent);
+}
+
+.text-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Button Select Styles */
+.button-select-container {
+  margin-bottom: var(--space-lg);
+}
+
+.button-select-options {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-xs);
+  margin-top: var(--space-sm);
 }
 
-.option-button {
+.select-button {
   padding: var(--space-xs) var(--space-sm);
   background: var(--color-black-3);
   color: var(--color-white-2);
@@ -81,47 +110,20 @@
   text-align: center;
 }
 
-.option-button:hover {
+.select-button:hover {
   background: var(--color-accent-1);
   color: var(--color-black-1);
   transform: translateY(-1px);
 }
 
-.option-button.active {
+.select-button.selected {
   background: linear-gradient(135deg, var(--color-accent-1), var(--color-accent-2));
   color: var(--color-black-1);
   font-weight: 600;
   box-shadow: 0 2px 8px var(--shadow-accent);
 }
 
-.other-input {
-  padding: var(--space-sm);
-  background: var(--color-black-3);
-  color: var(--color-white-1);
-  font-family: var(--font-base);
-  font-size: 0.9rem;
-  border: 1px solid var(--color-black-3);
-  border-radius: var(--radius-sm);
-  transition: var(--transition-quick);
-  width: 100%;
-  box-sizing: border-box;
-  margin-top: var(--space-xs);
-}
-
-.other-input:hover {
-  border-color: var(--color-accent-1);
-}
-
-.other-input:focus {
-  outline: none;
-  border-color: var(--color-accent-1);
-  box-shadow: 0 0 0 3px var(--shadow-accent);
-}
-
-.other-input::placeholder {
-  color: rgba(255, 255, 255, 0.5);
-}
-
+/* Save Button */
 .save-button {
   padding: var(--space-sm) var(--space-md);
   background: linear-gradient(135deg, var(--color-accent-1), var(--color-accent-2));
@@ -142,29 +144,26 @@
   box-shadow: 0 4px 12px var(--shadow-accent);
 }
 
+/* Responsive Adjustments */
 @media (max-width: 768px) {
-  .past-medical-history-container {
+  .past-medical-history {
     border-radius: 0;
     border-left: none;
     border-right: none;
     padding: var(--space-md);
   }
 
-  .header {
+  .section-title {
     font-size: 1.5rem;
   }
 
-  .section-header {
-    font-size: 1.1rem;
-  }
-
-  .option-button {
+  .select-button {
     font-size: 0.8rem;
     min-width: 70px;
     padding: var(--space-xs);
   }
 
-  .other-input {
+  .text-input {
     font-size: 0.85rem;
     padding: var(--space-xs);
   }
@@ -176,24 +175,20 @@
 }
 
 @media (max-width: 480px) {
-  .header {
+  .section-title {
     font-size: 1.25rem;
   }
 
-  .section-header {
-    font-size: 1rem;
-  }
-
-  .label {
+  .input-label {
     font-size: 0.85rem;
   }
 
-  .option-button {
+  .select-button {
     font-size: 0.75rem;
     min-width: 60px;
   }
 
-  .other-input {
+  .text-input {
     font-size: 0.8rem;
   }
 
