@@ -32,10 +32,10 @@ const foodOptions = [
   { label: 'Vegetarian', value: 'vegetarian' },
   { label: 'Vegan', value: 'vegan' },
   { label: 'Mixed Diet', value: 'mixed_diet' },
-  { label: 'Other', value: 'other' },
   { label: 'Pescatarian', value: 'pescatarian' },
   { label: 'Keto', value: 'keto' },
   { label: 'Gluten-Free', value: 'gluten_free' },
+  { label: 'Other', value: 'other' },
 ];
 
 const violenceHistoryOptions = [
@@ -57,102 +57,126 @@ const SocialHistory = ({ socialHistory, handleInputChange }) => {
 
   return (
     <div className="social-history-container">
-      <h2 className="title">Social History</h2>
+      <div className="social-history-card">
+        <div className="card-header">
+          <h2 className="card-title">Social History</h2>
+        </div>
+        <div className="card-content">
+          <div className="input-group">
+            <div className="input-container">
+              <label className="input-label">Smoking History</label>
+              <input
+                type="text"
+                className="input-text"
+                placeholder="e.g., Pack-years"
+                value={socialHistory.smoking || ''}
+                onChange={(e) => handleInputChange('socialHistory', 'smoking', e.target.value)}
+              />
+            </div>
+            <div className="input-container">
+              <label className="input-label">Alcohol Consumption</label>
+              <input
+                type="text"
+                className="input-text"
+                placeholder="e.g., Amount, Duration, When stopped?"
+                value={socialHistory.alcohol || ''}
+                onChange={(e) => handleInputChange('socialHistory', 'alcohol', e.target.value)}
+              />
+            </div>
+          </div>
 
-      {/* Smoking History */}
-      <label className="label">Smoking (e.g., Pack-years):</label>
-      <input
-        type="text"
-        className="text-input"
-        placeholder="Enter smoking history"
-        value={socialHistory.smoking || ''}
-        onChange={(e) => handleInputChange('socialHistory', 'smoking', e.target.value)}
-      />
+          <div className="input-group">
+            <div className="input-container">
+              <label className="input-label">Dietary Habits</label>
+              <CustomSelect
+                selectedValue={selectedFood}
+                onSelect={(value) => {
+                  setSelectedFood(value);
+                  handleInputChange('socialHistory', 'food', value);
+                }}
+                options={foodOptions}
+                placeholder="Select dietary habits"
+                className="input-select"
+              />
+            </div>
+            <div className="input-container">
+              <label className="input-label">Exercise Habits</label>
+              <textarea
+                className="input-textarea"
+                placeholder="e.g., Type, Frequency, Limitations?"
+                value={socialHistory.exercise || ''}
+                onChange={(e) => handleInputChange('socialHistory', 'exercise', e.target.value)}
+              />
+            </div>
+          </div>
 
-      {/* Alcohol Consumption */}
-      <label className="label">Alcohol (Amount, Duration, When stopped?):</label>
-      <input
-        type="text"
-        className="text-input"
-        placeholder="Enter alcohol consumption details"
-        value={socialHistory.alcohol || ''}
-        onChange={(e) => handleInputChange('socialHistory', 'alcohol', e.target.value)}
-      />
+          <div className="input-group">
+            <div className="input-container full-width">
+              <label className="input-label">Sexual History</label>
+              <textarea
+                className="input-textarea"
+                placeholder="e.g., Any concerns? Number of partners?"
+                value={socialHistory.sexualHistory || ''}
+                onChange={(e) => handleInputChange('socialHistory', 'sexualHistory', e.target.value)}
+              />
+            </div>
+          </div>
 
-      {/* Dietary Habits */}
-      <label className="label">Dietary Habits:</label>
-      <CustomSelect
-        selectedValue={selectedFood}
-        onSelect={(value) => {
-          setSelectedFood(value);
-          handleInputChange('socialHistory', 'food', value);
-        }}
-        options={foodOptions}
-        placeholder="Select dietary habits"
-      />
+          <div className="input-group">
+            <div className="input-container">
+              <label className="input-label">Housing Situation</label>
+              <CustomSelect
+                selectedValue={selectedHousing}
+                onSelect={(value) => {
+                  setSelectedHousing(value);
+                  handleInputChange('socialHistory', 'housing', value);
+                }}
+                options={housingOptions}
+                placeholder="Select housing situation"
+                className="input-select"
+              />
+            </div>
+            <div className="input-container">
+              <label className="input-label">Type of Work</label>
+              <CustomSelect
+                selectedValue={selectedWork}
+                onSelect={(value) => {
+                  setSelectedWork(value);
+                  handleInputChange('socialHistory', 'work', value);
+                }}
+                options={workOptions}
+                placeholder="Select type of work"
+                className="input-select"
+              />
+            </div>
+          </div>
 
-      {/* Exercise Habits */}
-      <label className="label">Exercise (Type, Frequency, Limitations?):</label>
-      <textarea
-        className="text-area"
-        placeholder="Enter exercise details"
-        value={socialHistory.exercise || ''}
-        onChange={(e) => handleInputChange('socialHistory', 'exercise', e.target.value)}
-      />
-
-      {/* Sexual History */}
-      <label className="label">Sexual History (Any concerns? Number of partners?):</label>
-      <textarea
-        className="text-area"
-        placeholder="Enter sexual history"
-        value={socialHistory.sexualHistory || ''}
-        onChange={(e) => handleInputChange('socialHistory', 'sexualHistory', e.target.value)}
-      />
-
-      {/* Housing Situation */}
-      <label className="label">Housing Situation:</label>
-      <CustomSelect
-        selectedValue={selectedHousing}
-        onSelect={(value) => {
-          setSelectedHousing(value);
-          handleInputChange('socialHistory', 'housing', value);
-        }}
-        options={housingOptions}
-        placeholder="Select housing situation"
-      />
-
-      {/* Work Type */}
-      <label className="label">Type of Work:</label>
-      <CustomSelect
-        selectedValue={selectedWork}
-        onSelect={(value) => {
-          setSelectedWork(value);
-          handleInputChange('socialHistory', 'work', value);
-        }}
-        options={workOptions}
-        placeholder="Select type of work"
-      />
-
-      {/* History of Gender-Based Violence */}
-      <label className="label">History of Gender-Based Violence:</label>
-      <CustomSelect
-        selectedValue={selectedViolenceHistory}
-        onSelect={(value) => {
-          setSelectedViolenceHistory(value);
-          handleInputChange('socialHistory', 'violenceHistory', value);
-        }}
-        options={violenceHistoryOptions}
-        placeholder="Select history of violence"
-      />
-
-      {/* Additional Factors */}
-      <label className="label">Additional Factors (Who lives at home? Mobility needs?):</label>
-      <textarea
-        className="text-area"
-        placeholder="Enter additional factors"
-        value={socialHistory.additionalFactors || ''}
-        onChange={(e) => handleInputChange('socialHistory', 'additionalFactors', e.target.value)}
-      />
+          <div className="input-group">
+            <div className="input-container">
+              <label className="input-label">History of Gender-Based Violence</label>
+              <CustomSelect
+                selectedValue={selectedViolenceHistory}
+                onSelect={(value) => {
+                  setSelectedViolenceHistory(value);
+                  handleInputChange('socialHistory', 'violenceHistory', value);
+                }}
+                options={violenceHistoryOptions}
+                placeholder="Select history of violence"
+                className="input-select"
+              />
+            </div>
+            <div className="input-container">
+              <label className="input-label">Additional Factors</label>
+              <textarea
+                className="input-textarea"
+                placeholder="e.g., Who lives at home? Mobility needs?"
+                value={socialHistory.additionalFactors || ''}
+                onChange={(e) => handleInputChange('socialHistory', 'additionalFactors', e.target.value)}
+              />
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
