@@ -20,29 +20,45 @@
   --spacing-lg: 32px;
 }
 
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 .complaint-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: var(--spacing-md);
+  width: 100vw;
+  padding: var(--spacing-md);
+  background: var(--primary-black);
+  min-height: 100vh;
 }
 
 .complaint-card {
   background: var(--secondary-black);
   border-radius: var(--border-radius-md);
-  padding: var(--spacing-sm);
+  padding: var(--spacing-md);
   border: 1px solid var(--tertiary-black);
   box-shadow: 0 4px 12px var(--shadow-black);
   transition: var(--transition-smooth);
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
 .complaint-card:hover {
-  box-shadow: 0 6px 16px var(--shadow-black);
-  border-color: rgba(0, 255, 170, 0.2);
+  box-shadow: 0 8px 20px var(--shadow-black);
+  border-color: var(--accent-primary);
+  transform: translateY(-2px);
 }
 
 .complaint-section,
 .duration-section {
-  margin-bottom: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
 }
 
 .complaint-label,
@@ -51,24 +67,24 @@
   font-size: 0.875rem;
   font-weight: 600;
   margin-bottom: var(--spacing-xs);
-  display: block;
   letter-spacing: 0.02em;
 }
 
 .input-wrapper {
   position: relative;
+  width: 100%;
 }
 
 .complaint-textarea {
   font-family: var(--font-family);
-  font-size: 1rem;
+  font-size: 0.95rem;
   background: var(--tertiary-black);
   color: var(--primary-white);
   border: 1px solid var(--tertiary-black);
   border-radius: var(--border-radius-sm);
   padding: var(--spacing-sm);
   width: 100%;
-  min-height: 80px;
+  min-height: 100px;
   resize: vertical;
   transition: var(--transition-fast);
 }
@@ -80,7 +96,7 @@
 .complaint-textarea:focus {
   outline: none;
   border-color: var(--accent-primary);
-  box-shadow: 0 0 0 2px var(--shadow-accent);
+  box-shadow: 0 0 0 3px var(--shadow-accent);
 }
 
 .complaint-textarea::placeholder {
@@ -89,7 +105,7 @@
 
 .suggestions-list {
   position: absolute;
-  top: 100%;
+  top: calc(100% + 4px);
   left: 0;
   right: 0;
   background: var(--secondary-black);
@@ -97,9 +113,11 @@
   border-radius: var(--border-radius-sm);
   box-shadow: 0 4px 12px var(--shadow-black);
   list-style: none;
-  margin: var(--spacing-xs) 0 0;
+  margin: 0;
   padding: var(--spacing-xs);
-  z-index: 10;
+  z-index: 100;
+  max-height: 200px;
+  overflow-y: auto;
 }
 
 .suggestion-item {
@@ -120,12 +138,13 @@
   display: flex;
   gap: var(--spacing-sm);
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .duration-input,
 .duration-select {
   font-family: var(--font-family);
-  font-size: 1rem;
+  font-size: 0.95rem;
   background: var(--tertiary-black);
   color: var(--primary-white);
   border: 1px solid var(--tertiary-black);
@@ -135,11 +154,12 @@
 }
 
 .duration-input {
-  width: 100px;
+  width: 120px;
 }
 
 .duration-select {
   flex: 1;
+  min-width: 120px;
   appearance: none;
   background-image: url('data:image/svg+xml;utf8,<svg fill="%23F0F0F0" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
   background-repeat: no-repeat;
@@ -156,7 +176,7 @@
 .duration-select:focus {
   outline: none;
   border-color: var(--accent-primary);
-  box-shadow: 0 0 0 2px var(--shadow-accent);
+  box-shadow: 0 0 0 3px var(--shadow-accent);
 }
 
 .duration-input::placeholder {
@@ -166,13 +186,40 @@
 @media (max-width: 768px) {
   .complaint-grid {
     grid-template-columns: 1fr;
+    padding: var(--spacing-sm);
   }
 
   .complaint-card {
     padding: var(--spacing-md);
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
   }
 
-  .duration-input {
-    width: 80px;
+  .duration-group {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .duration-input,
+  .duration-select {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .complaint-textarea {
+    font-size: 0.9rem;
+    min-height: 80px;
+  }
+
+  .duration-input,
+  .duration-select {
+    font-size: 0.9rem;
+  }
+
+  .complaint-label,
+  .duration-label {
+    font-size: 0.85rem;
   }
 }
