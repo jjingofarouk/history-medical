@@ -11,7 +11,7 @@ const occupationOptions = {
     { value: 'retired', label: 'Retired' },
     { value: 'other', label: 'Other' },
   ],
-  clinicalInfo: 'Occupation can reveal environmental exposures (e.g., pesticides in agriculture) or socioeconomic factors that impact health outcomes and access to care.',
+  clinicalInfo: 'Occupation in Uganda directly correlates with health risks. Farmers face pesticide exposure and zoonotic diseases like brucellosis, common in cattle-rearing regions like Mbarara. Urban traders may present with respiratory issues from air pollution in Kampala. Unemployed patients often delay seeking care, complicating tuberculosis or HIV management.',
 };
 
 export default occupationOptions;
