@@ -6,65 +6,90 @@ const genderOptions = {
     { value: 'non_binary', label: 'Non-binary' },
     { value: 'prefer_not_to_say', label: 'Prefer not to say' },
   ],
-  clinicalInfo: `**Critical Gender-Specific Clinical Considerations:**
+  clinicalInfo: `Gender-Specific Clinical Practice Guidelines
 
-**For Biological Females:**
-▶︎ Cervical Cancer: 80% present at Stage III/IV (avg. survival <1yr without treatment)
-▶︎ Pregnancy Risks: 336 maternal deaths/100,000 births (Pre-eclampsia #1 cause)
-▶︎ Autoimmune: 3× higher lupus rates than men, often diagnosed late
-▶︎ Medication: Need 30% lower dose of zolpidem (higher sedation risk)
+Legal/Ethical Notes:
+- Consent: Females under 18 require guardian consent for HIV testing (not males)
+- Documentation: Biological sex must match lab references (e.g., Hb ranges)
+- Intersex: Court order required for gender marker changes in Uganda
 
-**For Biological Males:**
-▶︎ Trauma: 89% of RTAs involve males (40% alcohol-related)
-▶︎ Silent MIs: 50% present with "atypical" symptoms (fatigue, not chest pain)
-▶︎ Prostate: PSA >10ng/ml in 18% of men >50 in Kampala (Jinja Hosp Study)
-▶︎ Mental Health: 75% of suicides are male (most untreated depression)
+Clinical Relevance:
+Females:
+- Lifetime risk of maternal death: 1 in 49 (Uganda MoH 2023)
+- Cervical cancer kills 22 women daily (80% preventable via screening)
+- Autoimmune diseases peak 30-50 years (check TSH in fatigue)
 
-**Intersex Patients:**
-▶︎ 1 in 1,500 births in Uganda (often hidden)
-▶︎ High risk for: 
-   - Adrenal crises (check electrolytes urgently if vomiting)
-   - Gonadal tumors (ultrasound screening mandatory by age 15)
-   - Osteoporosis (start DEXA scans at puberty)
+Males:
+- 7-year shorter life expectancy than women (56 vs 63 years)
+- 89% of occupational injuries (construction, fishing, boda-bodas)
+- Prostate cancer: 2nd leading cancer death after age 60
 
-**Non-Binary/Gender Diverse:**
-▶︎ 62% delay healthcare due to stigma (UHRC 2023)
-▶︎ Watch for: 
-   - Self-harm scars (assess suicide risk at every visit)
-   - Hormone misuse (black market testosterone injections causing liver damage)
-   - STI reinfection (due to avoidance of follow-up)
+Practical Tips:
+For Female Patients:
+1. Always ask: 
+   - Last menstrual period (anemia workup)
+   - Number of pregnancies (multiparity risks)
+   - Contraceptive use (DVT screening)
 
-**Must-Do Clinical Actions:**
-1. FEMALES: 
-   - Visual Inspection with Acetic Acid (VIA) starting at 25yo
-   - Hemoglobin check at every ANC visit (58% are anemic)
-   - Screen for domestic violence (1 in 3 experience it)
+2. Essential screening:
+   - VIA every 3 years starting at 25
+   - Breast exam annually after 30
+   - Hemoglobin at every ANC visit
 
-2. MALES:
-   - AUDIT-C alcohol screening at every visit
-   - Teach "silent MI" symptoms
-   - Digital rectal exam starting at 40 for high-risk groups
+For Male Patients:
+1. Routine checks:
+   - Testicular exam ages 15-40 (1 in 250 cancer risk)
+   - Alcohol screening using AUDIT-C
+   - Blood pressure annually after 35
 
-3. INTERSEX/NON-BINARY:
-   - Use chosen name (reduces suicide risk by 56%)
-   - Baseline bone density scan if on gender-affirming hormones
-   - Screen for anal cancer if AMAB (assigned male at birth)
+2. High-risk groups:
+   - Boda-boda drivers: TBI assessment
+   - Fishermen: Schisto serology
+   - Miners: Silicosis screening
 
-**Red Flags by Gender:**
-♀️ Female: 
-- Irregular bleeding → Rule out cervical CA first
-- Chronic pelvic pain → 40% have untreated PID
+For Intersex Patients:
+- Emergency protocol: Hydrocortisone for adrenal crisis
+- Developmental: Monitor puberty progression annually
+- Surgical: Document any prior interventions
 
-♂️ Male: 
-- New erectile dysfunction → Early sign of vascular disease
-- Breast enlargement → Check liver function and estradiol
+For Non-Binary Patients:
+- Mental health: PHQ-9 at every visit
+- Hormone therapy: Monitor liver enzymes q3mo
+- STI screening: More frequent than cisgender patients
 
-⚧️ Gender Diverse:
-- Voice changes + acne → Likely unsupervised hormone use
-- Injection site abscesses → Common with silicone misuse
+Cultural Context:
+- Rural areas: 60% of women deliver outside health facilities
+- Fishing communities: Higher transactional sex (HIV risk)
+- Urban youth: Growing LGBTQ+ healthcare needs
 
-**The Bottom Line:** 
-Gender changes your differential diagnosis, screening priorities, and even medication doses. Getting it right isn't political - it's lifesaving clinical medicine.`,
+Documentation Needs:
+- Always record:
+  - Biological sex for lab reference ranges
+  - Gender identity for patient-centered care
+  - Sexual practices for risk assessment
+- Special notes:
+  * "Intersex - requires endocrine follow-up"
+  * "Gender-affirming hormones in use"
+  * "Declined gender-specific screening"
+
+Critical Medications by Gender:
+┌────────────┬──────────────────────────────┐
+│ Gender     │ Special Considerations       │
+├────────────┼──────────────────────────────┤
+│ Female     │ Reduce zolpidem dose 30%    │
+│ Male       │ Higher opioid overdose risk │
+│ Intersex   │ Glucocorticoid emergency kit│
+└────────────┴──────────────────────────────┘
+
+Emerging Concerns:
+1. Teen girls: Rising STEMI rates with oral contraceptive use
+2. Young men: Synthetic androgen liver toxicity
+3. Transgender: Unregulated silicone injection complications
+
+Key References:
+- Uganda Clinical Guidelines 2023
+- WHO Gender and Health Toolkit
+- Ministry of Health Gender Policy`
 };
 
 export default genderOptions;
