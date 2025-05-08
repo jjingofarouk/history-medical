@@ -1,6 +1,6 @@
 import React from 'react';
 import FieldWrapper from './FieldWrapper';
-import '../PersonalInfo.css';
+import './PersonalInfo.css';
 
 const InputField = ({ label, name, type = 'text', value, onChange, placeholder, clinicalInfo }) => (
   <FieldWrapper label={label} clinicalInfo={clinicalInfo}>
