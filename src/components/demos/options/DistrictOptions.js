@@ -38,7 +38,7 @@ const districtOptions = {
       ],
     },
   ],
-  clinicalInfo: 'District of residence helps identify environmental health risks (e.g., malaria prevalence in certain regions) and access to healthcare facilities, informing diagnosis and treatment plans.',
+  clinicalInfo: 'Residence in Uganda dictates disease exposure. Kampala’s urban slums have high rates of cholera and respiratory infections. Eastern districts like Soroti face schistosomiasis from Lake Kyoga. Northern regions, recovering from conflict, show elevated mental health issues, complicating chronic disease management in resource-scarce settings.',
 };
 
 export default districtOptions;
