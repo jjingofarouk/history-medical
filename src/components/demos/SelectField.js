@@ -1,6 +1,6 @@
 import React from 'react';
 import FieldWrapper from './FieldWrapper';
-import '../PersonalInfo.css';
+import './PersonalInfo.css';
 
 const SelectField = ({ label, name, value, onChange, options, groupedOptions, clinicalInfo }) => (
   <FieldWrapper label={label} clinicalInfo={clinicalInfo}>
