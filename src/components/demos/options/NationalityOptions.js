@@ -9,7 +9,7 @@ const nationalityOptions = {
     { value: 'Burundian', label: 'Burundian' },
     { value: 'Other', label: 'Other' },
   ],
-  clinicalInfo: 'Nationality may indicate travel history, migration patterns, or exposure to region-specific diseases (e.g., malaria, Ebola), which are critical for accurate diagnosis and risk assessment.',
+  clinicalInfo: 'Nationality informs travel-related disease risks in Uganda, a hub for East African migration. South Sudanese or Congolese refugees may carry latent tuberculosis or Ebola exposure from conflict zones. Non-Ugandans may also face barriers to healthcare access, delaying diagnosis of conditions like schistosomiasis in lakeside communities.',
 };
 
 export default nationalityOptions;
