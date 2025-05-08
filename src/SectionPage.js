@@ -1,11 +1,12 @@
+```jsx
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import { ArrowLeft } from 'lucide-react';
-import "./SectionPage.css"
+import './SectionPage.css';
 
-import PersonalInfo from './components/demos/PersonalInfo';
+import PersonalInfo from './component//demos/PersonalInfo'; // Updated path
 import ChiefComplaint from './components/ChiefComplaint';
 import HistoryOfPresentIllness from './components/HistoryOfPresentIllness';
 import PastMedicalHistory from './components/PastMedicalHistory';
@@ -19,14 +20,54 @@ export default function SectionPage({ patientData, handleInputChange }) {
   const navigate = useNavigate();
 
   const sectionComponents = {
-    personalInfo: <PersonalInfo personalInfo={patientData.personalInfo} handleInputChange={handleInputChange} />,
-    chiefComplaint: <ChiefComplaint chiefComplaint={patientData.chiefComplaint} handleInputChange={handleInputChange} />,
-    historyOfPresentIllness: <HistoryOfPresentIllness historyOfPresentIllness={patientData.historyOfPresentIllness} handleInputChange={handleInputChange} />,
-    pastMedicalHistory: <PastMedicalHistory pastMedicalHistory={patientData.pastMedicalHistory} handleInputChange={handleInputChange} />,
-    familyHistory: <FamilyHistory familyHistory={patientData.familyHistory} handleInputChange={handleInputChange} />,
-    socialHistory: <SocialHistory socialHistory={patientData.socialHistory} handleInputChange={handleInputChange} />,
-    reviewOfSystems: <ReviewOfSystems reviewOfSystems={patientData.reviewOfSystems} handleInputChange={handleInputChange} />,
-    examinationFindings: <ExaminationFindings examinationFindings={patientData.examinationFindings} handleInputChange={handleInputChange} />,
+    personalInfo: (
+      <PersonalInfo
+        personalInfo={patientData.personalInfo}
+        handleInputChange={handleInputChange}
+      />
+    ),
+    chiefComplaint: (
+      <ChiefComplaint
+        chiefComplaint={patientData.chiefComplaint}
+        handleInputChange={handleInputChange}
+      />
+    ),
+    historyOfPresentIllness: (
+      <HistoryOfPresentIllness
+        historyOfPresentIllness={patientData.historyOfPresentIllness}
+        handleInputChange={handleInputChange}
+      />
+    ),
+    pastMedicalHistory: (
+      <PastMedicalHistory
+        pastMedicalHistory={patientData.pastMedicalHistory}
+        handleInputChange={handleInputChange}
+      />
+    ),
+    familyHistory: (
+      <FamilyHistory
+        familyHistory={patientData.familyHistory}
+        handleInputChange={handleInputChange}
+      />
+    ),
+    socialHistory: (
+      <SocialHistory
+        socialHistory={patientData.socialHistory}
+        handleInputChange={handleInputChange}
+      />
+    ),
+    reviewOfSystems: (
+      <ReviewOfSystems
+        reviewOfSystems={patientData.reviewOfSystems}
+        handleInputChange={handleInputChange}
+      />
+    ),
+    examinationFindings: (
+      <ExaminationFindings
+        examinationFindings={patientData.examinationFindings}
+        handleInputChange={handleInputChange}
+      />
+    ),
   };
 
   return (
@@ -41,7 +82,7 @@ export default function SectionPage({ patientData, handleInputChange }) {
         Back to Sections
       </button>
       {sectionComponents[sectionKey] || <p>Section not found</p>}
-
+      <Footer />
     </div>
   );
 }
