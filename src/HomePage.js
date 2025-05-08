@@ -6,7 +6,7 @@ import {
 } from 'lucide-react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import "./HomePage.css"
+import './HomePage.css';
 
 import demographicsImage from './demographics.jpeg';
 import complaintImage from './complaint.jpeg';
@@ -34,28 +34,50 @@ export default function HomePage() {
   return (
     <div className="app-container">
       <Navbar />
-      <h1 className="app-header">Welcome to MedForm</h1>
-      <p className="app-description">
-        Fill out each section below to complete the clinical assessment.
-      </p>
+      <header className="hero-section">
+        <h1 className="hero-title">MedForm: Streamlined Clinical Assessments</h1>
+        <p className="hero-description">
+          Capture patient data with precision, guided by Uganda-specific clinical insights.
+        </p>
+        <button
+          className="hero-cta"
+          onClick={() => navigate('/section/personalInfo')}
+        >
+          Start Assessment
+        </button>
+      </header>
 
-      <div className="card-grid">
-        {sections.map((section) => (
-          <div
-            key={section.key}
-            className="section-card"
-            onClick={() => navigate(`/section/${section.key}`)}
-          >
+      <section className="features-section">
+        <h2 className="section-title">Comprehensive Patient Data Entry</h2>
+        <p className="section-description">
+          Complete each section with tailored guidance on legal, clinical, cultural, and documentation needs.
+        </p>
+        <div className="card-grid">
+          {sections.map((section) => (
             <div
-              className="card-image"
-              style={{ backgroundImage: `url(${section.image})` }}
-            />
-            {section.icon}
-            <span>{section.label}</span>
-          </div>
-        ))}
-      </div>
+              key={section.key}
+              className="section-card"
+              onClick={() => navigate(`/section/${section.key}`)}
+              tabIndex={0}
+              onKeyDown={(e) => e.key === 'Enter' && navigate(`/section/${section.key}`)}
+            >
+              <div
+                className="card-image"
+                style={{ backgroundImage: `url(${section.image})` }}
+              />
+              <div className="card-content">
+                {section.icon}
+                <h3 className="card-title">{section.label}</h3>
+                <p className="card-info">
+                  Contextual insights for accurate data collection.
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
 
+      <Footer />
     </div>
   );
 }
