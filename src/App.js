@@ -1,12 +1,29 @@
+
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from './HomePage';
 import SectionPage from './SectionPage';
-import "./App.css"
+import './App.css';
 
 export default function App() {
   const [patientData, setPatientData] = useState({
-    personalInfo: {},
+    personalInfo: {
+      prefix: '',
+      name: '',
+      dateOfBirth: '',
+      gender: '',
+      occupation: '',
+      maritalStatus: '',
+      nok: '',
+      kinRelationship: '',
+      nationality: '',
+      tribe: '',
+      religion: '',
+      address: '',
+      phone: '',
+      nin: '',
+      email: '',
+    },
     chiefComplaint: '',
     historyOfPresentIllness: '',
     pastMedicalHistory: {},
@@ -19,10 +36,10 @@ export default function App() {
   const handleInputChange = (section, field, value) => {
     setPatientData((prev) => ({
       ...prev,
-      [section]: {
-        ...prev[section],
-        [field]: value,
-      },
+      [section]:
+        typeof prev[section] === 'object'
+          ? { ...prev[section], [field]: value }
+          : value,
     }));
   };
 
@@ -43,3 +60,4 @@ export default function App() {
     </Router>
   );
 }
+
