@@ -35,7 +35,7 @@ const tribeOptions = {
       ],
     },
   ],
-  clinicalInfo: 'Ethnicity/tribe may indicate genetic predispositions to certain conditions (e.g., sickle cell anemia in specific groups) and cultural practices affecting health.',
+  clinicalInfo: 'Ethnicity in Uganda correlates with genetic and cultural health risks. Baganda and Basoga have higher sickle cell trait prevalence, necessitating screening. Acholi patients in northern Uganda may present with nodding syndrome, a poorly understood neurological condition. Cultural practices, like circumcision among Bagisu, influence HIV prevention strategies.',
 };
 
 export default tribeOptions;
