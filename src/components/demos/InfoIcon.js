@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../PersonalInfo.css';
+import './PersonalInfo.css';
 
 const InfoIcon = ({ clinicalInfo }) => {
   const [isTooltipVisible, setTooltipVisible] = useState(false);
