@@ -1,4 +1,4 @@
-```jsx
+
 import React from 'react';
 import InputField from './InputField';
 import SelectField from './SelectField';
