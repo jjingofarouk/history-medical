@@ -92,6 +92,7 @@
   letter-spacing: 0.01em;
 }
 
+
 .input-text {
   padding: var(--space-sm) var(--space-md);
   background: var(--color-black-3);
@@ -209,4 +210,38 @@
     font-size: 0.8rem;
     width: 100%;
   }
+}
+
+/* PersonalInfo.css (append to existing styles) */
+.field-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.info-icon {
+  cursor: pointer;
+  font-style: italic;
+  color: #007bff;
+  font-size: 14px;
+  margin-left: 4px;
+}
+
+.tooltip {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #333;
+  color: #fff;
+  padding: 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  width: 200px;
+  z-index: 10;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.tooltip.hidden {
+  display: none;
 }
