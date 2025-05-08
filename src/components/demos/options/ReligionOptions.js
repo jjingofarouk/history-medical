@@ -29,7 +29,7 @@ const religionOptions = {
       ],
     },
   ],
-  clinicalInfo: 'Religious beliefs can influence treatment preferences (e.g., refusal of blood transfusions in Jehovah’s Witnesses), dietary restrictions, or health practices, impacting clinical decision-making.',
+  clinicalInfo: 'Religion shapes health decisions in Uganda. Pentecostal patients may prioritize faith healing, delaying treatment for conditions like epilepsy or diabetes. Muslim women may require female clinicians for cultural sensitivity, impacting gynecological care. Traditional believers may use herbal remedies, complicating tuberculosis or HIV treatment regimens.',
 };
 
 export default religionOptions;
