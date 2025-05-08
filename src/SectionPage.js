@@ -6,7 +6,7 @@ import Footer from './components/Footer';
 import { ArrowLeft } from 'lucide-react';
 import './SectionPage.css';
 
-import PersonalInfo from './component/demos/PersonalInfo'; // Updated path
+import PersonalInfo from './components/demos/PersonalInfo'; // Updated path
 import ChiefComplaint from './components/ChiefComplaint';
 import HistoryOfPresentIllness from './components/HistoryOfPresentIllness';
 import PastMedicalHistory from './components/PastMedicalHistory';
