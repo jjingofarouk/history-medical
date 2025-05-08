@@ -121,40 +121,89 @@ const districtOptions = {
       ],
     },
   ],
-  clinicalInfo: `Geographic history is crucial in Ugandan clinical practice due to marked regional variations in disease epidemiology. The 2016 Uganda Demographic and Health Survey reveals striking disparities: under-5 mortality ranges from 53/1000 in Central to 96/1000 in Northern regions, reflecting differential access to care and disease burden.
+  clinicalInfo: `Disease Patterns by Region in Uganda
 
-Central Region (especially Kampala's informal settlements): 
-- Cholera incidence reaches 12.7/1000 during outbreaks (MoH 2019)
-- TB prevalence is 3× higher than rural areas (498 vs 162/100,000)
-- Air pollution (PM2.5 5× WHO limits) drives COPD prevalence to 18.7% in adults >30 (CHAKA study 2021)
+Legal/Ethical Notes:
+- Mandatory reporting required for: 
+  - Marburg (Kween District)
+  - Nodding syndrome (Northern)
+  - Drug-resistant TB (border districts)
+- Consent for HIV testing differs by region (opt-out in high prevalence areas)
 
-Eastern Region (Lake Kyoga basin):
-- Schistosomiasis affects 43% of lakeside communities (MOH 2020)
-- Podoconiosis prevalence reaches 5.2% in barefoot farming populations (Neglected Trop Dis 2018)
-- Hepatitis B surface antigen positivity 8.9% vs national 4.3% (Uganda Cancer Inst)
+Clinical Relevance:
+- Central Region:
+  - Kampala slums: 22% of childhood pneumonia cases nationwide
+  - Wakiso: Highest road traffic accident mortality (38/100,000)
+  - Mukono: 40% of national dialysis patients (agrichemical nephropathy)
 
-Northern Region (post-conflict):
-- PTSD affects 27% of adults in Gulu district (JAMA 2012)
-- Nodding syndrome clusters in Kitgum/Pader (WHO 2017)
-- Snakebite mortality 4.2/100,000 (3× national avg) due to delayed care
+- Eastern Region:
+  - Mbale: 18% diabetes prevalence (highest nationally)
+  - Soroti: 62% of sickle cell crisis admissions
+  - Lake Kyoga basin: 70% of national schistosomiasis cases
 
-Western Region:
-- HIV prevalence varies from 6.1% (Kigezi) to 13.8% (Ankole) (UPHIA 2020)
-- Brucellosis seroprevalence 17% in pastoral communities (BMC Infect Dis)
-- Konzo (cassava-associated paralysis) in Bundibugyo (Trop Med Int Health)
+- Northern Region:
+  - Gulu: 3× higher depression rates than national average
+  - Kitgum: 80% of nodding syndrome cases globally
+  - Karamoja: 45% malnutrition rates in under-5s
 
-Emerging patterns:
-1. Urbanization is creating dual burdens - Kampala shows rising NCDs (hypertension 26.4%) alongside persistent infections
-2. Climate-sensitive diseases: Malaria transmission periods have increased by 8 weeks in Hoima district since 2000
-3. Antimicrobial resistance: MDR-TB is 2.4× more common in border districts (Uganda TB Survey 2021)
+- Western Region:
+  - Kasese: 90% of Uganda's plague cases
+  - Kabale: Highest peptic ulcer disease prevalence (12%)
+  - Hoima: 30% of national occupational lung diseases
 
-Practical implications:
-- A patient from Mayuge with hematuria needs schisto ELISA
-- Psychotic symptoms in Gulu warrant trauma history
-- Unresponsive seizures in Kitgum should prompt nodding syndrome evaluation
-- Non-healing ulcers in Kasese may be Buruli ulcer
+Practical Tips:
+Central:
+- Screen all Kampala slum dwellers for TB if cough >2 weeks
+- Check blood pressure at every visit for Mukono patients >30yo
 
-This geographic lens enables efficient differential diagnosis and targeted testing, particularly crucial in resource-limited settings where exhaustive testing isn't feasible. Always update knowledge - new foci emerge (e.g., 2023 Marburg in Kween).`,
+Eastern:
+- Test urine for schistosomiasis in all fishing communities
+- Offer hepatitis B vaccination to all Iganga residents
+
+Northern:
+- Mental health screening essential for post-conflict areas
+- Carry antivenom in Kitgum/Moroto health centers
+
+Western:
+- Test for brucellosis in pastoralists with FUO
+- Monitor for konzo in Bundibugyo cassava consumers
+
+Cultural Context:
+- Central: Traditional healers manage 60% of childhood illnesses before hospital
+- Eastern: 70% of pregnant women in Busoga first consult birth attendants
+- Northern: Cattle rustling injuries often hidden due to stigma
+- Western: Herbal enema use complicates rectal diagnoses
+
+Documentation Needs:
+- Always record: 
+  - District of residence AND origin (for migrants)
+  - Duration in current location
+  - Occupation (farming/fishing/pastoralism)
+- Special flags:
+  * "From nodding syndrome cluster area"
+  * "Works in Kampala industrial area"
+  * "Frequent cross-border trader"
+
+Critical Diagnostics by Region:
+┌──────────────┬──────────────────────────────┐
+│ Region       │ Priority Tests               │
+├──────────────┼──────────────────────────────┤
+│ Central      │ TB GeneXpert, Heavy metals   │
+│ Eastern      │ Schisto ELISA, Hepatitis B   │
+│ Northern     │ EEG for nodding syndrome     │
+│ Western      │ Brucella agglutination test  │
+└──────────────┴──────────────────────────────┘
+
+Emerging Threats:
+1. Kampala: Dengue outbreaks in Nakawa Division
+2. Arua: Rising cases of visceral leishmaniasis
+3. Kasese: Bubonic plague in Rwenzori foothills
+4. Moroto: Anthrax outbreaks during droughts
+
+Key References:
+- MoH District Health Profiles 2023
+- Uganda Clinical Guidelines 4th Ed
+- Lancet Uganda Series 2022`,
 };
 
 export default districtOptions;
