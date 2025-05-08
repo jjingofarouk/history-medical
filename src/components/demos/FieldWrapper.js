@@ -1,6 +1,6 @@
 import React from 'react';
 import InfoIcon from './InfoIcon';
-import '../PersonalInfo.css';
+import './PersonalInfo.css';
 
 const FieldWrapper = ({ label, children, clinicalInfo }) => (
   <div className="input-container">
