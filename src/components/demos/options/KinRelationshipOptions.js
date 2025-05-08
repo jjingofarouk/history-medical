@@ -8,7 +8,7 @@ const kinRelationshipOptions = {
     { value: 'friend', label: 'Friend' },
     { value: 'guardian', label: 'Legal Guardian' },
   ],
-  clinicalInfo: 'Identifying the relationship to the next of kin helps determine who can make medical decisions or provide support in emergencies, ensuring effective communication and care coordination.',
+  clinicalInfo: 'The next of kin’s relationship is vital in Uganda’s collectivist culture, where family often makes treatment decisions. For critically ill patients, such as those with advanced malaria or stroke, identifying a reliable decision-maker (e.g., spouse or guardian) ensures timely consent for procedures, especially in under-resourced hospitals.',
 };
 
 export default kinRelationshipOptions;
