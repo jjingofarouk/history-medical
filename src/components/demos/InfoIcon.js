@@ -31,7 +31,7 @@ const InfoIcon = ({ clinicalInfo }) => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isModalOpen]);
 
-  // Inline styles based on provided variables
+  // Inline styles based on provided :root variables
   const styles = {
     infoIcon: {
       cursor: 'pointer',
@@ -60,13 +60,21 @@ const InfoIcon = ({ clinicalInfo }) => {
     },
     modalContent: {
       backgroundColor: '#1E1E1E', // --color-black-3
-      padding: '16px', // --space-sm
       borderRadius: '12px', // --radius-md
-      maxWidth: '500px',
-      width: '90%',
+      width: '500px',
+      height: '400px', // Fixed height
+      maxWidth: '90%', // Responsive
       boxShadow: '0 4px 8px rgba(0, 0, 0, 0.25)', // --shadow-dark
       position: 'relative',
       fontFamily: "'Inter', system-ui, -apple-system, sans-serif", // --font-base
+      display: 'flex',
+      flexDirection: 'column',
+    },
+    scrollableContent: {
+      padding: '16px', // --space-sm
+      overflowY: 'auto', // Enable vertical scrolling
+      flex: 1, // Take available space
+      whiteSpace: 'pre-wrap', // Preserve line breaks and spacing
     },
     modalTitle: {
       fontSize: '18px',
@@ -78,7 +86,6 @@ const InfoIcon = ({ clinicalInfo }) => {
       fontSize: '14px',
       color: '#F0F0F0', // --color-white-2
       lineHeight: 1.5,
-      marginBottom: '16px', // --space-sm
     },
     closeButton: {
       position: 'absolute',
@@ -137,8 +144,10 @@ const InfoIcon = ({ clinicalInfo }) => {
             style={styles.modalContent}
             onClick={(e) => e.stopPropagation()}
           >
-            <h3 style={styles.modalTitle}>Clinical Relevance</h3>
-            <p style={styles.modalText}>{clinicalInfo}</p>
+            <div style={styles.scrollableContent}>
+              <h3 style={styles.modalTitle}>Clinical Relevance</h3>
+              <p style={styles.modalText}>{clinicalInfo}</p>
+            </div>
             <button
               style={styles.closeButton}
               onClick={closeModal}
