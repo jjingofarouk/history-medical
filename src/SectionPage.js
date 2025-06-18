@@ -2,7 +2,6 @@
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import Footer from './components/Footer';
 import { ArrowLeft } from 'lucide-react';
 import './SectionPage.css';
 
@@ -82,7 +81,7 @@ export default function SectionPage({ patientData, handleInputChange }) {
         Back to Sections
       </button>
       {sectionComponents[sectionKey] || <p>Section not found</p>}
-      <Footer />
+
     </div>
   );
 }
