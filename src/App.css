@@ -1,4 +1,17 @@
+/* Import fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+/* CSS Reset & Base Styles */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 :root {
+  /* Color palette */
   --primary-black: #050505;
   --secondary-black: #121212;
   --tertiary-black: #1E1E1E;
@@ -6,14 +19,24 @@
   --secondary-white: #F0F0F0;
   --accent-primary: #00FFAA;
   --accent-secondary: #3D7DFF;
+  
+  /* Shadows */
   --shadow-black: rgba(0, 0, 0, 0.25);
   --shadow-accent: rgba(0, 255, 170, 0.15);
+  
+  /* Border radius */
   --border-radius-sm: 8px;
   --border-radius-md: 12px;
   --border-radius-lg: 16px;
+  
+  /* Transitions */
   --transition-fast: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   --transition-smooth: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  --font-family: 'SF Pro Display', 'Inter', system-ui, -apple-system, sans-serif;
+  
+  /* Typography */
+  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  
+  /* Spacing */
   --spacing-xs: 8px;
   --spacing-sm: 16px;
   --spacing-md: 24px;
@@ -21,27 +44,329 @@
   --spacing-xl: 48px;
 }
 
-*,
-*::before,
-*::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 html {
   font-size: 16px;
   scroll-behavior: smooth;
+  height: 100%;
 }
 
 body {
-  background: var(--primary-black);
-  color: var(--primary-white);
   font-family: var(--font-family);
-  font-weight: 400;
+  background-color: var(--primary-black);
+  color: var(--primary-white);
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   min-height: 100vh;
   overflow-x: hidden;
+  position: relative;
+  text-rendering: optimizeLegibility;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Modern scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--secondary-black);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--tertiary-black);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-primary);
+}
+
+/* Selection styling */
+::selection {
+  background-color: var(--accent-primary);
+  color: var(--primary-black);
+}
+
+/* Typography defaults */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: var(--spacing-sm);
+  letter-spacing: -0.02em;
+}
+
+h1 {
+  font-size: 2.5rem;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.75rem;
+}
+
+h4 {
+  font-size: 1.5rem;
+}
+
+h5 {
+  font-size: 1.25rem;
+}
+
+h6 {
+  font-size: 1rem;
+}
+
+p {
+  margin-bottom: var(--spacing-sm);
+  font-size: 1rem;
+}
+
+a {
+  color: var(--accent-primary);
+  text-decoration: none;
+  transition: var(--transition-fast);
+}
+
+a:hover, a:focus {
+  color: var(--accent-secondary);
+  text-decoration: underline;
+}
+
+/* Button reset */
+button {
+  font-family: var(--font-family);
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+/* Focus styling */
+:focus {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 2px;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Accessibility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Smooth appearance animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.app-container {
+  animation: fadeIn 0.4s ease-out;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+  }
+}
+
+/* Container */
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  html {
+    font-size: 14px;
+  }
+  
+  .container {
+    padding: 0 var(--spacing-sm);
+  }
+}
+
+/* Image styling */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Code styling */
+code {
+  font-family: 'SF Mono', 'Menlo', 'Monaco', 'Courier New', monospace;
+  background-color: var(--tertiary-black);
+  color: var(--accent-primary);
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+/* Grid system */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--spacing-md);
+}
+
+/* App loading state */
+.app-loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--primary-black);
+  z-index: 9999;
+}
+
+.app-loading__spinner {
+  width: 48px;
+  height: 48px;
+  border: 4px solid rgba(0, 255, 170, 0.1);
+  border-radius: 50%;
+  border-top-color: var(--accent-primary);
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* MUI Overrides */
+.MuiCard-root {
+  background-color: var(--secondary-black);
+  border: 1px solid var(--tertiary-black);
+  border-radius: var(--border-radius-lg);
+  box-shadow: 0 4px 16px var(--shadow-black);
+}
+
+.MuiCardHeader-root {
+  background: linear-gradient(135deg, var(--tertiary-black), var(--secondary-black));
+  border-bottom: 1px solid var(--tertiary-black);
+  padding: var(--spacing-md) var(--spacing-lg);
+}
+
+.MuiCardContent-root {
+  padding: var(--spacing-lg);
+}
+
+.MuiTypography-h5 {
+  font-family: var(--font-family);
+  font-weight: 700;
+  color: var(--primary-white);
+  letter-spacing: -0.02em;
+}
+
+.MuiInputBase-root {
+  background-color: var(--tertiary-black);
+  color: var(--primary-white);
+  border-radius: var(--border-radius-sm);
+  border: 1px solid var(--tertiary-black);
+  transition: var(--transition-fast);
+}
+
+.MuiInputBase-input {
+  font-family: var(--font-family);
+  font-size: 0.9rem;
+  padding: var(--spacing-sm) var(--spacing-md);
+}
+
+.MuiInputBase-root:hover {
+  border-color: var(--accent-primary);
+}
+
+.MuiInputBase-root.Mui-focused {
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 3px var(--shadow-accent);
+}
+
+.MuiInputLabel-root {
+  font-family: var(--font-family);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--secondary-white);
+  letter-spacing: 0.01em;
+}
+
+.MuiInputLabel-root.Mui-focused {
+  color: var(--accent-primary);
+}
+
+.MuiSelect-select {
+  padding-right: var(--spacing-lg) !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23F0F0F0' width='24px' height='24px'%3E%3Cpath d='M7 10l5 5 5-5H7z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right var(--spacing-sm) center;
+  background-size: 20px;
+}
+
+.MuiMenu-paper {
+  background-color: var(--secondary-black);
+  border: 1px solid var(--tertiary-black);
+}
+
+.MuiMenuItem-root {
+  color: var(--secondary-white);
+  font-family: var(--font-family);
+}
+
+.MuiMenuItem-root:hover {
+  background-color: var(--tertiary-black);
+}
+
+.MuiOutlinedInput-notchedOutline {
+  border: none;
+}
+
+@media (max-width: 768px) {
+  .MuiCard-root {
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+  }
+  
+  .MuiCardHeader-root {
+    padding: var(--spacing-sm) var(--spacing-md);
+  }
+  
+  .MuiCardContent-root {
+    padding: var(--spacing-md);
+  }
 }
