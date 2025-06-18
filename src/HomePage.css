@@ -59,7 +59,7 @@ body {
 
 .hero-section {
   text-align: center;
-  padding: var(--spacing-xl) 0;
+  padding: 0;
   background: linear-gradient(180deg, var(--secondary-black), var(--primary-black));
   border-radius: var(--border-radius-lg);
   margin-bottom: var(--spacing-lg);
